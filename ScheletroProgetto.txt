@@ -1,0 +1,22 @@
+Menu iniziale:
+unisciti/crea stanza, crea mazzo, impostazioni.
+
+Creazione Carte :
+crea Mazzo :  crea carta bianca, crea carta nera.
+gestione del mazzo: modifiche a mazzo esistente, eliminazione mazzo.
+forse: gestione avanzata del mazzo: valutazione mazzo (possibilità di essere giocata da altri giocatori).
+
+Architettura GAME:
+Giocatore generale.
+Zar. (giudice, il giocatore generale diventerà uno zar a giro).
+
+crea,unisciti stanza:
+creazione stanza con possibilità di personalizzazione del game.
+unione ad una stanza tramite codice, o a stanza libera.
+spectating.
+
+minimo di 3 giocatori. Massimo boh!
+
+chat durante il game.
+
+
