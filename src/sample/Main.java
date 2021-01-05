@@ -1,4 +1,4 @@
-package main.sample;
+package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        primaryStage.setTitle("CAH");
+        primaryStage.setTitle("cards Against Humanity");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
