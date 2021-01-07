@@ -13,7 +13,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="playbutton" layoutX="255.0" layoutY="162.0" mnemonicParsing="false" onAction="#ActionPlayButton" prefHeight="48.0" prefWidth="90.0" text="Gioca" />
+      <Button fx:id="playButton" layoutX="255.0" layoutY="162.0" mnemonicParsing="false" onAction="#ActionPlayButton" prefHeight="48.0" prefWidth="90.0" text="Gioca" />
       <Button fx:id="createButton" layoutX="255.0" layoutY="239.0" mnemonicParsing="false" onAction="#ActionCreatebutton" prefHeight="48.0" prefWidth="90.0" text="Crea Stanza" />
       <Button fx:id="optionsButton" layoutX="255.0" layoutY="318.0" mnemonicParsing="false" onAction="#ActionOptionsButton" prefHeight="48.0" prefWidth="90.0" text="Impostazioni" />
    </children>
