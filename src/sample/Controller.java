@@ -13,7 +13,7 @@ import java.io.IOException;
 public class Controller {
 
     @FXML
-    Button playButton, createButton, optionsButton, turnBack, turnBack2, turnBack3;
+    Button playButton, createButton, optionsButton, turnBack;
 
     public void ActionPlayButton(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("PlayScreen.fxml"));
@@ -36,18 +36,6 @@ public class Controller {
     public void ActionTurnBack(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         Stage window = (Stage)turnBack.getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    public void ActionTurnBack2(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        Stage window = (Stage)turnBack2.getScene().getWindow();
-        window.setScene(new Scene(root));
-    }
-
-    public void ActionTurnBack3(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        Stage window = (Stage)turnBack3.getScene().getWindow();
         window.setScene(new Scene(root));
     }
 

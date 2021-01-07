@@ -12,7 +12,7 @@
    <children>
       <TextArea layoutY="244.0" prefHeight="127.0" prefWidth="200.0" />
       <TextField layoutY="371.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button fx:id="turnBack2" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionTurnBack2" text="torna indietro" />
+      <Button fx:id="turnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionTurnBack" text="torna indietro" />
       <Label layoutX="110.0" layoutY="180.0" prefHeight="40.0" prefWidth="381.0" text="qui ci sarà il gioco con le carte">
          <font>
             <Font size="28.0" />

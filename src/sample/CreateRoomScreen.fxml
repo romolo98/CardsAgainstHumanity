@@ -14,6 +14,6 @@
       <Label layoutX="252.0" layoutY="149.0" text="codice della stanza" />
       <Label layoutX="256.0" layoutY="225.0" text="codice del mazzo" />
       <TextField layoutX="228.0" layoutY="252.0" />
-      <Button fx:id="turnBack3" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionTurnBack3" text="torna indietro" />
+      <Button fx:id="turnBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionTurnBack" text="torna indietro" />
    </children>
 </AnchorPane>
