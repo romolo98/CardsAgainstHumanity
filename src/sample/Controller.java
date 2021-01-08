@@ -43,4 +43,7 @@ public class Controller {
     }
 
 
+    public void ActionSendButton(ActionEvent actionEvent) {
+        //qui va implementato l'invio del messaggio.
+    }
 }
