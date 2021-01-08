@@ -1,0 +1,30 @@
+Nome: Estrazione Zar.
+
+Portata: Utentu in partita.
+
+Livello: Estrae un'utente tra quelli in partita elevandolo a Zar.
+
+Attore primario: Zar.
+
+Parti interessate:
+1) Zar.
+2) Utenti.
+
+Pre condizione: N/A.
+
+Garanzia di successo: Viene eletto uno Zar tra i giocatori presenti.
+
+Scenario principale di successo:
+1) Viene estratto uno Zar tra gli utenti presenti.
+2) Lo Zar mantiene il suo turno fino a fine partita -> Lo Zar abbandona la partita.
+3) Alla fine del turno si ritorna al punto 1).
+
+Estensioni e flussi alternativi.
+a) Lo Zar abbandona la partita.
+    1) Viene eletto un nuovo Zar tra i giocatori presenti / Viene eletto Zar colui che ha vinto l'ultima mano.
+
+Requisiti speciali: N/A
+
+Frequenza di ripetizione: Alla fine di ogni turno.
+
+Varie: N/A.
