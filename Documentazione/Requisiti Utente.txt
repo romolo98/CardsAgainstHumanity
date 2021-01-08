@@ -1,0 +1,20 @@
+Requisiti Utente
+
+Il gioco CardsAgainstHumanity è un gioco di carte con partite suddivise a manches.
+In ogni manches un giocatore casuale sarà designato col titolo di Czar e dovrà decidere il vincitore della mano.
+L'obiettivo sarà creare la miglior frase per vincere la mano. La frase sarà composta dalla frase scritta sulla
+Black Card composta con la/e parola/e della White Card di ciascun giocatore. A fine partita vince il giocatore
+che ha vinto più manches.
+
+L'interfaccia di gioco comprende:
+-una schermata principale
+-una schermata di creazione partita
+-la schermata di gioco
+-schermata di gestione deck
+-schermata di impostazioni  L'utente per accedere ad una partita inserisce il codice della partita ed il suo nickname,
+    senza registrazione necessaria.
+
+Per la creazione della stanza è possibile scegliere se impostare una password.
+L'identificativo della stanza sarà il nome del creatore, e saranno disponibili una serie di settaggi quali
+scegliere i mazzi da usare, il numero massimo di player e di manches.
+
