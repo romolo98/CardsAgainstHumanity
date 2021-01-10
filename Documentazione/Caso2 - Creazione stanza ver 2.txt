@@ -7,8 +7,8 @@ Livello: Crea una stanza di gioco ed inizia una partita con altri giocatori.
 Attore primario: Utente/Giocatore.
 
 Parti interessati/Interessi:
-1) Giocatore
-2) Sistema
+1) Giocatore.
+2) Sistema.
 
 Pre condizioni: Visualizzare la schermata principale della GUI di sistema.
 

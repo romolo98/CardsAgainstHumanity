@@ -8,7 +8,7 @@ Attore primario: Utente.
 
 Parti interessati/Interessi:
 1) Utenti.
-2) ?
+2) Sistema.
 
 Pre condizioni: Per creare la stanza bisogna avere un nickname / ?
 

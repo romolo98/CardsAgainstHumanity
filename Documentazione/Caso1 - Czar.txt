@@ -1,27 +1,27 @@
-Nome: Estrazione Zar.
+Nome: Estrazione Czar.
 
-Portata: Utentu in partita.
+Portata: Giocatori in partita.
 
-Livello: Estrae un'utente tra quelli in partita elevandolo a Zar.
+Livello: Estrae un giocatore tra quelli in partita assegnando il titolo di Czar.
 
-Attore primario: Zar.
+Attore primario: Sistema.
 
 Parti interessate:
-1) Zar.
-2) Utenti.
+1) Sistema.
+2) Giocatori.
 
 Pre condizione: N/A.
 
-Garanzia di successo: Viene eletto uno Zar tra i giocatori presenti.
+Garanzia di successo: Viene eletto uno Czar tra i giocatori presenti.
 
 Scenario principale di successo:
-1) Viene estratto uno Zar tra gli utenti presenti.
-2) Lo Zar mantiene il suo turno fino a fine partita -> Lo Zar abbandona la partita.
+1) Viene estratto uno Czar tra i giocatori presenti.
+2) Lo Czar mantiene il suo status fino a fine turno -> Lo Czar abbandona la partita.
 3) Alla fine del turno si ritorna al punto 1).
 
 Estensioni e flussi alternativi.
-a) Lo Zar abbandona la partita.
-    1) Viene eletto un nuovo Zar tra i giocatori presenti / Viene eletto Zar colui che ha vinto l'ultima mano.
+a) Lo Czar abbandona la partita.
+    1) Viene eletto un nuovo Czar tra i giocatori presenti / Viene eletto Czar colui che ha vinto l'ultima mano.
 
 Requisiti speciali: N/A
 
