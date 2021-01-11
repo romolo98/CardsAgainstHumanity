@@ -7,34 +7,42 @@ Livello: Creazione di un mazzo di carte giocabile
 Attore primario: Utente/Giocatore
 
 Parti Interessate e Interessi:
--Utente/Giocatore
--Sistema
+1) Utente/Giocatore
+2) Sistema
 
 Pre-condizioni: L'utente è acceduto alla schermata gestione mazzi.
 
 Garanzia di Successo: Il giocatore creerà un mazzo di carte personalizzate. Il mazzo potrà essere usato in una partita, condiviso da tutti i partecipanti.
 
 Scenario Principale di Successo:
-1. L'utente avvia la creazione di un nuovo mazzo.
-2. L'utente aggiunge una nuova carta.
-3. Il sistema chiede il tipo di carta da aggiungere (Bianca o Nera). (troppo specifico?)
-4. L'utente sceglie il tipo di carta e lo comunica al sistema.
-5. L'utente inserisce il contenuto della carta.
-6. L'utente salva la carta inserita.
+1) L'utente avvia la creazione di un nuovo mazzo.
+2) L'utente aggiunge una nuova carta.
+3) Il sistema chiede il tipo di carta da aggiungere (Bianca o Nera). (troppo specifico?)
+4) L'utente sceglie il tipo di carta e lo comunica al sistema.
+5) L'utente inserisce il contenuto della carta.
+6) L'utente salva la carta inserita.
 L'utente ripete i passi 2->6 un numero arbitrario di volte. (da scrivere come flusso alternativo?)
-7. L'utente salva il mazzo creato.
-8. L'utente inserisce un nome per il mazzo.
-9. L'utente conferma il nome inserito.
+7) L'utente salva il mazzo creato.
+8) L'utente inserisce un nome per il mazzo.
+9) L'utente conferma il nome inserito.
 
 Estensioni:
-*a. In qualsiasi momento l'utente annulla la creazione del mazzo:
+*a) In qualsiasi momento l'utente annulla la creazione del mazzo:
 	1. L'utente conferma l'annullamento del mazzo.
-6a. L'utente modifica una carta creata.
+6a) L'utente modifica una carta creata.
     1. L'utente seleziona una carta da modificare.
     2. L'utente informa il sistema di voler modificare la carta.
     Si torna al punto 5.
-6b. L'utente elimina una o più carte create.
+6b) L'utente elimina una o più carte create.
 	1. L'utente seleziona una o più carte da eliminare.
 	2. L'utente informa il sistema di voler eliminare le carte selezionate.
 	3. L'utente conferma l'eliminazione delle carte selezionate.
 	4. Si torna al punto 5.
+
+Requisiti speciali: N/A
+
+Elenco delle varianti teconologiche e dei dati: N/A.
+
+Frequenza di ripetizione: Ogni qualvolta che si vuole creare un nuovo mazzo.
+
+Varie: N/A.

@@ -7,22 +7,28 @@ Livello: Crea una stanza di gioco ed inizia una partita con altri giocatori.
 Attore primario: Utente/Giocatore.
 
 Parti interessati/Interessi:
-1) Giocatore.
-2) Sistema.
+1) Sistema.
+2) Giocatore.
 
-Pre condizioni: Visualizzare la schermata principale della GUI di sistema.
+Pre-condizioni: Visualizzare la schermata principale della GUI di sistema.
 
 Garanzia di successo: La stanza viene creata e resa disponibile per altri utenti.
 
 Scenario principale di successo:
-1) Un utente crea una stanza. -> utente che ha creato lascia la partita.
-2) L'utente che crea la stanza sceglie se lasciarla pubblica o privata.
-3) La stanza è disponibile per altri utenti.
+1) Un utente crea una stanza.
+2) L'utente comunica al sistema nome, codice, mazzo da usare e visibilità della stanza.
+3) L'utente viene trasferito nella stanza.
+4) La stanza è disponibile per altri utenti.
 
 Estensioni e flussi alternativi.
-a) L'utente che ha creato la stanza lascia la partita. ?
+1a) L'utente lascia la partita.
+    1. La partita viene interrotta e i giocatori riportati alla schermata principale.
+2a) L'utente interrompe la creazione della stanza.
+    1. Ritorna al menu principale.
 
 Requisiti speciali: N/A
+
+Elenco delle varianti teconologiche e dei dati: N/A.
 
 Frequenza di ripetizione: Ogni volta che si crea una stanza.
 
