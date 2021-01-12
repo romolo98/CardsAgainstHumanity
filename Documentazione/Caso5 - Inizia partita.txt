@@ -1,0 +1,42 @@
+Nome: Inizia una partia.
+
+Portata: Sistema.
+
+Livello: I giocatori in partita.
+
+Attore primario: CZar, giocatori.
+
+Parti interessate:
+1) Giocatori.
+2) CZar.
+3) Sistema.
+
+Pre-condizioni: La stanza deve contenere almeno N giocatori.
+
+Garanzia di successo: La partita inizia.
+
+Scenario principale di successo:
+1) L'host, raggiunti N giocatori in stanza può iniziare la partita.
+2) Viene estratto uno Czar tra i giocatori presenti.
+3) Lo Czar mantiene il suo status fino a fine turno.
+4) Ai giocatori vengono distribuite N carte.
+5) I giocatori devono usare le loro carte per completare la frase con la carta sul tavolo.
+6) Quando tutti i giocatori terminano il turno lo CZar sceglierà la frase che considera più divertente.
+7) Il sistema notifica in chat il giocatore vincente e incrementa il suo punteggio.
+Si ritorna al punto 2.
+8) La partita termina raggiunto il punteggio massimo.
+
+Estensioni e flussi alternativi.
+1a) Più giocatori escono e i restanti non sono in numero sufficente:
+    1. ?
+
+3a) Lo Czar abbandona la partita.
+    1. Viene eletto un nuovo Czar tra i giocatori presenti.
+
+Requisiti speciali: N/A
+
+Elenco delle varianti teconologiche e dei dati: N/A.
+
+Frequenza di ripetizione: Ad ogni inizio turno.
+
+Varie: N/A.

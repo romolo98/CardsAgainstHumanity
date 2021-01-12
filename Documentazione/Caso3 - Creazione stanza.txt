@@ -1,24 +1,25 @@
-Nome: Iniziare partita.
+Nome: Crea stanza.
 
-Portata: Crea una stanza per iniziare la partita.
+Portata: Sistema.
 
-Livello: Crea una stanza di gioco ed inizia una partita con altri giocatori.
+Livello: Crea una stanza di gioco per ospitare altri giocatori.
 
-Attore primario: Utente/Giocatore.
+Attore primario: Utente.
 
 Parti interessati/Interessi:
 1) Sistema.
-2) Giocatore.
+2) Utente.
 
 Pre-condizioni: Visualizzare la schermata principale della GUI di sistema.
 
-Garanzia di successo: La stanza viene creata e resa disponibile per altri utenti.
+Garanzia di successo: La stanza viene creata e resa disponibile per altri giocatori.
 
 Scenario principale di successo:
 1) Un utente crea una stanza.
 2) L'utente comunica al sistema nome, codice, mazzo da usare e visibilità della stanza.
 3) L'utente viene trasferito nella stanza.
-4) La stanza è disponibile per altri utenti.
+4) La stanza è disponibile per altri giocatori.
+5) L'Utente attende che un certo numero di giocaotri si unisca e avvia la partita.
 
 Estensioni e flussi alternativi.
 1a) L'utente lascia la partita.
