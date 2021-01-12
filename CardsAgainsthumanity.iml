@@ -9,5 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="au.net.causal.projo:projo-jodatime:1.1" level="project" />
+    <orderEntry type="library" name="com.esotericsoftware:kryonet:2.22.0-RC1" level="project" />
   </component>
 </module>

@@ -1,5 +1,6 @@
 package sample;
 
+import Server.CAHClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
