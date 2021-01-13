@@ -1,0 +1,9 @@
+1) Differenze tra host e giocatore normale. -> Forse.
+
+2) Definizione di una lobby dove mettere il nick. -> Forse.
+
+3) Un host può kickare un player. -> Si.
+
+4) Sistema di credenziale(codici).
+
+5) Che succede se troppi giocatori escono dalla partita? -> La partita si annulla.
