@@ -6,10 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         primaryStage.setTitle("cards Against Humanity");
         primaryStage.setScene(new Scene(root));
@@ -17,8 +20,8 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch(args);
+
     }
 }

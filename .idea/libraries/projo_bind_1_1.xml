@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="projo-bind-1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/projo-bind-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/minlog-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kryonet-2.22.0-RC1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-14.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/objenesis-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joda-time-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jasypt-1.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/projo-jodatime-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/projo-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kryo-2.24.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsonbeans-0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/super-csv-2.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
