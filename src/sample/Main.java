@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        primaryStage.setTitle("cards Against Humanity");
+        primaryStage.setTitle("Cards Against Humanity");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
         primaryStage.show();

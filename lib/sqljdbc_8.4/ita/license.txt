@@ -1,0 +1,67 @@
+﻿CONDIZIONI DI LICENZA PER IL SOFTWARE MICROSOFT
+MICROSOFT JDBC DRIVER 8.4 FOR SQL SERVER
+
+Le presenti condizioni di licenza costituiscono il contratto tra il licenziatario e Microsoft Corporation (o una delle sue consociate). Le presenti condizioni si applicano al software di cui sopra e a qualsiasi servizio o aggiornamento software Microsoft (tranne nella misura in cui tali servizi o aggiornamenti siano forniti con condizioni nuove o aggiuntive, nel quale caso tali condizioni differenti si applicano in prospettiva e non modificano i diritti del licenziatario o di Microsoft relativamente al software o ai servizi aggiornati in precedenza). QUALORA IL LICENZIATARIO SI ATTENGA ALLE PRESENTI CONDIZIONI DI LICENZA, DISPORRÀ DEI DIRITTI INDICATI DI SEGUITO.
+
+1. DIRITTI DI INSTALLAZIONE E SULL’UTILIZZO.
+	a. In generale. Il licenziatario potrà installare e utilizzare qualsiasi numero di copie del software .
+	b. Software di Terzi. Il software potrà includere applicazioni di terzi che Microsoft, non i terzi, concede in licenza al licenziatario ai sensi del presente contratto. Eventuali comunicazioni incluse relative ad applicazioni di terzi sono solo a scopo informativo.
+
+2. CODICE DISTRIBUIBILE. Il software potrà contenere codice che il licenziatario è autorizzato a distribuire (ovvero a rendere disponibile a terzi) nelle applicazioni che svilupperà in base a quanto descritto nel presente Articolo.
+		a. Diritti per la Distribuzione. Il codice e i file di testo descritti di seguito sono distribuibili qualora siano inclusi nel software.
+		i. File REDIST.TXT. Il licenziatario potrà duplicare e distribuire il formato in codice oggetto del codice incluso nell’eventuale elenco REDIST oppure disponibile in REDIST;
+		ii. Image Library. Il licenziatario potrà duplicare e distribuire immagini, grafica e animazioni di Image Library secondo le modalità descritte nella documentazione del software;
+		iii. Codice Campione, Modelli e Stili. Il licenziatario potrà duplicare, modificare e distribuire il formato in codice sorgente e in codice oggetto del codice contrassegnato come “campione”, “modello”, “stili semplici” e “stili schizzo” e
+		iv. Distribuzione da Parte di Terzi. Il licenziatario potrà autorizzare i distributori delle proprie applicazioni a duplicare e distribuire qualsiasi codice distribuibile tra quello che sceglie di distribuire con le proprie applicazioni.
+	b. Requisiti per la Distribuzione. Per distribuire il codice, il licenziatario dovrà:
+		i. aggiungervi rilevanti e significative funzionalità nelle applicazioni;
+		ii. far accettare ai distributori e agli utenti finali esterni un contratto con condizioni che garantiscano al codice e a Microsoft almeno lo stesso livello di tutela definito nel presente contratto e
+		iii. indennizzare, manlevare e difendere Microsoft da qualsiasi reclamo, ivi inclusi i corrispettivi legali, relativo all’utilizzo o alla distribuzione delle proprie applicazioni, a meno che questo non si basi esclusivamente sul codice distribuibile non modificato.
+	c. Restrizioni per la Distribuzione. Il licenziatario non potrà:
+		i. utilizzare marchi o segni distintivi di Microsoft nelle proprie applicazioni in alcun modo tale da suggerire che l’applicazione provenga o sia approvata da Microsoft né
+		ii. modificare o distribuire il codice sorgente di alcun codice distribuibile in modo tale che nessuna parte di esso si assoggetti ad alcuna licenza che richieda che il codice distribuibile, qualsiasi altro componente del software o qualsiasi elemento di altra proprietà intellettuale di Microsoft venga divulgato o distribuito nel formato in codice sorgente o che altri abbiano il diritto di modificarlo.
+
+3. RACCOLTA DEI DATI. Alcune funzionalità del software potranno consentire la raccolta dei dati degli utenti che utilizzano le applicazioni del licenziatario per accedere al software o utilizzarlo. Qualora il licenziatario utilizzi tali funzionalità per abilitare la raccolta dei dati nelle proprie applicazioni, dovrà conformarsi alla legge applicabile e dovrà anche ottenere le eventuali autorizzazioni necessarie da parte degli utenti, oltre a mantenere un’importante informativa sulla privacy con la quale informa gli utenti sul modo in cui utilizza, raccoglie e condivide i loro dati. Il licenziatario accetta di conformarsi a tutte le disposizioni applicabili dell’Informativa sulla Privacy di Microsoft all'indirizzo [https://go.microsoft.com/fwlink/?LinkId=521839].
+
+4. AMBITO DI VALIDITÀ DELLA LICENZA. Il software non viene venduto, ma è concesso in licenza. Microsoft si riserva tutti gli altri diritti. Nel limite massimo consentito dalla legge applicabile il licenziatario non agirà (né avrà il diritto di agire) come segue:
+	a. aggirare le limitazioni tecniche presenti nel software che gli consentono di utilizzarlo solo in determinati modi;
+	b. decompilare o disassemblare il software;
+	c. rimuovere, ridurre, bloccare o modificare alcuna comunicazione di Microsoft o dei suoi fornitori inclusa nel software;
+	d. utilizzare il software in contrasto con la legge oppure per creare o propagare malware o
+	e. condividere, pubblicare, distribuire o concedere in prestito il software (ad eccezione di eventuale codice distribuibile, soggetto alle condizioni applicabili di cui sopra), fornirlo come soluzione ospitata autonoma utilizzabile da terzi oppure trasferire il software o il presente contratto a terzi.
+
+5. LIMITAZIONI RELATIVE ALL’ESPORTAZIONE. Il licenziatario dovrà anche conformarsi a tutte le leggi e a tutti i regolamenti nazionali e internazionali sull’esportazione applicabili al software, che includono limitazioni su destinazioni, utenti finali e utilizzo finale. Per ulteriori informazioni sulle limitazioni relative all’esportazione, il licenziatario potrà visitare la pagina http://aka.ms/exporting.
+
+6. SERVIZI DI SUPPORTO TECNICO. Microsoft non è obbligata ai sensi del presente contratto a erogare alcun servizio di supporto tecnico per il software. L’eventuale supporto tecnico erogato viene fornito “com’è”, “con tutti i difetti” e senza alcun tipo di garanzia.
+
+7. AGGIORNAMENTI. Il software potrà controllare periodicamente la presenza di aggiornamenti e scaricarli e installarli per conto del licenziatario. Il licenziatario potrà ottenere gli aggiornamenti solo da Microsoft o da fonti autorizzate. Per fornire gli aggiornamenti è possibile che Microsoft debba aggiornare il sistema del licenziatario. Il licenziatario accetta di ricevere tali aggiornamenti automatici senza alcuna ulteriore comunicazione. Gli aggiornamenti potrebbero non includere né supportare tutti i servizi, le funzionalità o le periferiche esistenti.
+
+8. INTERO ACCORDO. Il presente contratto e qualsiasi altra condizione che Microsoft potrà fornire in relazione a supplementi, aggiornamenti o ad applicazioni di terzi costituiscono l’intero accordo per il software.
+
+9. LEGGE APPLICABILE E FORO PER LA RISOLUZIONE DELLE CONTROVERSIE. Qualora il licenziatario abbia acquistato il software negli Stati Uniti o in Canada, il presente contratto sarà interpretato e disciplinato dalle leggi dello Stato in cui risiede il licenziatario (o, nel caso di una società, del luogo principale in cui la società svolge la propria attività). Tali leggi disciplineranno anche i reclami aventi ad oggetto l’inadempimento del contratto e tutti gli altri reclami (inclusi quelli relativi a inadempimenti della normativa a tutela dei consumatori, inadempimenti delle norme in materia di concorrenza sleale e l’illecito civile), indipendentemente dai principi in materia di conflitto di legge. Qualora il licenziatario abbia acquistato il software in qualsiasi altro Paese, si applicano le leggi di tale Paese. Nel caso in cui sussista una giurisdizione federale statunitense, il licenziatario e Microsoft accettano la giurisdizione e la competenza territoriale esclusive del tribunale federale con sede a King County, Washington per tutte le controversie esaminate in tribunale. Diversamente, il licenziatario e Microsoft accettano la giurisdizione e la competenza territoriale esclusive della Corte Suprema con sede a King County, Washington per tutte le controversie esaminate in tribunale.
+
+10. DIRITTI DEI CONSUMATORI, VARIAZIONI REGIONALI. Il presente contratto descrive determinati diritti. Il licenziatario potrà avere altri diritti, tra cui i diritti dei consumatori, ai sensi delle leggi del Paese di residenza. Autonomamente da Microsoft, il licenziatario potrebbe, inoltre, vantare ulteriori diritti direttamente nei confronti della parte presso la quale ha acquistato il software. Il presente contratto non modifica tali altri diritti qualora le leggi del Paese di residenza del licenziatario non consentano di modificarli. Ad esempio, qualora il licenziatario abbia acquistato il software in una delle aree indicate di seguito o si applichi la legge obbligatoria del Paese, sono valide le seguenti disposizioni:
+	a) Australia. Il licenziatario è soggetto alle garanzie di legge previste dalla Australian Consumer Law e nessuna disposizione contenuta nel presente contratto influisce su tali diritti.
+	b) Canada. Qualora il software sia stato acquistato in Canada, il licenziatario potrà interrompere la ricezione degli aggiornamenti disattivando la funzionalità di aggiornamento automatico, disconnettendo il dispositivo da Internet (tuttavia, nell’eventualità e quando il licenziatario si riconnetterà a Internet, il software riprenderà a controllare se sono presenti aggiornamenti e a installarli) oppure disinstallando il software. Nell’eventuale documentazione del prodotto è possibile che vi sia inoltre specificato come il licenziatario potrà disattivare gli aggiornamenti per il dispositivo o il software in uso.
+	c) Germania e Austria.
+		(i)	Garanzia. Il software validamente concesso in licenza funzionerà in sostanziale conformità a quanto descritto nel materiale Microsoft fornito con il software. Tuttavia, Microsoft non fornisce alcuna garanzia contrattuale in relazione al software concesso in licenza.
+		(ii) Limitazione di Responsabilità. In caso di comportamento intenzionale, colpa grave, reclami basati sulla Legge in materia di Responsabilità Prodotto, così come in caso di morte o lesioni personali, Microsoft è responsabile in conformità alla legge imperativa.
+		In riferimento alla precedente clausola (ii), Microsoft sarà responsabile solo di colpa lieve qualora sia inadempiente a tali obbligazioni contrattuali sostanziali, il cui adempimento facilita la debita esecuzione del presente contratto, il cui inadempimento metterebbe in pericolo lo scopo del presente contratto e alla cui conformità una parte potrà costantemente fare affidamento (le cosiddette “obbligazioni fondamentali”). In altri casi di colpa lieve Microsoft non sarà responsabile di tale colpa.
+
+11. ESCLUSIONE DI GARANZIE. IL SOFTWARE VIENE CONCESSO IN LICENZA “COM’È”. IL LICENZIATARIO LO UTILIZZA A PROPRIO RISCHIO. MICROSOFT NON RICONOSCE CONDIZIONI O GARANZIE ESPRESSE NELLA MISURA MASSIMA CONSENTITA DALLE LEGGI APPLICABILI, MICROSOFT ESCLUDE TUTTE LE GARANZIE IMPLICITE, INCLUSE LE GARANZIE DI COMMERCIABILITÀ (QUALITÀ NON INFERIORE ALLA MEDIA), ADEGUATEZZA PER UNO SCOPO SPECIFICO E NON VIOLAZIONE DI DIRITTI DI TERZI.
+
+12. LIMITAZIONE DI RESPONSABILITÀ ED ESCLUSIONE DI DANNI. QUALORA IL LICENZIATARIO ABBIA FONDATE RAGIONI PER RICHIEDERE DANNI NONOSTANTE LA PRECEDENTE ESCLUSIONE DI GARANZIE, IL LICENZIATARIO HA DIRITTO A OTTENERE DA MICROSOFT E DAI RELATIVI FORNITORI SOLO IL RISARCIMENTO PER I DANNI DIRETTI NEL LIMITE DI CINQUE DOLLARI (USD 5). IL LICENZIATARIO NON HA DIRITTO A OTTENERE IL RISARCIMENTO PER EVENTUALI ALTRI DANNI, INCLUSI DANNI CONSEQUENZIALI, SPECIALI, INDIRETTI, INCIDENTALI O PER LUCRO CESSANTE.
+Questa limitazione si applica (a) a qualsiasi questione relativa al software, ai servizi, al contenuto (incluso il codice) sui siti Internet o nelle applicazioni di terzi e (b) ai reclami relativi a inadempimento contrattuale, inadempimento delle garanzie o delle condizioni, responsabilità oggettiva, negligenza o altro illecito civile oppure a qualsiasi altro reclamo e in ciascun caso nella misura massima consentita dalla legge applicabile.
+Tale limitazione si applica anche nel caso in cui Microsoft sia stata informata o avrebbe dovuto essere informata della possibilità del verificarsi di tali danni. La limitazione o l’esclusione di cui sopra potrebbe non essere applicabile al licenziatario, in quanto l’esclusione o la limitazione di danni incidentali, consequenziali o di altro tipo potrebbe non essere consentita nel suo Paese di residenza.
+
+
+
+
+
+
+
+
+
+
+
+

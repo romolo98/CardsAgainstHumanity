@@ -1,0 +1,230 @@
+Informazioni sulla versione
+Microsoft JDBC Driver 8.4 per SQL Server
+Agosto 2020
+
+------------
+INTRODUZIONE
+------------
+Questo file contiene informazioni aggiornate o altre informazioni importanti che integrano la documentazione di Microsoft JDBC 
+Documentazione di Driver 8.4 per SQL Server. Leggere il file prima di procedere all'installazione 
+del driver JDBC.
+
+I commenti e suggerimenti inviati dagli utenti sono fondamentali, pertanto Microsoft farà il possibile per rispondere 
+in tempi brevi. Per informazioni su come inviare commenti e suggerimenti tramite i forum online e i blog relativi al driver JDBC, 
+vedere la pagina Microsoft JDBC Driver 8.4 per SQL Server all'indirizzo https://aka.ms/mssql-jdbc-feedback
+
+
+------------
+INSTALLAZIONE
+------------
+Le istruzioni per l'installazione del driver JDBC sono contenute nel file install.txt. Fare riferimento al file per 
+informazioni sull'installazione del driver JDBC nei sistemi operativi Windows, Linux e macOS.
+
+
+---------------------------
+SISTEMI OPERATIVI SUPPORTATI
+---------------------------
+Microsoft JDBC Driver 8.4 per SQL Server supporta i sistemi operativi seguenti:
+  Windows Server 2012
+  Windows Server 2012 R2
+  Windows Server 2016
+  Windows Server 2019
+  Windows 8.1
+  Windows 10
+  Linux
+  macOS
+
+L'elenco riportato in precedenza è un esempio di alcuni dei sistemi operativi supportati. Il driver JDBC è progettato 
+per essere usato in qualsiasi sistema operativo che supporta l'uso di Java Virtual Machine (JVM). 
+
+Tuttavia solo le versioni più recenti dei sistemi operativi Linux e MacOS (Ubuntu 20.04, Ubuntu 18.04, CentOS 7, SUSE 12,
+ macOS 10.15) sono state sottoposte a test per la compatibilità e il supporto.
+
+
+-----------------------
+VERSIONI DI JAVA SUPPORTATE
+-----------------------
+Microsoft JDBC Driver 8.4 per SQL Server è stato testato e supporta le versioni più recenti di Java 
+Development Kit (JDK) di Open JDK e Zulu nei sistemi operativi supportati, come indicato in precedenza.
+Sono supportate le seguenti versioni della famiglia di librerie di sistema Java Runtime Environment (JRE):
+
+  ----------------------------------------------------------------------
+  Versione famiglia JRE | File con estensione jar del driver con massimo supporto
+  ----------------------------------------------------------------------
+  8+                 | mssql-jdbc-8.4.1.jre8.jar
+  11+                | mssql-jdbc-8.4.1.jre11.jar
+  14+                | mssql-jdbc-8.4.1.jre14.jar
+
+
+----------------
+CONTENUTO DELLA VERSIONE
+----------------
+Il file con estensione zip o tar di Microsoft JDBC Driver 8.4 per SQL Server decomprime i file seguenti 
+nei percorsi specificati relativi alla directory di installazione selezionata:
+
+<directory di installazione>\sqljdbc_<versione>\<lingua>\install.txt
+<directory di installazione>\sqljdbc_<versione>\<lingua>\release.txt
+<directory di installazione>\sqljdbc_<versione>\<lingua>\license.txt
+<directory di installazione>\sqljdbc_<versione>\<lingua>\thirdpartynotices.txt
+<directory di installazione>\sqljdbc_<versione>\<lingua>\mssql-jdbc-8.4.1.jre8.jar
+<directory di installazione>\sqljdbc_<versione>\<lingua>\mssql-jdbc-8.4.1.jre11.jar
+<directory di installazione>\sqljdbc_<versione>\<lingua>\mssql-jdbc-8.4.1.jre14.jar
+<directory di installazione>\sqljdbc_<versione>\<lingua>\auth\x86\mssql-jdbc_auth-8.4.1.x86.dll
+<directory di installazione>\sqljdbc_<versione>\<lingua>\auth\x64\mssql-jdbc_auth-8.4.1.x64.dll
+<directory di installazione>\sqljdbc_<versione>\<lingua>\samples\<file di esempio...>
+<directory di installazione>\sqljdbc_<versione>\<lingua>\xa\xa_install.sql
+<directory di installazione>\sqljdbc_<versione>\<lingua>\xa\x86\sqljdbc_xa.dll
+<directory di installazione>\sqljdbc_<versione>\<lingua>\xa\x64\sqljdbc_xa.dll
+
+Per informazioni dettagliate sui singoli componenti, vedere la documentazione online
+di Microsoft JDBC Driver per SQL Server: https://aka.ms/mssql-jdbc
+
+
+-------------
+DOCUMENTAZIONE
+-------------
+Le informazioni sulla versione, le istruzioni di installazione e le condizioni di licenza sono incluse in questo pacchetto. 
+Il resto della documentazione è disponibile online.
+
+Si noti che i file della guida offline non sono più disponibili. 
+
+
+---------
+FILE JAR
+---------
+Per il supporto della compatibilità con le versioni precedenti e di possibili scenari di aggiornamento, JDBC Driver 8.4 include 
+tre librerie di classi (file con estensione jar) in ogni pacchetto di installazione:
+	mssql-jdbc-8.4.1.jre8.jar
+	mssql-jdbc-8.4.1.jre11.jar
+	mssql-jdbc-8.4.1.jre14.jar
+
+
+----------------------
+FILE SPECIFICI DI FUNZIONALITÀ
+----------------------
+I componenti Azure Active Directory e Autenticazione integrata (in Windows) sono inclusi 
+nella directory di autenticazione.
+
+I componenti della transazione distribuita JDBC sono inclusi nella directory "xa".
+
+
+--------------------
+DIPENDENZE DELLE FUNZIONALITÀ
+--------------------
+Alcune funzionalità di Microsoft JDBC Driver 8.4 per SQL Server sono dipendenti da librerie esterne, 
+come indicato di seguito:
+
+1. Uso di 'Always Encrypted' con Azure Key Vault Provider
+   Librerie dipendenti: azure-keyvault (versione 1.2.4), adal4j (versione 1.6.5),
+   e client-runtime (versione 1.7.4)
+
+2. Uso di 'Always Encrypted con enclave sicuri'
+   Librerie dipendenti: com.google.code.gson (versione 2.8.6)
+   e org.bouncycastle (versione 1.65). La libreria org.bouncycastle è necessaria solo per JDK 8.
+ 
+3. Uso di 'Autenticazione integrata Azure Active Directory' nei sistemi operativi Windows, Linux e macOS
+   Librerie dipendenti: adal4j (versione 1.6.5) e client-runtime (versione 1.7.4)
+   
+4. Uso di 'useFmtOnly' per recuperare i metadati dei parametri
+   Librerie dipendenti: antlr-runtime (versione 4.7.2)
+   
+Per informazioni dettagliate sull'inserimento di queste librerie dipendenti in un'applicazione Java standard 
+o un'applicazione Maven, vedere: https://go.microsoft.com/fwlink/?linkid=867575
+
+-------
+ESEMPI
+-------
+Nella directory "samples" sono incluse applicazioni di esempio che illustrano diverse funzionalità
+del driver JDBC. Per altre informazioni sui singoli esempi e su come eseguirli, vedere la documentazione 
+online.
+
+
+-----------
+ELENCO DELLE MODIFICHE
+-----------
+Modifiche dalla versione 8.4.0.0 alla versione 8.4.1.0:
+- È stato risolto il problema con 'SQLServerConnectionPoolProxy' non compatibile con 'delayLoadingLobs'.
+- È stato risolto un problema potenziale di 'NullPointerException' con 'delayLoadingLobs'.
+- È stato risolto un problema relativo alla decrittografia delle chiavi di crittografia della colonna con l'archivio certificati Windows.
+
+Modifiche dalla versione 8.2.2.0 alla versione 8.4.0.0:
+- È stato aggiunto il supporto per la classificazione della riservatezza quando si usa l'individuazione e la classificazione dei dati SQL.
+- È stata aggiunta l'API 'SQLServerDatabaseMetaData.getDatabaseCompatibilityLevel()' per restituire il livello di compatibilità del database.
+- È stato aggiunto il supporto di Azure SQL DNS Caching.
+- È stata aggiunta l'opzione di durabilità ritardata a 'SQLServerConnection.commit()'.
+- È stata aggiunta la convalida della scadenza del certificato quando si usa Always Encrypted con la funzionalità enclavi sicuri.
+- È stato aggiunto lo stato SQL all'eccezione quando viene chiusa la connessione.
+- Sono state aggiunte le proprietà di connessione per specificare SocketFactory personalizzato.
+- È stato aggiunto il supporto dell'autenticazione dei certificati client.
+- È stato aggiunto il supporto di JAVA 14.
+- È stato aggiunto il supporto dell'autenticazione ad Azure Key Vault usando l'identità gestita.
+- È stato aggiornato il driver per generare un avviso quando viene negoziata una versione TLS precedente alla 1.2.
+- È stato introdotto 'SQLServerBulkCSVFileRecord.setEscapeColumnDelimitersCSV()' per eseguire l'escape di delimitatori e virgolette doppie quando si usa la copia bulk per il caricamento da file CSV.
+- È stato introdotto il supporto esteso della copia bulk in Azure Data Warehouse.
+- È stata introdotta la proprietà di connessione 'delayLoadingLobs' per fornire la compatibilità con le versioni precedenti durante lo streaming degli oggetti LOB.
+
+ Correzioni di bug: 
+- È stato risolto un problema con 'DatabaseMetaData.getColumns()' che restituisce in modo intermittente le descrizioni delle colonne di tabella in ordine errato.
+- È stato risolto un problema relativo all'errore di cast dei tipi di dati spaziali quando è abilitato Always Encrypted.
+- È stato risolto un problema con 'DatabaseMetaData.getColumns()' che non restituisce il tipo corretto per IS_AUTOINCREMENT e IS_GENERATEDCOLUMN in Azure Data Warehouse.
+- È stato risolto un problema con 'Geography.STAsBinary()' e 'Geometry.STAsBinary()' che restituiscono il formato WKB anziché il formato CLR.
+- È stato risolto un problema che consente a ResultSets non MSSQL ResultSets di eseguire la copia bulk di 'DateTimeOffset'.
+- Sono stati risolti i problemi identificati da SonarQube.
+- È stato risolto un problema di inserimento batch non riuscito quando Always Encrypted è abilitato.
+- È stato risolto un problema con l'autenticazione MSI non riuscita a causa di una mancata corrispondenza del formato della data di scadenza.
+- È stato risolto un problema con i flussi che non vengono chiusi quando si usa Always Encrypted con la funzionalità enclavi sicuri.
+- È stato risolto un problema relativo al recupero di SQL VARIANT come tipo sottostante.
+- Sono stati risolti i problemi con il driver che non è conforme a JAVA 8.
+- È stato risolto un problema con 'PreparedStatement' quando si inseriscono tipi di dati spaziali di grandi dimensioni.
+- È stato risolto un problema relativo all'escape delle parentesi graffe nella stringa di connessione.
+- È stato corretto un avviso durante il recupero delle informazioni sul sistema operativo da SQL Server Linux quando si usano transazioni distribuite.
+
+Miglioramenti:
+- È stato aggiornato 'SQLServerPreparedStatement.setObject()' per recuperare il nome TVP da 'SQLServerDataTable'.
+- È stato migliorato il messaggio di eccezione durante la connessione al server Azure abilitato per il reindirizzamento.
+- Sono state migliorate le prestazioni durante l'analisi della stringa di connessione.
+- È stato aggiunto il nome del database alla chiave di memorizzazione nella cache dell'enclave Always Encrypted.
+- È stato rimosso il codice inutilizzato.
+
+------------
+PROBLEMI NOTI
+------------
+Di seguito sono descritti i problemi noti relativi a Microsoft JDBC Driver 8.4 per SQL Server:
+
+1) ELIMINAZIONE DI CONNESSIONI CON SQL AZURE
+
+Durante la connessione a SQL Azure, è possibile che le connessioni inattive vengano terminate da un componente di rete, ad esempio 
+un firewall, dopo un periodo di inattività. Per evitare l'eliminazione delle connessioni inattive da parte di un componente di rete, 
+specificare le impostazioni del Registro di sistema seguenti o i loro equivalenti non Windows nel sistema 
+operativo in cui è caricato il driver:
+           
+Impostazione del Registro di sistema                                                                   Valore consigliato
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveTime            30000
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\KeepAliveInterval         1000
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\TcpMaxDataRetransmission  10
+
+2) QUANDO SI USA TVP CON SQL_VARIANT 
+
+2.a) PER I VALORI DI DATA
+
+Quando si usa TVP per popolare una tabella che contiene valori datetime/smalldatetime/date nella colonna sql_variant, 
+la chiamata di getDateTime()/getSmallDateTime()/getDate() su ResultSet non funziona e viene generata l'eccezione seguente:
+
+	Impossibile eseguire il cast di java.lang.String a java.sql.Timestamp
+
+Soluzione alternativa: usare getString() o getObject().
+
+2.b) QUANDO SI USA TVP CON SQL_VARIANT PER I VALORI NULL
+
+Se si usa TVP per popolare una tabella e si invia un valore NULL al tipo di colonna sql_variant viene generata
+un'eccezione, perché l'inserimento di un valore NULL con tipo di colonna sql_variant in TVP non è attualmente supportato.
+
+
+3) QUANDO SI USA L'AUTENTICAZIONE NTLM
+
+Non è attualmente supportato abilitare la protezione estesa e al tempo stesso le connessioni crittografate.
+
+4) QUANDO SI USA useFmtOnly
+
+Esistono alcuni problemi con la funzionalità causati da malfunzionamenti nella logica di analisi di SQL.
+Per informazioni dettagliate e suggerimenti sulle soluzioni alternative, vedere https://aka.ms/mssql-jdbc-usefmtonly.
