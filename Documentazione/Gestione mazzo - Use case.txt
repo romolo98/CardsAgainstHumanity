@@ -22,115 +22,109 @@ Garanzia di Successo: Il giocatore ha modificato la rosa dei mazzi disponibili.
 
 
 Scenario Principale di Successo:
-1) L'utente sceglie un mazzo fra quelli esistenti;
+1) L'utente chiede di modificare un mazzo specifico;
 
-2) L’utente modifica il mazzo;
+2) Il sistema chiede la password del mazzo;
 
-3) Il sistema chiede la password del mazzo;
+3) L’utente inserisce la password del mazzo;
 
-4) L’utente inserisce la password del mazzo;
+4) L’utente accede alla gestione del mazzo;
 
-5) L’utente accede alla gestione del mazzo;
+5) L’utente salva le modifiche al mazzo;
 
-6) L’utente salva le modifiche al mazzo;
+6) Il sistema chiede conferma del salvataggio;
 
-7) Il sistema chiede conferma del salvataggio;
+7) L’utente conferma il salvataggio;
 
-8) L’utente conferma il salvataggio;
-
-9) Il sistema salva il mazzo modificato;
-
-10) Si ritorna al punto 1).
+8) Il sistema salva il mazzo modificato;
 
 
 Estensioni e flussi alternativi:
 *a) In qualsiasi momento l’utente annulla la gestione mazzi.
 
 1a) L’utente crea un nuovo mazzo:
-	1) L’utente accede alla gestione di un mazzo vuoto;
-	2) Si ritorna al punto 5.
+	1) L’utente accede alla gestione di un mazzo vuoto;	
+	2) Si ritorna al punto 4).
 
-2a) L’utente elimina il mazzo:
+1b) L’utente elimina il mazzo:
 	1) Il sistema chiede la password del mazzo;
 	2) L’utente inserisce la password del mazzo;
 		2a) Password sbagliata:
 			1) Il sistema informa l’utente che la password è sbagliata;
-			2) Si ritorna al punto 1.
+			2) Si ritorna al punto 1).
 	3) Il mazzo viene correttamente eliminato;
-	4) Si ritorna al punto 1).
 
-4a) Password sbagliata:
+3a) Password sbagliata:
     1) Il sistema informa l’utente che la password è sbagliata.
     2) Si ritorna al punto 1).
 
 5a) In qualsiasi momento l’utente vuole annullare la modifica del mazzo.
 	1) L’utente annulla la modifica del mazzo.
 	2) Il sistema chiede conferma dell’annullamento.
-	3) Si ritorna al punto 1.
+	3) Si ritorna al punto 1).
 
 5b) L'utente vuole aggiungere una nuova carta.
     1) Il sistema chiede il tipo di carta da aggiungere (Bianca o Nera).
         1a) L’utente vuole annullare l’aggiunta.
             1) L’utente annulla l’aggiunta della nuova carta.
-            2) Si ritorna al punto 5.
+            2) Si ritorna al punto 4).
     2) L'utente sceglie il tipo di carta e lo comunica al sistema.
     3) L'utente inserisce il contenuto della carta.
         3a) L’utente vuole annullare l’aggiunta.
             1) L’utente annulla l’aggiunta della nuova carta.
-            2) Si ritorna al punto 5.
+            2) Si ritorna al punto 4).
     4) L'utente salva la carta inserita.
-    5) Si ritorna al punto 5).
+    5) Si ritorna al punto 4).
 
 5c) L'utente vuole modificare una carta.
     1) L'utente seleziona una carta da modificare.
         1a) L’utente vuole annullare la selezione.
             1) L’utente annulla la selezione delle carte.
-            2) Si ritorna al punto 5).
+            2) Si ritorna al punto 4).
     2) L'utente informa il sistema di voler modificare la carta.
     3) L'utente inserisce il contenuto della carta.
         3a) L’utente vuole annullare la modifica.
             1) L’utente annulla la modifica della carta.
-            2) Si ritorna al punto 5).
+            2) Si ritorna al punto 4).
     4) L'utente salva la carta inserita.
-    5) Si ritorna al punto 5).
+    5) Si ritorna al punto 4).
 
 5d) L’utente vuole eliminare una o più carte.
     1) L’utente seleziona una carta da eliminare.
-        1a) L’utente vuole selezionare più carte.
-            1) Si ritorna al punto 5d).
+        /*1a) L’utente vuole selezionare più carte.
+            1) Si ritorna al punto 5d).*/
         1b) L’utente vuole annullare la selezione.
 	        1) L’utente annulla la selezione delle carte.
-            2) Si ritorna al punto 5).
+            2) Si ritorna al punto 4).
     2) L’utente elimina le carte selezionate.
     3) Il sistema chiede conferma dell’eliminazione.
     4) L’utente conferma l’eliminazione.
 	    4a) L’utente vuole annullare l’eliminazione.
 		    1) L’utente annulla l’eliminazione.
-		    2) Si ritorna al punto 5.
+		    2) Si ritorna al punto 4).
     5) Il sistema elimina le carte dal mazzo.
-    6) Si ritorna al punto 5).
+    6) Si ritorna al punto 4).
 
 5e) L’utente vuole ordinare le carte del mazzo.
     1) L’utente sceglie l’ordinamento delle carte.
         1a) L’utente ordina le carte per colore Bianco.
         2a) L’utente ordina le carte per colore Nero.
     2) Il sistema ordina le carte.
-    3) Si ritorna al punto 5.
+    3) Si ritorna al punto 4).
 
 5f) L’utente vuole modificare il nome del mazzo.
     1) L’utente modifica il nome.
-    2) Si ritorna al punto 5.
+    2) Si ritorna al punto 4).
 
-8a) L’utente vuole annullare il salvataggio.
+7a) L’utente vuole annullare il salvataggio.
 	1) L’utente annulla il salvataggio.
-    2) Si ritorna al punto 5.
+    2) Si ritorna al punto 4).
 
-9a) Il mazzo è stato appena creato.
+8a) Il mazzo è stato appena creato.
     1) Il sistema chiede l’inserimento di una nuova password.
     2) L’utente inserisce la password.
     3) L’utente conferma la password inserita.
     4) Il sistema salva il mazzo appena creato.
-    5) Si ritorna al punto 10).
 
 
 Requisiti speciali: N/A
@@ -139,7 +133,7 @@ Requisiti speciali: N/A
 Elenco delle varianti teconologiche e dei dati: N/A.
 
 
-Frequenza di ripetizione: Ogni qualvolta che si vuole creare un nuovo mazzo.
+Frequenza di ripetizione: Ogni qualvolta che si vuole gestire i mazzi.
 
 
 Varie: N/A.
