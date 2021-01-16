@@ -4,6 +4,7 @@ import Server.CAHNetwork.AggiornaUtenti;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +20,7 @@ public class CAHServer extends Application {
 
         public CAHServer () throws IOException {
                 server = new Server(){
-                        protected Connection nuovaConnessione () {
+                        protected Connection newConnection () {
                                 return new ChatConnection();
                         }
                 };
@@ -27,7 +28,7 @@ public class CAHServer extends Application {
                 CAHNetwork.registraOggetti(server);
 
                 server.addListener(new Listener() {
-                        public void ricevuto(Connection c, Object o) {
+                        public void received(Connection c, Object o) {
 
                                 ChatConnection connessioneChat = (ChatConnection) c;
 
@@ -37,18 +38,21 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof CAHNetwork.RegistraUtente) {
-                                        if (connessioneChat.nome != null) return;
-
+                                        if (connessioneChat.nome != null)
+                                                return;
 
                                 String nome = ((CAHNetwork.RegistraUtente) o).nome;
-                                if (nome == null || nome.length() == 0)
+
+                                if (nome == null || nome.length() == 0){
                                         return;
+                                }
 
                                 connessioneChat.nome = nome;
 
-                                Messaggio mes = new Messaggio();
-                                mes.testo = nome + "si è unito alla partita";
 
+                                Messaggio mes = new Messaggio();
+                                mes.testo = nome + " si è unito alla partita";
+                                        System.out.println(mes.testo);
                                 //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                 server.sendToAllExceptTCP(connessioneChat.getID(), mes);
 
@@ -58,8 +62,8 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Messaggio){
-                                        System.out.println("CIAO");
-                                        if (connessioneChat.nome != null)
+                                        System.out.println("HO RICEVUTO UN MESSAGGIO");
+                                        if (connessioneChat.nome == null)
                                                 return;
                                         Messaggio mes = (Messaggio)o;
                                         if (mes.testo == null || mes.testo.length() == 0)
@@ -73,18 +77,17 @@ public class CAHServer extends Application {
 
                         }
 
-                        public void disconnesso (Connection c){
+                        public void disconnected (Connection c){
                                 ChatConnection connection = (ChatConnection) c;
 
-                                if (connection.nome != null)
-                                        return;
+                                if (connection.nome != null) {
+                                        Messaggio mes = new Messaggio();
+                                        mes.testo = connection.nome + "ha lasciato la partita";
+                                        server.sendToAllTCP(mes);
 
-                                Messaggio mes = new Messaggio();
-                                mes.testo = connection.nome + "ha lasciato la partita";
-                                server.sendToAllTCP(mes);
-                                aggiornaUtenti();
+                                        aggiornaUtenti();
+                                }
                         }
-
 
                 });
         }

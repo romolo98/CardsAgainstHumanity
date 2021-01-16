@@ -14,6 +14,9 @@ public class CAHNetwork {
         kryo.register(Messaggio.class);
         kryo.register(String.class);
         kryo.register(RegistraUtente.class);
+        kryo.register(Server.CAHNetwork.AggiornaUtenti.class);
+        kryo.register(String[].class);
+        kryo.register(CAHNetwork.RegistraUtente.class);
     }
 
 

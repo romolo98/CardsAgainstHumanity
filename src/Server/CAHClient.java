@@ -9,29 +9,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import sample.Controller;
-;
-
-import java.awt.*;
 
 import static Server.CAHNetwork.porta;
 import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
 
-    @FXML
-    Label connectedusers;
-
-    @FXML
-    TextArea chatScreen;
-
-
-    String nome;
+    String nome = "Paolo";
     String host;
-    Client client;
+    static Client client;
+
+    @FXML
+    TextArea chatWall;
 
     public CAHClient () {
         client = new Client();
@@ -41,41 +32,34 @@ public class CAHClient extends Application {
         registraOggetti(client);
 
         client.addListener(new Listener() {
-            public void connesso(Connection connessione){
+            public void connected(Connection connessione){
                 //Creo un oggetto RegistraUtente(Stringa) per inviare al server il nome del nuovo utente connesso
                 CAHNetwork.RegistraUtente utente = new CAHNetwork.RegistraUtente();
                 utente.nome = nome;
+                System.out.println(utente.nome);
                 client.sendTCP(utente);
             }
 
-            public void ricevuto(Connection connessione, Object oggetto){
+            public void received(Connection connessione, Object oggetto){
                 if (oggetto instanceof Mossa){
                     //TO BE DECIDED
                 }
 
-                if (oggetto instanceof CAHNetwork.AggiornaUtenti){
-                    CAHNetwork.AggiornaUtenti aggiornaUtenti = (CAHNetwork.AggiornaUtenti) oggetto;
-
-                    for(String s : aggiornaUtenti.nomiUtenti){
-                        connectedusers.setText(s+"\n");
-                    }
-                    return;
-                }
-
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
-                    chatScreen.appendText(m.testo);
                     return;
                 }
             }
         });
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../sample/UserSet.fxml"));
-        primaryStage.setTitle("User");
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/PlayScreen.fxml"));
+        primaryStage.setTitle("Client1");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setMaximized(true);
         primaryStage.show();
 
         //BISOGNA SETTARE IL CLIENT
@@ -93,7 +77,6 @@ public class CAHClient extends Application {
         mes.testo = m;
         client.sendTCP(mes);
     }
-
 
     public static void main(String[] args) {
         new CAHClient();
@@ -113,21 +96,9 @@ public class CAHClient extends Application {
         host = h;
     }
 
-    public void sendTCPMessage(Object o){
+    static public void sendTCPMessage(Object o){
         Messaggio mes = (Messaggio) o;
         client.sendTCP(mes);
-    }
-
-    public void impostaNomi(final String[] nomi){
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                for(String n : nomi){
-
-                }
-            }
-        });
-
     }
 
 }

@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CardsAgainsthumanity:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CardsAgainsthumanity_jar</output-path>
+    <root id="archive" name="CardsAgainsthumanity.jar">
+      <element id="module-output" name="CardsAgainsthumanity" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/kryonet-2.22.0-RC1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/kryo-2.24.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/minlog-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/objenesis-2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jsonbeans-0.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/projo-bind-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/guava-14.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/joda-time-2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jasypt-1.9.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/projo-jodatime-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/projo-1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-api-1.7.5.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/super-csv-2.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sqljdbc_8.4/ita/mssql-jdbc-8.4.1.jre8.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
