@@ -56,13 +56,10 @@ public class Controller {
         CAHClient.sendTCPMessage(m);
     }
 
-    public void showConnectionMessage(String s){
-        chatWall.appendText(s);
-    }
-
     public void isKeyPressed(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ESCAPE){
             Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         }
     }
+
 }

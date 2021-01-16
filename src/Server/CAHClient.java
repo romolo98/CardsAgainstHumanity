@@ -17,7 +17,7 @@ import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
 
-    String nome = "Paolo";
+    String nome = "Gol. D. Roger";
     String host;
     static Client client;
 
@@ -47,6 +47,7 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
+                    System.out.println(m.testo);
                     return;
                 }
             }

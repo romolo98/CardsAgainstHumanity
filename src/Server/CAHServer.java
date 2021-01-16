@@ -62,14 +62,13 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Messaggio){
-                                        System.out.println("HO RICEVUTO UN MESSAGGIO");
                                         if (connessioneChat.nome == null)
                                                 return;
                                         Messaggio mes = (Messaggio)o;
                                         if (mes.testo == null || mes.testo.length() == 0)
                                                 return;
                                         String messaggio = mes.testo;
-
+                                        System.out.println(messaggio);
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
                                         server.sendToAllTCP(mes);
                                         return;
