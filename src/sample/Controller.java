@@ -53,21 +53,14 @@ public class Controller {
         chatWall.appendText(chatField.getText()+"\n");
         Messaggio m = new Messaggio();
         m.testo = chatField.getText()+"\n";
-        CAHClient.getInstance().getClient().sendTCP(m);
+        chatField.setText("");
+        CAHClient.getClient().sendTCP(m);
     }
 
     public void isKeyPressed(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ESCAPE){
             Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         }
-    }
-
-    public static TextArea getTextArea(){
-        return chatWall;
-    }
-
-    public static void getMessage(){
-
     }
 
 }

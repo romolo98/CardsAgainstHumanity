@@ -5,7 +5,7 @@ import com.esotericsoftware.kryonet.EndPoint;
 
 public class CAHNetwork {
 
-    static public final int porta = 54555;
+    static public final int porta = 56555;
 
     //Registro gli oggetti che dovranno essere inviati tramite la rete
     static public void registraOggetti(EndPoint endPoint){

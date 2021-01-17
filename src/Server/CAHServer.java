@@ -2,11 +2,13 @@ package Server;
 
 import Server.CAHNetwork.AggiornaUtenti;
 import com.dosse.upnp.UPnP;
+import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,7 +27,6 @@ public class CAHServer extends Application {
                                 return new ChatConnection();
                         }
                 };
-
                 CAHNetwork.registraOggetti(server);
 
                 server.addListener(new Listener() {
@@ -71,7 +72,6 @@ public class CAHServer extends Application {
                                                 return;
 
                                         String messaggio = mes.testo;
-                                        System.out.println(messaggio);
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
                                         server.sendToAllTCP(mes);
                                         return;
@@ -101,8 +101,9 @@ public class CAHServer extends Application {
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
 
-                UPnP.openPortTCP(56555);
-                server.bind(56555);
+                UPnP.openPortTCP(CAHNetwork.porta);
+
+                server.bind(CAHNetwork.porta);
                 server.start();
 
                 primaryStage.setOnCloseRequest(event -> {

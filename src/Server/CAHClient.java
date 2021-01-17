@@ -1,18 +1,15 @@
 package Server;
 
-import com.dosse.upnp.UPnP;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import sample.Controller;
+
 
 import static Server.CAHNetwork.porta;
 import static Server.CAHNetwork.registraOggetti;
@@ -21,11 +18,10 @@ public class CAHClient extends Application {
 
     String nome =  "Roger";
     String host;
-    public Client client;
+    static public Client client;
+    static public String prova;
     private static CAHClient clientIstance;
-
-    @FXML
-    TextArea chatWall;
+    public static boolean newMex = false;
 
     public static CAHClient getInstance(){
         if (clientIstance == null)
@@ -57,7 +53,8 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
-                    Controller.getTextArea().appendText(m.testo);
+                    prova = m.testo;
+                    newMex = true;
                     return;
                 }
             }
@@ -73,8 +70,9 @@ public class CAHClient extends Application {
         primaryStage.setMaximized(true);
         primaryStage.show();
 
+
         //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "localhost", 56555);
+        client.connect(5000, "87.20.89.146", 56555);
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
@@ -107,12 +105,7 @@ public class CAHClient extends Application {
         host = h;
     }
 
-    public void sendTCPMessage(Object o){
-        Messaggio mes = (Messaggio) o;
-        client.sendTCP(mes);
-    }
-
-    public Client getClient(){
+    static public Client getClient(){
         return client;
     }
 
