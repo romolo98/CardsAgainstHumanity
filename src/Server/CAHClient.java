@@ -1,5 +1,6 @@
 package Server;
 
+import com.dosse.upnp.UPnP;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -11,18 +12,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import sample.Controller;
 
 import static Server.CAHNetwork.porta;
 import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
 
-    String nome = "Gol. D. Roger";
+    String nome =  "Roger";
     String host;
-    static Client client;
+    public Client client;
+    private static CAHClient clientIstance;
 
     @FXML
     TextArea chatWall;
+
+    public static CAHClient getInstance(){
+        if (clientIstance == null)
+            clientIstance = new CAHClient();
+
+        return clientIstance;
+    }
 
     public CAHClient () {
         client = new Client();
@@ -47,7 +57,7 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
-                    System.out.println(m.testo);
+                    Controller.getTextArea().appendText(m.testo);
                     return;
                 }
             }
@@ -64,8 +74,7 @@ public class CAHClient extends Application {
         primaryStage.show();
 
         //BISOGNA SETTARE IL CLIENT
-
-        client.connect(5000, "localhost", porta);
+        client.connect(5000, "localhost", 56555);
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
@@ -80,10 +89,11 @@ public class CAHClient extends Application {
     }
 
     public static void main(String[] args) {
-        new CAHClient();
+        getInstance();
         launch(args);
         Log.set(Log.LEVEL_DEBUG);
     }
+
 
     public String getHost(){
         return host;
@@ -97,9 +107,13 @@ public class CAHClient extends Application {
         host = h;
     }
 
-    static public void sendTCPMessage(Object o){
+    public void sendTCPMessage(Object o){
         Messaggio mes = (Messaggio) o;
         client.sendTCP(mes);
+    }
+
+    public Client getClient(){
+        return client;
     }
 
 }

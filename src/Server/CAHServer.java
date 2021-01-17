@@ -1,6 +1,7 @@
 package Server;
 
 import Server.CAHNetwork.AggiornaUtenti;
+import com.dosse.upnp.UPnP;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -64,9 +65,11 @@ public class CAHServer extends Application {
                                 if (o instanceof Messaggio){
                                         if (connessioneChat.nome == null)
                                                 return;
+
                                         Messaggio mes = (Messaggio)o;
                                         if (mes.testo == null || mes.testo.length() == 0)
                                                 return;
+
                                         String messaggio = mes.testo;
                                         System.out.println(messaggio);
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
@@ -98,7 +101,8 @@ public class CAHServer extends Application {
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
 
-                server.bind(CAHNetwork.porta);
+                UPnP.openPortTCP(56555);
+                server.bind(56555);
                 server.start();
 
                 primaryStage.setOnCloseRequest(event -> {

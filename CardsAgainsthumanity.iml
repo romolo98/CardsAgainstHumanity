@@ -13,5 +13,6 @@
     <orderEntry type="library" name="com.esotericsoftware:kryonet:2.22.0-RC1" level="project" />
     <orderEntry type="library" name="projo-bind-1.1" level="project" />
     <orderEntry type="library" name="mssql-jdbc-8.4.1.jre8" level="project" />
+    <orderEntry type="library" name="WaifUPnP" level="project" />
   </component>
 </module>

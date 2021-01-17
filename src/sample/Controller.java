@@ -2,6 +2,7 @@ package sample;
 
 import Server.CAHClient;
 import Server.Messaggio;
+import com.esotericsoftware.kryonet.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,7 @@ public class Controller {
     private TextField chatField;
 
     @FXML
-    public TextArea chatWall;
+    private static TextArea chatWall;
 
     public void ActionCreatebutton(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("CreateRoomScreen.fxml"));
@@ -48,18 +49,25 @@ public class Controller {
     public void ActionCreateRoomButton(ActionEvent actionEvent) {
     }
 
-
     public void ActionSendButton(ActionEvent actionEvent) {
         chatWall.appendText(chatField.getText()+"\n");
         Messaggio m = new Messaggio();
         m.testo = chatField.getText()+"\n";
-        CAHClient.sendTCPMessage(m);
+        CAHClient.getInstance().getClient().sendTCP(m);
     }
 
     public void isKeyPressed(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ESCAPE){
             Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         }
+    }
+
+    public static TextArea getTextArea(){
+        return chatWall;
+    }
+
+    public static void getMessage(){
+
     }
 
 }
