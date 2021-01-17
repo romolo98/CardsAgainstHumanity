@@ -9,9 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.Controller;
 
-
-import static Server.CAHNetwork.porta;
 import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
@@ -19,16 +18,6 @@ public class CAHClient extends Application {
     String nome =  "Roger";
     String host;
     static public Client client;
-    static public String prova;
-    private static CAHClient clientIstance;
-    public static boolean newMex = false;
-
-    public static CAHClient getInstance(){
-        if (clientIstance == null)
-            clientIstance = new CAHClient();
-
-        return clientIstance;
-    }
 
     public CAHClient () {
         client = new Client();
@@ -53,8 +42,7 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
-                    prova = m.testo;
-                    newMex = true;
+                    //COMPARE IL MESSAGGIO SULLA SCHERMATA DELLA CHAT
                     return;
                 }
             }
@@ -64,15 +52,16 @@ public class CAHClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/PlayScreen.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/sample/StartScreen.fxml"));
         primaryStage.setTitle("Client1");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
         primaryStage.show();
 
-
         //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "87.20.89.146", 56555);
+        client.connect(5000, "localhost", 54321);
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
@@ -87,7 +76,7 @@ public class CAHClient extends Application {
     }
 
     public static void main(String[] args) {
-        getInstance();
+        new CAHClient();
         launch(args);
         Log.set(Log.LEVEL_DEBUG);
     }

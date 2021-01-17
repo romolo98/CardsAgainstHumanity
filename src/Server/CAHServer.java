@@ -64,15 +64,13 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Messaggio){
-                                        if (connessioneChat.nome == null)
-                                                return;
-
+                                        System.out.println(((Messaggio) o).testo);
                                         Messaggio mes = (Messaggio)o;
                                         if (mes.testo == null || mes.testo.length() == 0)
                                                 return;
-
                                         String messaggio = mes.testo;
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
+                                        System.out.println(mes.testo);
                                         server.sendToAllTCP(mes);
                                         return;
                                 }
@@ -84,9 +82,8 @@ public class CAHServer extends Application {
 
                                 if (connection.nome != null) {
                                         Messaggio mes = new Messaggio();
-                                        mes.testo = connection.nome + "ha lasciato la partita";
+                                        mes.testo = connection.nome + " ha lasciato la partita";
                                         server.sendToAllTCP(mes);
-
                                         aggiornaUtenti();
                                 }
                         }
@@ -101,9 +98,8 @@ public class CAHServer extends Application {
                 primaryStage.setScene(new Scene(root));
                 primaryStage.show();
 
-                UPnP.openPortTCP(CAHNetwork.porta);
-
-                server.bind(CAHNetwork.porta);
+                UPnP.openPortTCP(54321);
+                server.bind(54321);
                 server.start();
 
                 primaryStage.setOnCloseRequest(event -> {
