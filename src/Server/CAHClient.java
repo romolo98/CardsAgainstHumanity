@@ -21,17 +21,7 @@ public class CAHClient extends Application {
     String nome =  "Roger";
     String host;
     static public Client client;
-    static public String prova;
-    private static CAHClient clientIstance;
-    public static boolean newMex = false;
     private Controller controller;
-
-    public static CAHClient getInstance(){
-        if (clientIstance == null)
-            clientIstance = new CAHClient();
-
-        return clientIstance;
-    }
 
     public CAHClient () {
         client = new Client();
@@ -57,65 +47,53 @@ public class CAHClient extends Application {
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
                     controller.setChatWall(m.testo);
-                    //prova = m.testo;
-                    //newMex = true;
-                    System.out.println(m.testo);
                     return;
                 }
             }
         });
     }
 
+    public static Connection getClient() {
+        return client;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample/PlayScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("/sample/StartScreen.fxml").openStream());
         primaryStage.setTitle("Client1");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
         primaryStage.show();
 
-        FXMLLoader loader = new FXMLLoader();
-
-        Pane p = loader.load(getClass().getResource("/sample/PlayScreen.fxml").openStream());
         controller = loader.getController();
 
         //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "79.33.115.106", 54321);
+        client.connect(5000, "localhost", porta);
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
         });
-
-    }
-
-    public void sendMessage(String m){
-        Messaggio mes = new Messaggio();
-        mes.testo = m;
-        client.sendTCP(mes);
     }
 
     public static void main(String[] args) {
-        //getInstance();
         launch(args);
         Log.set(Log.LEVEL_DEBUG);
     }
 
-
-    public String getHost(){
-        return host;
+    public String getNome(){
+        return nome;
     }
 
     public void setNomeUtente(String n){
         nome = n;
     }
 
+    public String getHost(){
+        return host;
+    }
+
     public void setHost(String h){
         host = h;
     }
-
-    static public Client getClient(){
-        return client;
-    }
-
 }

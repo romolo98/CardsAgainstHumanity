@@ -7,3 +7,5 @@ public class ChatConnection extends Connection {
     public String nome;
 
 }
+
+

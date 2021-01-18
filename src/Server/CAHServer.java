@@ -51,13 +51,10 @@ public class CAHServer extends Application {
 
                                 connessioneChat.nome = nome;
 
-
                                 Messaggio mes = new Messaggio();
-                                mes.testo = nome + " si è unito alla partita";
-                                        System.out.println(mes.testo);
+                                mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + nome + " si è unito alla partita";
                                 //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                 server.sendToAllExceptTCP(connessioneChat.getID(), mes);
-
                                 aggiornaUtenti();
 
                                 return;
@@ -72,21 +69,22 @@ public class CAHServer extends Application {
                                                 return;
 
                                         String messaggio = mes.testo;
+
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
-                                        server.sendToAllTCP(mes);
+                                        server.sendToAllExceptTCP(connessioneChat.getID(), mes);
                                         return;
                                 }
 
                         }
 
                         public void disconnected (Connection c){
+
                                 ChatConnection connection = (ChatConnection) c;
 
                                 if (connection.nome != null) {
                                         Messaggio mes = new Messaggio();
-                                        mes.testo = connection.nome + "ha lasciato la partita";
+                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita";
                                         server.sendToAllTCP(mes);
-
                                         aggiornaUtenti();
                                 }
                         }
