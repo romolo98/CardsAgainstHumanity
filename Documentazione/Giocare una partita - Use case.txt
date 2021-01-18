@@ -1,0 +1,85 @@
+Nome: Giocare una partita.
+
+
+Portata: Sistema.
+
+
+Livello: Sistema.
+
+
+Attore primario: Utente.
+
+
+Parti interessate:
+1) Host(L'utente che crea una stanza);
+2) Guest(L'utente che si è unito a una stanza già esistente);
+3) Zar(L'utente che in un determinato turno ha il compito di decidere il vincitore della mano);
+4) Giocatore(Colui che in un determinato turno deve comporre una frase usando le sue carte bianche in mano);
+2) Sistema.
+
+
+Pre-condizioni: Deve esistere un mazzo giocabile.
+
+
+Garanzia di successo: Giocare una partita.
+
+
+Scenario principale di successo:
+1) Un utente chiede al sistema di creare una stanza;
+2) Il sistema chiede le specifiche della stanza;
+3) L'utente comunica al sistema le specifiche della stanza;
+4) Il sistema richiede all'utente l'inserimento di un nickname;
+5) L'utente comunica il nickname al sistema;
+6) Il sistema crea una lobby;
+7) Il sistema trasferisce l'host nella lobby;
+8) Altri guest ora possono unirsi alla stanza inserendo il codice della stanza;
+9) Un guest inserisce il proprio nickname;
+10) Il sistema trasferisce il guest nella lobby;
+11) Il sistema estrae uno Zar tra gli utenti presenti;
+12) Il sistema estrae una carta nera sul tavolo;
+13) Il sistema estrae e assegna le carte bianche agli utenti;
+14) L'utente selezione una o più carte bianche in base alla carta nera sul tavolo;
+15) Quando tutti gli utenti terminano il turno lo Zar sceglierà la frase che considera più divertente;
+16) Il sistema notifica in chat l'utente vincente e incrementa il suo punteggio;
+Si ritorna al punto 11.
+17) La partita termina quando un utente raggiunge il punteggio massimo.
+
+
+Estensioni e flussi alternativi:
+*a) L'utente che ha creato la stanza in qualsiasi momento può kickare altri utenti.
+
+*b) L'utente che ha creato la stanza può uscire in qualsiasi momento e la partita è annullata.
+
+1a) L'utente si unisce a una stanza già esistente:
+    1) L'utente inserisce il codice della partita:
+        1a) E' richiesta un codice:
+            1) L'utente inserisce il codice;
+                1a) Il codice è errato: Il sistema lo richiede nuovamente.
+                2a) L'utente torna al menù principale.
+            2) Si va al punto 3).
+    2) Si va al punto 9).
+
+2a) L'utente interrompe la creazione della stanza.
+    1) L'utente ritorna al menu principale.
+
+10a) Un'utente che si è unito alla stanza può abbandonare la lobby in qualsiasi momento:
+    1) Viene notificato in chat.
+
+12-15) Lo Zar abbandona la partita:
+    1) Il turno è annullato e nessun punto viene assegnato;
+    2) Si ritorna al punto 11).
+
+13a) Più giocatori escono e i restanti non sono in numero sufficente:
+    1a) Nella lobby si può attendere l'ingresso di altri giocatori.
+    1b) Iniziata la partita, quest'ultima si annulla.
+
+Requisiti speciali: N/A.
+
+
+Elenco delle varianti teconologiche e dei dati: N/A.
+
+ 
+Frequenza di ripetizione: Ogni volta che si vuole giocare.
+
+
+Varie: N/A.

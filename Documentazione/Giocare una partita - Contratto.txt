@@ -1,0 +1,19 @@
+Contratto N1: specificheStanza
+Operazione: specificheStanza(nomeStanza : String, codice : int)
+Riferimenti: Giocare una partita
+Pre-condizioni: Accedere alla creazione stanza.
+Post-condizioni: E' stata creata una lobby.
+
+Contratto N2: nickname
+Operazione: nickname(text : String)
+Riferimenti: Giocare una partita
+Pre-condizioni: Avere acceduto alla stanza.
+Post-condizioni: L'utente sarà stato collegato alla stanza.
+
+-----------------------------------------------------------------
+
+Contratto N3: inserisciNomeStanza
+Operazione: inserisciNomeStanza(text : String)
+Riferimenti: Giocare una partita
+Pre-condizioni: La stanza richiesta deve esistere.
+Post-condizioni: L'utente sarà stato portato nella lobby.

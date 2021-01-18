@@ -7,18 +7,18 @@ Portata: Sistema
 Livello: Gestione di un mazzo di carte disponibili.
 
 
-Attore primario: Giocatore.
+Attore primario: Utente.
 
 
 Parti Interessate e Interessi:
-1) Giocatore;
+1) Utente;
 2) Sistema.
 
 
-Pre-condizioni: Il giocatore accede alla gestione mazzi.
+Pre-condizioni: L'utente accede alla gestione mazzi.
 
 
-Garanzia di Successo: Il giocatore ha modificato la rosa dei mazzi disponibili.
+Garanzia di Successo: L'utente ha modificato la rosa dei mazzi disponibili.
 
 
 Scenario Principale di Successo:
