@@ -1,6 +1,5 @@
 package sample;
 
-import Server.CAHClient;
 import Server.CAHNetwork;
 import Server.Messaggio;
 import Server.Mossa;
@@ -22,10 +21,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalTime;
 
 import static Server.CAHNetwork.registraOggetti;
 
 public class Controller extends Application{
+
+    private String nome;
+    private String host;
+    private Client client;
+    private FXMLLoader loader = new FXMLLoader();
 
     @FXML
     private Button playButton, createButton, optionsButton, turnBack, sendMessage;
@@ -36,10 +41,38 @@ public class Controller extends Application{
     @FXML
     private TextArea chatWall;
 
-    private String nome;
-    private String host;
-    private Client client;
+    @FXML
+    public void initialize() throws IOException {
+        client = new Client();
+        client.start();
+        this.client.connect(5000, "localhost", 54321);
+        nome = "Matteo";
+        registraOggetti(client);
 
+        client.addListener(new Listener() {
+            public void connected(Connection connessione){
+                //Creo un oggetto RegistraUtente(Stringa) per inviare al server il nome del nuovo utente connesso
+                CAHNetwork.RegistraUtente utente = new CAHNetwork.RegistraUtente();
+                utente.nome = nome;
+                System.out.println(utente.nome);
+                client.sendTCP(utente);
+            }
+
+            public void received(Connection connessione, Object oggetto){
+                if (oggetto instanceof Mossa){
+                    //TO BE DECIDED
+                }
+
+                if (oggetto instanceof Messaggio) {
+                    System.out.println("Messaggio ricevuto");
+                    Messaggio m = (Messaggio) oggetto;
+                    chatWall.appendText(m.testo+"\n");
+                    return;
+                }
+            }
+        });
+
+    }
 
     public void ActionCreatebutton(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("CreateRoomScreen.fxml"));
@@ -65,10 +98,9 @@ public class Controller extends Application{
     }
 
     public void ActionSendButton(ActionEvent actionEvent) {
-
-        chatWall.appendText(chatField.getText()+"\n");
         Messaggio m = new Messaggio();
-        m.testo = chatField.getText()+"\n";
+        m.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + ": " + chatField.getText()+"\n";
+        chatField.setText("");
         client.sendTCP(m);
     }
 
@@ -80,48 +112,13 @@ public class Controller extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResource("/sample/StartScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/sample/PlayScreen.fxml"));
         primaryStage.setTitle("Client1");
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
         primaryStage.show();
 
-        //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "localhost", 54321);
-
-        primaryStage.setOnCloseRequest(event -> {
-            client.stop();
-        });
-    }
-
-    public Controller(){
-        client = new Client();
-        client.start();
-
-        registraOggetti(client);
-
-        client.addListener(new Listener() {
-            public void connected(Connection connessione){
-                //Creo un oggetto RegistraUtente(Stringa) per inviare al server il nome del nuovo utente connesso
-                CAHNetwork.RegistraUtente utente = new CAHNetwork.RegistraUtente();
-                utente.nome = nome;
-                System.out.println(utente.nome);
-                client.sendTCP(utente);
-            }
-
-            public void received(Connection connessione, Object oggetto){
-                if (oggetto instanceof Mossa){
-                    //TO BE DECIDED
-                }
-
-                if (oggetto instanceof Messaggio) {
-                    Messaggio m = (Messaggio) oggetto;
-                    chatWall.appendText(m.testo);
-                    return;
-                }
-            }
-        });
+        //IL CLIENT ANDREBBE FERMATO QUI MA NON E' PIU' POSSIBILE
     }
 
     public static void main(String[] args) {

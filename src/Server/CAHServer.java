@@ -43,19 +43,18 @@ public class CAHServer extends Application {
                                         if (connessioneChat.nome != null)
                                                 return;
 
-                                String nome = ((CAHNetwork.RegistraUtente) o).nome;
+                                String name = ((CAHNetwork.RegistraUtente) o).nome;
 
-                                if (nome == null || nome.length() == 0){
+                                if (name == null || name.length() == 0){
                                         return;
                                 }
 
-                                connessioneChat.nome = nome;
+                                connessioneChat.nome = name;
 
 
                                 Messaggio mes = new Messaggio();
-                                mes.testo = nome + " si è unito alla partita";
+                                mes.testo = connessioneChat.nome + " si è unito alla partita";
                                         System.out.println(mes.testo);
-                                //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                 server.sendToAllExceptTCP(connessioneChat.getID(), mes);
 
                                 aggiornaUtenti();
@@ -64,14 +63,8 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Messaggio){
-                                        System.out.println(((Messaggio) o).testo);
-                                        Messaggio mes = (Messaggio)o;
-                                        if (mes.testo == null || mes.testo.length() == 0)
-                                                return;
-                                        String messaggio = mes.testo;
-                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
-                                        System.out.println(mes.testo);
-                                        server.sendToAllTCP(mes);
+                                        System.out.println("Messaggio ricevuto");
+                                        server.sendToAllTCP(((Messaggio) o));
                                         return;
                                 }
 
