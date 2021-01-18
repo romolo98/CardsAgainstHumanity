@@ -8,7 +8,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import sample.Controller;
 
 
 import static Server.CAHNetwork.porta;
@@ -22,6 +24,7 @@ public class CAHClient extends Application {
     static public String prova;
     private static CAHClient clientIstance;
     public static boolean newMex = false;
+    private Controller controller;
 
     public static CAHClient getInstance(){
         if (clientIstance == null)
@@ -53,8 +56,10 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Messaggio) {
                     Messaggio m = (Messaggio) oggetto;
-                    prova = m.testo;
-                    newMex = true;
+                    controller.setChatWall(m.testo);
+                    //prova = m.testo;
+                    //newMex = true;
+                    System.out.println(m.testo);
                     return;
                 }
             }
@@ -70,9 +75,13 @@ public class CAHClient extends Application {
         primaryStage.setMaximized(true);
         primaryStage.show();
 
+        FXMLLoader loader = new FXMLLoader();
+
+        Pane p = loader.load(getClass().getResource("/sample/PlayScreen.fxml").openStream());
+        controller = loader.getController();
 
         //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "87.20.89.146", 56555);
+        client.connect(5000, "79.33.115.106", 54321);
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
@@ -87,7 +96,7 @@ public class CAHClient extends Application {
     }
 
     public static void main(String[] args) {
-        getInstance();
+        //getInstance();
         launch(args);
         Log.set(Log.LEVEL_DEBUG);
     }
