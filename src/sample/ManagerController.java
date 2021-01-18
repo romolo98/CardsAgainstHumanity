@@ -10,8 +10,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class ManagerController {
+
+    private int ID_Mazzo;
 
     @FXML
     private TableColumn<?, ?> colCommands;
@@ -55,8 +58,13 @@ public class ManagerController {
     }
 
     @FXML
-    void createNewDeck(ActionEvent event) {
-
+    void createNewDeck(ActionEvent event) throws IOException, SQLException {
+        ID_Mazzo = DBConnector.getInstance().addMazzo("Prova");
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
+        newDeckButton.getScene().setRoot(root);
+        EditorController editorController  = loader.getController();
+        editorController.setID_Mazzo(ID_Mazzo);
     }
 
 }

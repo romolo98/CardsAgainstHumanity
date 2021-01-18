@@ -25,7 +25,7 @@
                      <children>
                         <AnchorPane maxHeight="100.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="20.0" maxHeight="62.0" maxWidth="128.0" mnemonicParsing="false" onAction="#ActionPlayButton" prefHeight="62.0" prefWidth="128.0" text="Gioca" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="20.0" />
+                              <Button fx:id="playButton" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="20.0" maxHeight="62.0" maxWidth="128.0" mnemonicParsing="false" onAction="#ActionPlayButton" prefHeight="62.0" prefWidth="128.0" text="Partecipa" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="20.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane maxHeight="100.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
@@ -35,7 +35,7 @@
                         </AnchorPane>
                         <AnchorPane maxHeight="100.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#ActionOptionsButton" prefHeight="48.0" prefWidth="90.0" text="Impostazioni" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="20.0" />
+                              <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#ActionOptionsButton" prefHeight="48.0" prefWidth="90.0" text="Gestione Mazzi" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="20.0" />
                            </children>
                            <VBox.margin>
                               <Insets />

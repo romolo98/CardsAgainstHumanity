@@ -2,18 +2,15 @@ package sample;
 
 import Server.CAHClient;
 import Server.Messaggio;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -30,6 +27,11 @@ public class Controller {
 
     public void setChatWall(String messaggio){
         chatWall.appendText(messaggio);
+        System.out.println("sono entrato");
+    }
+
+    public TextArea getChatWall () {
+        return chatWall;
     }
 
     public void ActionCreatebutton(ActionEvent actionEvent) throws IOException {
@@ -43,7 +45,7 @@ public class Controller {
     }
 
     public void ActionOptionsButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("OptionScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DeckManager.fxml"));
         optionsButton.getScene().setRoot(root);
     }
 
