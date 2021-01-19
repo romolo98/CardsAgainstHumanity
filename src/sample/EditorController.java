@@ -77,7 +77,7 @@ public class EditorController {
 
     @FXML
     void addCard(ActionEvent event) throws IOException, SQLException {
-        DBConnector.getInstance().addCarta("","",ID_Mazzo);
+        DBConnector.getInstance().addCarta("","Bianca",ID_Mazzo);
         Parent root = FXMLLoader.load(getClass().getResource("CardCreator.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Create card");

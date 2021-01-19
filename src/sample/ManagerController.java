@@ -1,20 +1,28 @@
 package sample;
 
+import com.sun.javafx.menu.SeparatorMenuItemBase;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class ManagerController {
 
     private int ID_Mazzo;
+
+    private ObservableList<Mazzo> datiMazzo = FXCollections.observableArrayList();
 
     @FXML
     private TableColumn<?, ?> colCommands;
@@ -44,7 +52,28 @@ public class ManagerController {
     private Button backButton;
 
     @FXML
-    private TableColumn<?, ?> colID;
+    private TableView table;
+
+    @FXML
+    private TableColumn colID;
+
+    public TableView getTable() {
+        return table;
+    }
+
+    public ObservableList<Mazzo> getDatiMazzo() {
+        return datiMazzo;
+    }
+
+    public TableColumn getColID(){
+        return colID;
+    }
+    public TableColumn getColName(){
+        return colName;
+    }
+    public TableColumn getColTotal(){
+        return colTotal;
+    }
 
     @FXML
     void searchDeck(ActionEvent event) {
@@ -53,7 +82,7 @@ public class ManagerController {
 
     @FXML
     void previousScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CreateRoomScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StartScreeen.fxml"));
         backButton.getScene().setRoot(root);
     }
 

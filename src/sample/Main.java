@@ -18,8 +18,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setMaximized(true);
         primaryStage.show();
-        //DBConnector.getInstance().connect();
-        //DBConnector.getInstance().prova();
+        DBConnector.getInstance().connect();
     }
 
     public static void main(String[] args) throws SQLException {

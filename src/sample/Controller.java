@@ -9,12 +9,17 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class Controller {
+
+    private FXMLLoader loader = new FXMLLoader();
 
     @FXML
     private Button playButton, createButton, optionsButton, turnBack, sendMessage;
@@ -44,9 +49,18 @@ public class Controller {
         playButton.getScene().setRoot(root);
     }
 
-    public void ActionOptionsButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("DeckManager.fxml"));
+    public void ActionOptionsButton(ActionEvent actionEvent) throws IOException, SQLException {
+        Parent root = loader.load(getClass().getResource("DeckManager.fxml").openStream());
         optionsButton.getScene().setRoot(root);
+        ManagerController managerController = loader.getController();
+
+        for (int i=1;i<=DBConnector.getInstance().getNoMazzi();i++) {
+            managerController.getDatiMazzo().add(new Mazzo(DBConnector.getInstance().getID_Mazzo(i), DBConnector.getInstance().getNome(i), DBConnector.getInstance().getNoCarte(i), DBConnector.getInstance().getGiocabile(i)));
+        }
+        managerController.getColName().setCellValueFactory(new PropertyValueFactory<Mazzo,String>("nome"));
+        managerController.getColTotal().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("noCarte"));
+        managerController.getColID().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("ID_Mazzo"));
+        managerController.getTable().setItems(managerController.getDatiMazzo());
     }
 
     public void ActionTurnBack(ActionEvent actionEvent) throws IOException {

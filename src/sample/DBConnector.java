@@ -10,8 +10,9 @@ public class DBConnector {
     private Connection connection;
     private Statement statement;
 
+
     private DBConnector() {
-        url = "jdbc:sqlserver://server-cah.database.windows.net:1433,databaseName=CardsAgainstHumanity_DB";
+        url = "jdbc:sqlserver://server-cah.database.windows.net;databaseName=CardsAgainstHumanity DB";
         user = "romolo";
         password = "vugc445_";
     }
@@ -27,22 +28,65 @@ public class DBConnector {
         System.out.println("connesso!");
     }
 
-    public void prova () throws SQLException {
-        statement = connection.createStatement();
-        String sql = "SELECT sp.name\n" +
-                "    , sp.default_database_name\n" +
-                "FROM sys.server_principals sp\n" +
-                "WHERE sp.name = SUSER_SNAME()";
-        ResultSet result = statement.executeQuery(sql);
-        System.out.println(result);
-
-    }
-
     public void addCarta (String contenuto,String tipologia,int ID_mazzo) throws SQLException {
         statement = connection.createStatement();
         String sql = "INSERT INTO Carta (contenuto,tipologia,ID_mazzo)" +
-                    "VALUES ("+contenuto+","+tipologia+""+ID_mazzo+")";
+                    "VALUES ('"+contenuto+"','"+tipologia+"','"+ID_mazzo+"')";
         statement.executeUpdate(sql);
+    }
+
+    public int getNoMazzi() throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT COUNT(*) AS countRow "+
+                "FROM Mazzo";
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        return result.getInt("countRow");
+    }
+
+    public String getNome(int index) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT Nome " +
+                "FROM deckData " +
+                "WHERE rowNumber = " + index;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        System.out.println(result.getString("Nome"));
+        return result.getString("Nome");
+    }
+
+    public boolean getGiocabile(int index) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT Giocabile " +
+                "FROM deckData " +
+                "WHERE rowNumber = " + index;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        System.out.println(result.getBoolean("Giocabile"));
+        return result.getBoolean("Giocabile");
+    }
+
+
+    public int getNoCarte(int index) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT NoCarte " +
+                "FROM deckData " +
+                "WHERE rowNumber = " + index;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        System.out.println(result.getInt("NoCarte"));
+        return result.getInt("NoCarte");
+    }
+
+    public int getID_Mazzo(int index) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT ID_Mazzo "+
+                    "FROM ID_Mazzo_Row_number "+
+                    "WHERE rowNumber = "+index;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        System.out.println(result.getInt("ID_Mazzo"));
+        return result.getInt("ID_Mazzo");
     }
 
     public int addMazzo(String nome) throws SQLException {
@@ -52,10 +96,14 @@ public class DBConnector {
         statement.executeUpdate(sql);
 
         statement = connection.createStatement();
-        String sql1 = "SELECT MAX(ID_Mazzo)"+
+        String sql1 = "SELECT *"+
                 "FROM Mazzo";
-        int result = statement.executeUpdate(sql1);
-        return result;
+        ResultSet result = statement.executeQuery(sql1);
+        int returnInt = 0;
+        while(result.next()){
+            returnInt = result.getInt("ID_Mazzo");
+        }
+        return returnInt;
     }
 
     public String getContenutoCarta (String ID_Carta) throws SQLException {
