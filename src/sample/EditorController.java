@@ -19,7 +19,9 @@ import java.sql.SQLException;
 
 public class EditorController {
 
-    private int ID_Mazzo;
+    public static int ID_Mazzo;
+
+    private FXMLLoader loader = new FXMLLoader();
 
     @FXML
     private Button addCardButton;
@@ -70,6 +72,8 @@ public class EditorController {
         ID_Mazzo = a;
     }
 
+    public int getID_Mazzo() {return ID_Mazzo;}
+
     @FXML
     void selectAllCards(ActionEvent event) {
 
@@ -77,12 +81,18 @@ public class EditorController {
 
     @FXML
     void addCard(ActionEvent event) throws IOException, SQLException {
-        DBConnector.getInstance().addCarta("","Bianca",ID_Mazzo);
-        Parent root = FXMLLoader.load(getClass().getResource("CardCreator.fxml"));
+        Parent root = loader.load(getClass().getResource("CardCreator.fxml").openStream());
         Stage stage = new Stage();
         stage.setTitle("Create card");
         stage.setScene(new Scene(root));
         stage.show();
+
+
+        //CardCreatorController cardCreatorController = loader.getController();
+
+
+        //DBConnector.getInstance().addCarta("","Bianca",ID_Mazzo);
+
     }
 
     @FXML

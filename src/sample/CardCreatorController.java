@@ -2,12 +2,18 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 public class CardCreatorController {
+
+    private FXMLLoader loader = new FXMLLoader();
 
     @FXML
     private RadioButton checkWhiteCard;
@@ -33,8 +39,13 @@ public class CardCreatorController {
     }
 
     @FXML
-    void ActionSaveCard(ActionEvent event) {
-
+    void ActionSaveCard(ActionEvent event) throws SQLException {
+        if (checkWhiteCard.isSelected())
+            DBConnector.getInstance().addCarta(writeCard.getText(),"Bianca",EditorController.ID_Mazzo);
+        if (checkBlackCard.isSelected())
+            DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",EditorController.ID_Mazzo);
+        Stage stage = (Stage) saveCard.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
