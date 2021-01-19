@@ -15,6 +15,7 @@ public class GraphicHandler {
     public static final int PLAY_SCREEN = 1;
     public static final int DECK_LIST_SCREEN = 2;
     public static final int DECK_EDIT_SCREEN = 3;
+    public static final int CREATE_CARD_SCREEN = 4;
 
     private void init () {
         if ( scene == null ) {
@@ -46,6 +47,9 @@ public class GraphicHandler {
                 break;
             case DECK_EDIT_SCREEN:
                 file_name = "DeckScreen.fxml";
+                break;
+            case CREATE_CARD_SCREEN:
+                file_name = "CardCreator.fxml";
                 break;
             default:
                 System.out.println("Cannot find selected display.");
