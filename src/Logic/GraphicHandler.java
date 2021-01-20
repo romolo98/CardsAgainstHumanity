@@ -1,5 +1,6 @@
 package Logic;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,9 @@ public class GraphicHandler {
     public static final int DECK_EDIT_SCREEN = 3;
     public static final int CREATE_CARD_SCREEN = 4;
 
+    public static final int NO_STREAM = 0;
+    public static final int OPEN_STREAM = 1;
+
     private void init () {
         if ( scene == null ) {
             try {
@@ -33,7 +37,7 @@ public class GraphicHandler {
         return scene;
     }
 
-    public void displayScreen ( int display ) {
+    public void displayScreen ( int display, int stream ) {
         String file_name;
         switch ( display ) {
             case MAIN_SCREEN:
@@ -56,8 +60,15 @@ public class GraphicHandler {
                 return;
         }
 
+        FXMLLoader loader = new FXMLLoader();
         try {
-            root = FXMLLoader.load( getClass().getResource(file_name) );
+            if ( stream == OPEN_STREAM )
+                root = loader.load( getClass().getResource(file_name).openStream() );
+            else if ( stream == NO_STREAM )
+                root = FXMLLoader.load( getClass().getResource(file_name) );
+            else
+                System.out.println( "Stream loading error.");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
