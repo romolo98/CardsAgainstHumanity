@@ -1,6 +1,5 @@
 package Logic;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,9 +7,8 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 public class GraphicHandler {
-
-    private Parent root = null;
-    private Scene scene = null;
+    
+    private static Scene scene = null;
 
     public static final int MAIN_SCREEN = 0;
     public static final int PLAY_SCREEN = 1;
@@ -23,12 +21,13 @@ public class GraphicHandler {
 
     private void init () {
         if ( scene == null ) {
+            Parent root;
             try {
                 root = FXMLLoader.load( getClass().getResource("StartScreen.fxml") );
+                scene.setRoot( root );
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            scene.setRoot( root );
         }
     }
 
@@ -37,7 +36,7 @@ public class GraphicHandler {
         return scene;
     }
 
-    public void displayScreen ( int display, int stream ) {
+    public static void displayScreen (int display, int stream ) {
         String file_name;
         switch ( display ) {
             case MAIN_SCREEN:
@@ -60,18 +59,23 @@ public class GraphicHandler {
                 return;
         }
 
-        FXMLLoader loader = new FXMLLoader();
+
+
         try {
-            if ( stream == OPEN_STREAM )
-                root = loader.load( getClass().getResource(file_name).openStream() );
+            Parent root = null;
+            if ( stream == OPEN_STREAM ) {
+                FXMLLoader loader = new FXMLLoader();
+                root = loader.load(GraphicHandler.class.getResource(file_name).openStream());
+            }
             else if ( stream == NO_STREAM )
-                root = FXMLLoader.load( getClass().getResource(file_name) );
+                root = FXMLLoader.load( GraphicHandler.class.getResource(file_name) );
             else
                 System.out.println( "Stream loading error.");
+            scene.setRoot( root );
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        scene.setRoot( root );
+
     }
 }
