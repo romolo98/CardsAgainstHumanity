@@ -1,18 +1,18 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import sample.Carta;
+import sample.DBConnector;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,6 +22,11 @@ public class EditorController {
     public static int ID_Mazzo;
 
     private FXMLLoader loader = new FXMLLoader();
+
+    private ObservableList<Carta> datiCarte = FXCollections.observableArrayList();
+
+    @FXML
+    private Button refreshButton;
 
     @FXML
     private Button addCardButton;
@@ -39,7 +44,16 @@ public class EditorController {
     private Label whiteCardsNo;
 
     @FXML
-    private FlowPane cardList;
+    private TableColumn cardID;
+
+    @FXML
+    private TableColumn cardContent;
+
+    @FXML
+    private TableColumn cardType;
+
+    @FXML
+    private TableView cardTable;
 
     @FXML
     private Label selectedCardsNo;
@@ -81,7 +95,7 @@ public class EditorController {
 
     @FXML
     void addCard(ActionEvent event) throws IOException, SQLException {
-        Parent root = loader.load(getClass().getResource("CardCreator.fxml").openStream());
+        Parent root = loader.load(getClass().getResource("CardCreator.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Create card");
         stage.setScene(new Scene(root));
@@ -116,8 +130,17 @@ public class EditorController {
     }
 
     @FXML
-    void cancelEdit(ActionEvent event) {
+    void cancelEdit(ActionEvent event) throws IOException, SQLException {
 
     }
 
+    public void RefreshPage(ActionEvent actionEvent) throws IOException, SQLException {
+        for (int i = 1; i<= DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo); i++) {
+            datiCarte.add(new Carta(DBConnector.getInstance().getID_Carta(ID_Mazzo),DBConnector.getInstance().getContenuto(ID_Mazzo), DBConnector.getInstance().getTipologia(ID_Mazzo),ID_Mazzo));
+        }
+        cardID.setCellValueFactory(new PropertyValueFactory<Carta,String>("ID_Carta"));
+        cardContent.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("Contenuto"));
+        cardType.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("Tipologia"));
+        cardTable.setItems(datiCarte);
+    }
 }

@@ -82,7 +82,7 @@ public class ManagerController {
 
     @FXML
     void previousScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScreeen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
         backButton.getScene().setRoot(root);
     }
 
