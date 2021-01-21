@@ -82,11 +82,21 @@ public class EditorController {
     @FXML
     private CheckBox selectAllBox;
 
+    public ObservableList getDatiCarte (){ return datiCarte; }
+
     public void setID_Mazzo(int a){
         ID_Mazzo = a;
     }
 
     public int getID_Mazzo() {return ID_Mazzo;}
+
+    public TableColumn getCardID (){return cardID;}
+
+    public TableColumn getCardType (){return cardType;}
+
+    public TableColumn getCardContent (){return cardContent;}
+
+    public TableView getCardTable (){return cardTable;}
 
     @FXML
     void selectAllCards(ActionEvent event) {
@@ -135,12 +145,22 @@ public class EditorController {
     }
 
     public void RefreshPage(ActionEvent actionEvent) throws IOException, SQLException {
-        for (int i = 1; i<= DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo); i++) {
-            datiCarte.add(new Carta(DBConnector.getInstance().getID_Carta(ID_Mazzo),DBConnector.getInstance().getContenuto(ID_Mazzo), DBConnector.getInstance().getTipologia(ID_Mazzo),ID_Mazzo));
+        boolean check = true;
+        for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo);i++) {
+            Carta c = new Carta(DBConnector.getInstance().getID_Carta(i,ID_Mazzo), DBConnector.getInstance().getContenuto(i,ID_Mazzo), DBConnector.getInstance().getTipologia(i,ID_Mazzo), ID_Mazzo);
+            for (int j=0;j<datiCarte.size();j++) {
+                if (datiCarte.get(j).getID_Carta() == c.getID_Carta())
+                    check = false;
+            }
+            if (check){
+                datiCarte.add(c);
+            }
+            check = true;
         }
-        cardID.setCellValueFactory(new PropertyValueFactory<Carta,String>("ID_Carta"));
-        cardContent.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("Contenuto"));
-        cardType.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("Tipologia"));
+        cardContent.setCellValueFactory(new PropertyValueFactory<Carta,String>("contenuto"));
+        cardID.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("ID_Carta"));
+        cardType.setCellValueFactory(new PropertyValueFactory<Carta,String>("tipologia"));
         cardTable.setItems(datiCarte);
+
     }
 }

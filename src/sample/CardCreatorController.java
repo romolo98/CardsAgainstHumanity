@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class CardCreatorController {
@@ -39,11 +41,12 @@ public class CardCreatorController {
     }
 
     @FXML
-    void ActionSaveCard(ActionEvent event) throws SQLException {
+    void ActionSaveCard(ActionEvent event) throws SQLException, IOException {
         if (checkWhiteCard.isSelected())
             DBConnector.getInstance().addCarta(writeCard.getText(),"Bianca",EditorController.ID_Mazzo);
         if (checkBlackCard.isSelected())
             DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",EditorController.ID_Mazzo);
+
         Stage stage = (Stage) saveCard.getScene().getWindow();
         stage.close();
     }
