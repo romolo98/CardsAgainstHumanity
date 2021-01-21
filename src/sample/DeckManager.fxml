@@ -42,7 +42,14 @@
                               </AnchorPane>
                               <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <items>
+                                          <Button fx:id="editDeckButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#EditDeck" text="Edit Deck" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </items></ToolBar>
                                  </children>
                               </AnchorPane>
                            </children>
@@ -70,7 +77,14 @@
                               </AnchorPane>
                               <AnchorPane HBox.hgrow="ALWAYS">
                                  <children>
-                                    <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <items>
+                                          <Button fx:id="deleteDeckButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteDeck" text="Delete Deck" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Button>
+                                       </items></ToolBar>
                                  </children>
                               </AnchorPane>
                            </children>

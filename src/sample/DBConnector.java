@@ -38,6 +38,14 @@ public class DBConnector {
         statement.executeUpdate(sql);
     }
 
+    public void deleteCard (int ID_Carta) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "DELETE " +
+                "FROM Carta " +
+                "WHERE ID_Carta = "+ ID_Carta;
+        statement.executeUpdate(sql);
+    }
+
     public int getNoCarteMazzo(int ID_Mazzo) throws SQLException {
         statement = connection.createStatement();
         String sql = "SELECT COUNT(*) AS countCards "+
@@ -45,7 +53,7 @@ public class DBConnector {
                 "WHERE ID_Mazzo = "+ID_Mazzo;
         ResultSet result = statement.executeQuery(sql);
         result.next();
-        System.out.println(result.getInt("countCards"));
+        //System.out.println(result.getInt("countCards"));
         return result.getInt("countCards");
     }
 
@@ -122,6 +130,14 @@ public class DBConnector {
         return result.getString("Nome");
     }
 
+    public void deleteMazzo (int ID_Mazzo) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "DELETE " +
+                "FROM Mazzo " +
+                "WHERE ID_Mazzo = "+ ID_Mazzo;
+        statement.executeUpdate(sql);
+    }
+
     public boolean getGiocabile(int index) throws SQLException {
         statement = connection.createStatement();
         String sql = "SELECT Giocabile " +
@@ -139,7 +155,7 @@ public class DBConnector {
                 "WHERE rowNumber = " + index;
         ResultSet result = statement.executeQuery(sql);
         result.next();
-        return result.getInt("NoCarte");
+         return result.getInt("NoCarte");
     }
 
     public int getID_Mazzo(int index) throws SQLException {

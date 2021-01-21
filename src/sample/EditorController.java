@@ -19,7 +19,7 @@ import java.sql.SQLException;
 
 public class EditorController {
 
-    public static int ID_Mazzo;
+    public int ID_Mazzo;
 
     private FXMLLoader loader = new FXMLLoader();
 
@@ -125,8 +125,21 @@ public class EditorController {
     }
 
     @FXML
-    void deleteCard(ActionEvent event) {
+    void deleteCard(ActionEvent event) throws SQLException {
+        ID_Mazzo = ManagerController.ID_Mazzo;
+        Carta c = (Carta) cardTable.getSelectionModel().getSelectedItem();
 
+
+        for (int j=0;j<datiCarte.size();j++) {
+            if (datiCarte.get(j).getID_Carta() == c.getID_Carta()){
+                datiCarte.remove(datiCarte.get(j));
+                DBConnector.getInstance().deleteCard(c.getID_Carta());
+            }
+        }
+        cardContent.setCellValueFactory(new PropertyValueFactory<Carta,String>("contenuto"));
+        cardID.setCellValueFactory(new PropertyValueFactory<Carta,Integer>("ID_Carta"));
+        cardType.setCellValueFactory(new PropertyValueFactory<Carta,String>("tipologia"));
+        cardTable.setItems(datiCarte);
     }
 
     @FXML
@@ -141,10 +154,21 @@ public class EditorController {
 
     @FXML
     void cancelEdit(ActionEvent event) throws IOException, SQLException {
+        Parent root = loader.load(getClass().getResource("DeckManager.fxml").openStream());
+        cancelButton.getScene().setRoot(root);
+        ManagerController managerController = loader.getController();
 
+        for (int i=1;i<=DBConnector.getInstance().getNoMazzi();i++) {
+            managerController.getDatiMazzo().add(new Mazzo(DBConnector.getInstance().getID_Mazzo(i), DBConnector.getInstance().getNome(i), DBConnector.getInstance().getNoCarte(i), DBConnector.getInstance().getGiocabile(i)));
+        }
+        managerController.getColName().setCellValueFactory(new PropertyValueFactory<Mazzo,String>("nome"));
+        managerController.getColTotal().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("noCarte"));
+        managerController.getColID().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("ID_Mazzo"));
+        managerController.getTable().setItems(managerController.getDatiMazzo());
     }
 
     public void RefreshPage(ActionEvent actionEvent) throws IOException, SQLException {
+        ID_Mazzo = ManagerController.ID_Mazzo;
         boolean check = true;
         for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo);i++) {
             Carta c = new Carta(DBConnector.getInstance().getID_Carta(i,ID_Mazzo), DBConnector.getInstance().getContenuto(i,ID_Mazzo), DBConnector.getInstance().getTipologia(i,ID_Mazzo), ID_Mazzo);

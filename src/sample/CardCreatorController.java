@@ -37,15 +37,15 @@ public class CardCreatorController {
         if (checkWhiteCard.isSelected()){
             checkWhiteCard.setSelected(false);
         }
-
     }
 
     @FXML
     void ActionSaveCard(ActionEvent event) throws SQLException, IOException {
+        //System.out.println(EditorController.ID_Mazzo);
         if (checkWhiteCard.isSelected())
-            DBConnector.getInstance().addCarta(writeCard.getText(),"Bianca",EditorController.ID_Mazzo);
+            DBConnector.getInstance().addCarta(writeCard.getText(),"Bianca",ManagerController.ID_Mazzo);
         if (checkBlackCard.isSelected())
-            DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",EditorController.ID_Mazzo);
+            DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",ManagerController.ID_Mazzo);
 
         Stage stage = (Stage) saveCard.getScene().getWindow();
         stage.close();

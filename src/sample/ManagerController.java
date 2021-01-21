@@ -1,26 +1,22 @@
 package sample;
 
-import com.sun.javafx.menu.SeparatorMenuItemBase;
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 public class ManagerController {
 
-    private int ID_Mazzo;
+    public static int ID_Mazzo;
+
+    private FXMLLoader loader = new FXMLLoader();
 
     private ObservableList<Mazzo> datiMazzo = FXCollections.observableArrayList();
 
@@ -31,10 +27,10 @@ public class ManagerController {
     private Button newDeckButton;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<Mazzo, String> colName;
 
     @FXML
-    private TableColumn<?, ?> colTotal;
+    private TableColumn<Mazzo, Integer> colTotal;
 
     @FXML
     private Label totalDecks;
@@ -50,6 +46,9 @@ public class ManagerController {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private Button editDeckButton;
 
     @FXML
     private TableView table;
@@ -89,11 +88,46 @@ public class ManagerController {
     @FXML
     void createNewDeck(ActionEvent event) throws IOException, SQLException {
         ID_Mazzo = DBConnector.getInstance().addMazzo("Prova");
-        FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
         newDeckButton.getScene().setRoot(root);
         EditorController editorController  = loader.getController();
         editorController.setID_Mazzo(ID_Mazzo);
     }
 
+    public void EditDeck(ActionEvent actionEvent) throws SQLException, IOException {
+        Mazzo m = (Mazzo) table.getSelectionModel().getSelectedItem();
+        ID_Mazzo = m.getID_Mazzo();
+        System.out.println(ID_Mazzo);
+
+        Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
+        editDeckButton.getScene().setRoot(root);
+
+        EditorController editorController = loader.getController();
+        for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo);i++) {
+            editorController.getDatiCarte().add(new Carta(DBConnector.getInstance().getID_Carta(i,ID_Mazzo), DBConnector.getInstance().getContenuto(i,ID_Mazzo), DBConnector.getInstance().getTipologia(i,ID_Mazzo), ID_Mazzo));
+        }
+        editorController.getCardContent().setCellValueFactory(new PropertyValueFactory<Carta,String>("contenuto"));
+        editorController.getCardID().setCellValueFactory(new PropertyValueFactory<Carta,Integer>("ID_Carta"));
+        editorController.getCardType().setCellValueFactory(new PropertyValueFactory<Carta,String>("tipologia"));
+        editorController.getCardTable().setItems(editorController.getDatiCarte());
+    }
+
+    public void deleteDeck(ActionEvent actionEvent) throws SQLException {
+        Mazzo m = (Mazzo) table.getSelectionModel().getSelectedItem();
+        ID_Mazzo = m.getID_Mazzo();
+        System.out.println(ID_Mazzo);
+
+        for (int j=0;j<datiMazzo.size();j++) {
+            if (datiMazzo.get(j).getID_Mazzo() == m.getID_Mazzo()) {
+                datiMazzo.remove(datiMazzo.get(j));
+                DBConnector.getInstance().deleteMazzo(ID_Mazzo);
+                System.out.println("entro");
+            }
+        }
+
+        colName.setCellValueFactory(new PropertyValueFactory<Mazzo,String>("nome"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("noCarte"));
+        colID.setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("ID_Mazzo"));
+        table.setItems(datiMazzo);
+    }
 }
