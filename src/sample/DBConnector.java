@@ -29,7 +29,7 @@ public class DBConnector {
     }
 
     ///////////////////////////////////////////////////////////////////777
-    //DB CARTA
+    //QUERY CARTA
 
     public void addCarta (String contenuto,String tipologia,int ID_mazzo) throws SQLException {
         statement = connection.createStatement();
@@ -43,6 +43,14 @@ public class DBConnector {
         String sql = "DELETE " +
                 "FROM Carta " +
                 "WHERE ID_Carta = "+ ID_Carta;
+        statement.executeUpdate(sql);
+    }
+
+    public void updateCarta(int ID_Carta,String contenuto,String tipologia) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "UPDATE Carta  " +
+                "SET Contenuto = '"+contenuto+"', Tipologia = '"+tipologia+"'"+
+                "WHERE ID_Carta = " + ID_Carta;
         statement.executeUpdate(sql);
     }
 
@@ -118,7 +126,7 @@ public class DBConnector {
     /////////////////////////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////////////
-    //DB MAZZO
+    //QUERY MAZZO
 
     public String getNome(int index) throws SQLException {
         statement = connection.createStatement();
@@ -128,6 +136,14 @@ public class DBConnector {
         ResultSet result = statement.executeQuery(sql);
         result.next();
         return result.getString("Nome");
+    }
+
+    public void setNome(String nome, int ID_Mazzo) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "UPDATE Mazzo  " +
+                "SET Nome = '"+nome+"' " +
+                "WHERE ID_Mazzo = " + ID_Mazzo;
+        statement.executeUpdate(sql);
     }
 
     public void deleteMazzo (int ID_Mazzo) throws SQLException {

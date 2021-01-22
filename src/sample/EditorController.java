@@ -10,18 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
-import sample.Carta;
-import sample.DBConnector;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class EditorController {
 
-    public int ID_Mazzo;
+    public static int ID_Carta;
+
+    private int ID_Mazzo;
 
     private FXMLLoader loader = new FXMLLoader();
+    private FXMLLoader loader2 = new FXMLLoader();
 
     private ObservableList<Carta> datiCarte = FXCollections.observableArrayList();
 
@@ -82,6 +83,8 @@ public class EditorController {
     @FXML
     private CheckBox selectAllBox;
 
+    public void setDeckName(String nome) { deckName.setText(nome); }
+
     public ObservableList getDatiCarte (){ return datiCarte; }
 
     public void setID_Mazzo(int a){
@@ -105,23 +108,36 @@ public class EditorController {
 
     @FXML
     void addCard(ActionEvent event) throws IOException, SQLException {
-        Parent root = loader.load(getClass().getResource("CardCreator.fxml"));
+        Parent root = loader2.load(getClass().getResource("CardCreator.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Create card");
         stage.setScene(new Scene(root));
         stage.show();
-
-
-        //CardCreatorController cardCreatorController = loader.getController();
-
-
-        //DBConnector.getInstance().addCarta("","Bianca",ID_Mazzo);
-
     }
 
     @FXML
-    void editCard(ActionEvent event) {
+    void editCard(ActionEvent event) throws IOException {
+        Parent root = loader2.load(getClass().getResource("CardCreator.fxml").openStream());
+        Stage stage = new Stage();
+        stage.setTitle("Edit card");
+        Carta c = (Carta)cardTable.getSelectionModel().getSelectedItem();
+        ID_Carta = c.getID_Carta();
+    /*
+        CardCreatorController cardCreatorController = (CardCreatorController) loader2.getController();
 
+        cardCreatorController.setTextArea(c.getContenuto());
+        if (c.getTipologia() == "Bianca"){
+            cardCreatorController.setCheckWhiteCard();
+        }
+        else{
+            cardCreatorController.setCheckBlackCard();
+        }
+
+        QUESTO é IL CODICE PER RIPORTARE LE INFO DELLA CARTA NELLA SCHERMATA DI EDIT. FUNZIONA SOLO LA PRIMA VOLTA POI CRASHA
+        FORSE UN GIORNO LO AGGIUSTEREMO. MA NON é QUESTO IL GIORNO.
+     */
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @FXML
@@ -142,14 +158,22 @@ public class EditorController {
         cardTable.setItems(datiCarte);
     }
 
-    @FXML
-    void saveDeck(ActionEvent event) {
+    //IMPLEMENTATI SAVE DECK MA SONO DA TESTARE VISTO CHE NON POSSO LANCIARE IL CODICE
 
+    @FXML
+    void saveDeck(ActionEvent event) throws SQLException {
+        String name = deckName.getText();
+        DBConnector.getInstance().setNome(name,ManagerController.ID_Mazzo);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato Nome del Mazzo", ButtonType.OK);
+        alert.showAndWait();
     }
 
     @FXML
-    void saveNewName(ActionEvent event) {
-
+    void saveNewName(ActionEvent event) throws SQLException {
+        String name = deckName.getText();
+        DBConnector.getInstance().setNome(name,ManagerController.ID_Mazzo);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato Nome del Mazzo", ButtonType.OK);
+        alert.showAndWait();
     }
 
     @FXML
@@ -175,6 +199,10 @@ public class EditorController {
             for (int j=0;j<datiCarte.size();j++) {
                 if (datiCarte.get(j).getID_Carta() == c.getID_Carta())
                     check = false;
+                if (datiCarte.get(j).getID_Carta() == c.getID_Carta() && (datiCarte.get(j).getContenuto() != c.getContenuto() || datiCarte.get(j).getTipologia() != c.getTipologia())){
+                    datiCarte.set(j,c);
+                    System.out.println("entro");
+                }
             }
             if (check){
                 datiCarte.add(c);

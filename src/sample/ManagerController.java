@@ -87,7 +87,7 @@ public class ManagerController {
 
     @FXML
     void createNewDeck(ActionEvent event) throws IOException, SQLException {
-        ID_Mazzo = DBConnector.getInstance().addMazzo("Prova");
+        ID_Mazzo = DBConnector.getInstance().addMazzo("New Deck");
         Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
         newDeckButton.getScene().setRoot(root);
         EditorController editorController  = loader.getController();
@@ -103,6 +103,7 @@ public class ManagerController {
         editDeckButton.getScene().setRoot(root);
 
         EditorController editorController = loader.getController();
+        editorController.setDeckName(m.getNome());
         for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo);i++) {
             editorController.getDatiCarte().add(new Carta(DBConnector.getInstance().getID_Carta(i,ID_Mazzo), DBConnector.getInstance().getContenuto(i,ID_Mazzo), DBConnector.getInstance().getTipologia(i,ID_Mazzo), ID_Mazzo));
         }

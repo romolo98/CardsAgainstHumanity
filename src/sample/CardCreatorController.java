@@ -32,6 +32,18 @@ public class CardCreatorController {
     @FXML
     private Label instructionLabel;
 
+    public void setCheckWhiteCard(){
+        checkWhiteCard.setSelected(true);
+    }
+
+    public void setCheckBlackCard(){
+        checkBlackCard.setSelected(true);
+    }
+
+    public void setTextArea(String text){
+        writeCard.setText(text);
+    }
+
     @FXML
     void ActionBlackCardSelected(ActionEvent event) {
         if (checkWhiteCard.isSelected()){
@@ -41,12 +53,26 @@ public class CardCreatorController {
 
     @FXML
     void ActionSaveCard(ActionEvent event) throws SQLException, IOException {
-        //System.out.println(EditorController.ID_Mazzo);
-        if (checkWhiteCard.isSelected())
-            DBConnector.getInstance().addCarta(writeCard.getText(),"Bianca",ManagerController.ID_Mazzo);
-        if (checkBlackCard.isSelected())
-            DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",ManagerController.ID_Mazzo);
+        boolean exist = false;
+        if (checkWhiteCard.isSelected()) {
+            for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ManagerController.ID_Mazzo);i++){
+                if (DBConnector.getInstance().getID_Carta(i,ManagerController.ID_Mazzo) == EditorController.ID_Carta){
+                    exist =true;
+                    if (checkWhiteCard.isSelected())
+                        DBConnector.getInstance().updateCarta(EditorController.ID_Carta,writeCard.getText(),"Bianca");
+                    if (checkBlackCard.isSelected())
+                        DBConnector.getInstance().updateCarta(EditorController.ID_Carta,writeCard.getText(),"Nera");
 
+                }
+            }
+        }
+        if (!exist){
+            if (checkWhiteCard.isSelected())
+                DBConnector.getInstance().addCarta(writeCard.getText(), "Bianca", ManagerController.ID_Mazzo);
+            if (checkBlackCard.isSelected())
+                DBConnector.getInstance().addCarta(writeCard.getText(),"Nera",ManagerController.ID_Mazzo);
+
+        }
         Stage stage = (Stage) saveCard.getScene().getWindow();
         stage.close();
     }
