@@ -65,6 +65,26 @@ public class DBConnector {
         return result.getInt("countCards");
     }
 
+    public int getNoCarteBiancheMazzo(int ID_Mazzo) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT COUNT(*) AS countCards "+
+                "FROM Carta " +
+                "WHERE ID_Mazzo = "+ID_Mazzo+" and Tipologia = 'Bianca'";
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        return result.getInt("countCards");
+    }
+
+    public int getNoCarteNereMazzo(int ID_Mazzo) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT COUNT(*) AS countCards "+
+                "FROM Carta " +
+                "WHERE ID_Mazzo = "+ID_Mazzo+" and Tipologia = 'Nera'";
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        return result.getInt("countCards");
+    }
+
     public String getContenuto(int index,int ID_Mazzo) throws SQLException {
         statement = connection.createStatement();
         String sql1 = "ALTER VIEW cardData AS " +

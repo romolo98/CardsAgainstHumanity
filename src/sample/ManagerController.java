@@ -21,7 +21,7 @@ public class ManagerController {
     private ObservableList<Mazzo> datiMazzo = FXCollections.observableArrayList();
 
     @FXML
-    private TableColumn<?, ?> colCommands;
+    private TableColumn<?, ?> colReady;
 
     @FXML
     private Button newDeckButton;
@@ -64,6 +64,9 @@ public class ManagerController {
         return datiMazzo;
     }
 
+    public TableColumn getColReady() {return colReady;}
+    public TableColumn getColBlack() {return colBlack;}
+    public TableColumn getColWhite() {return colWhite;}
     public TableColumn getColID(){
         return colID;
     }
@@ -96,14 +99,21 @@ public class ManagerController {
 
     public void EditDeck(ActionEvent actionEvent) throws SQLException, IOException {
         Mazzo m = (Mazzo) table.getSelectionModel().getSelectedItem();
-        ID_Mazzo = m.getID_Mazzo();
-        System.out.println(ID_Mazzo);
+        if (m != null) {
+            ID_Mazzo = m.getID_Mazzo();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "E SELEZIONARE NU DECK, OI CIUETU", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
 
         Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
         editDeckButton.getScene().setRoot(root);
 
         EditorController editorController = loader.getController();
         editorController.setDeckName(m.getNome());
+
         for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ID_Mazzo);i++) {
             editorController.getDatiCarte().add(new Carta(DBConnector.getInstance().getID_Carta(i,ID_Mazzo), DBConnector.getInstance().getContenuto(i,ID_Mazzo), DBConnector.getInstance().getTipologia(i,ID_Mazzo), ID_Mazzo));
         }
@@ -116,13 +126,11 @@ public class ManagerController {
     public void deleteDeck(ActionEvent actionEvent) throws SQLException {
         Mazzo m = (Mazzo) table.getSelectionModel().getSelectedItem();
         ID_Mazzo = m.getID_Mazzo();
-        System.out.println(ID_Mazzo);
 
         for (int j=0;j<datiMazzo.size();j++) {
             if (datiMazzo.get(j).getID_Mazzo() == m.getID_Mazzo()) {
                 datiMazzo.remove(datiMazzo.get(j));
                 DBConnector.getInstance().deleteMazzo(ID_Mazzo);
-                System.out.println("entro");
             }
         }
 

@@ -220,7 +220,7 @@
                       <TableColumn fx:id="colTotal" editable="false" maxWidth="1.7976931348623157E308" minWidth="60.0" prefWidth="100.0" text="Total Cards" />
                         <TableColumn fx:id="colBlack" editable="false" maxWidth="1.7976931348623157E308" minWidth="60.0" prefWidth="100.0" text="Black Cards" />
                         <TableColumn fx:id="colWhite" editable="false" maxWidth="1.7976931348623157E308" minWidth="60.0" prefWidth="100.0" text="White Cards" />
-                        <TableColumn fx:id="colCommands" editable="false" maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="250.0" sortable="false" />
+                        <TableColumn fx:id="colReady" maxWidth="1.7976931348623157E308" prefWidth="108.0" text="Ready" />
                     </columns>
                   </TableView>
                </children>

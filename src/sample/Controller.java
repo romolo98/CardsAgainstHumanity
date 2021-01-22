@@ -55,11 +55,14 @@ public class Controller {
         ManagerController managerController = loader.getController();
 
         for (int i=1;i<=DBConnector.getInstance().getNoMazzi();i++) {
-            managerController.getDatiMazzo().add(new Mazzo(DBConnector.getInstance().getID_Mazzo(i), DBConnector.getInstance().getNome(i), DBConnector.getInstance().getNoCarte(i), DBConnector.getInstance().getGiocabile(i)));
+            managerController.getDatiMazzo().add(new Mazzo(DBConnector.getInstance().getID_Mazzo(i), DBConnector.getInstance().getNome(i), DBConnector.getInstance().getNoCarte(i), DBConnector.getInstance().getGiocabile(i), DBConnector.getInstance().getNoCarteNereMazzo(DBConnector.getInstance().getID_Mazzo(i)),DBConnector.getInstance().getNoCarteBiancheMazzo(DBConnector.getInstance().getID_Mazzo(i))));
         }
         managerController.getColName().setCellValueFactory(new PropertyValueFactory<Mazzo,String>("nome"));
         managerController.getColTotal().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("noCarte"));
         managerController.getColID().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("ID_Mazzo"));
+        managerController.getColBlack().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("black"));
+        managerController.getColWhite().setCellValueFactory(new PropertyValueFactory<Mazzo,Integer>("white"));
+        managerController.getColReady().setCellValueFactory(new PropertyValueFactory<Mazzo,Boolean>("giocabile"));
         managerController.getTable().setItems(managerController.getDatiMazzo());
     }
 
