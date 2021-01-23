@@ -28,11 +28,14 @@ public class CreateRoomController {
 
     @FXML
     void createRoom(ActionEvent event) {
-        if ( ipField.getText().matches("[0-9].[0-9].[0-9].[0-9]") ) {
+        if ( !( ipField.getText().matches("[0-9].[0-9].[0-9].[0-9]") )) {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valio!", ButtonType.OK);
             alert.showAndWait();
         } else System.out.println( "Mi piace!");
         Room.createRoom(nameField.getText(), ipField.getText(), decksIDField.getText());
+
+
+        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     @FXML
