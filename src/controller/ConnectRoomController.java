@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
+import logic.Room;
 
 public class ConnectRoomController {
 
@@ -22,7 +23,7 @@ public class ConnectRoomController {
 
     @FXML
     void connectToRoom(ActionEvent event) {
-
+        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     @FXML
