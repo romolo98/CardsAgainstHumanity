@@ -3,7 +3,6 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import logic.CAHParser;
@@ -19,13 +18,7 @@ public class CreateRoomController {
     private TextField decksIDField;
 
     @FXML
-    private Button backButton;
-
-    @FXML
     private TextField ipField;
-
-    @FXML
-    private Button confirmButton;
 
     @FXML
     void createRoom(ActionEvent event) {
@@ -42,7 +35,5 @@ public class CreateRoomController {
     void previousScreen(ActionEvent event) {
         GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
     }
-
-
 
 }

@@ -10,13 +10,7 @@ import logic.Room;
 public class ConnectRoomController {
 
     @FXML
-    private Button backButton;
-
-    @FXML
     private TextField ipField;
-
-    @FXML
-    private Button confirmButton;
 
     @FXML
     private TextField portField;
