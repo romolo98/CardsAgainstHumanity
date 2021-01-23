@@ -2,7 +2,9 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
 import logic.Room;
@@ -10,7 +12,7 @@ import logic.Room;
 public class CreateRoomController {
 
     @FXML
-    private TextField roomNameField;
+    private TextField nameField;
 
     @FXML
     private TextField decksIDField;
@@ -26,7 +28,11 @@ public class CreateRoomController {
 
     @FXML
     void createRoom(ActionEvent event) {
-        Room.createRoom(roomNameField.getText(), ipField.getText(), decksIDField.getText());
+        if ( ipField.getText().matches("[0-9].[0-9].[0-9].[0-9]") ) {
+            Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valio!", ButtonType.OK);
+            alert.showAndWait();
+        } else System.out.println( "Mi piace!");
+        Room.createRoom(nameField.getText(), ipField.getText(), decksIDField.getText());
     }
 
     @FXML
