@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import logic.CAHParser;
 import logic.GraphicHandler;
 import logic.Room;
 
@@ -28,7 +29,7 @@ public class CreateRoomController {
 
     @FXML
     void createRoom(ActionEvent event) {
-        if ( !( ipField.getText().matches("[0-9].[0-9].[0-9].[0-9]") )) {
+        if ( !ipField.getText().matches(CAHParser.IPV4_PATTERN) ) {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
         } else {
