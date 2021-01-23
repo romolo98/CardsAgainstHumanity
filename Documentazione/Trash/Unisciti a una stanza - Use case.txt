@@ -1,0 +1,35 @@
+Nome: Unisciti a una stanza.
+
+Portata: Sistema.
+
+Livello: Il giocatore entra in una stanza.
+
+Attore primario: Giocatore.
+
+Parti interessate:
+1) Giocatore.
+2) Sistema.
+
+Pre-condizioni: Visualizzare la schermata principale della GUI di sistema.
+
+Garanzia di successo: L'utente ottiene l'accesso alla stanza desiderata.
+
+Scenario principale di successo:
+1) Un utente chiede al sistema di unirsi a una specifica stanza.
+2) L'utente comunica al sistema il proprio nickname.
+3) Il sistema controlla che il nickname non sia già presente in partita.
+In caso positivo si riparte dal punto 2.
+4) L'utente viene trasferito nella stanza e il sistema lo comunica in chat.
+
+Estensioni e flussi alternativi.
+1a) L'utente lascia la partita.
+    1. Viene eliminato il suo punteggio.
+    2. Viene notificato nella chat. ?
+
+Requisiti speciali: N/A
+
+Elenco delle varianti teconologiche e dei dati: N/A.
+
+Frequenza di ripetizione: Quando ci si vuole unire a una stanza.
+
+Varie: N/A.
