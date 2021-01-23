@@ -1,4 +1,4 @@
-package sample;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,8 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sample.DBConnector;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,7 +55,7 @@ public class CardCreatorController {
     void ActionSaveCard(ActionEvent event) throws SQLException, IOException {
         boolean exist = false;
         if (checkWhiteCard.isSelected()) {
-            for (int i=1;i<=DBConnector.getInstance().getNoCarteMazzo(ManagerController.ID_Mazzo);i++){
+            for (int i = 1; i<= DBConnector.getInstance().getNoCarteMazzo(ManagerController.ID_Mazzo); i++){
                 if (DBConnector.getInstance().getID_Carta(i,ManagerController.ID_Mazzo) == EditorController.ID_Carta){
                     exist =true;
                     if (checkWhiteCard.isSelected())

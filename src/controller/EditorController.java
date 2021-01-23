@@ -1,4 +1,4 @@
-package sample;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import logic.GraphicHandler;
+import sample.Carta;
+import sample.DBConnector;
+import sample.Mazzo;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -177,8 +182,7 @@ public class EditorController {
 
     @FXML
     void cancelEdit(ActionEvent event) throws IOException, SQLException {
-        Parent root = loader.load(getClass().getResource("DeckManager.fxml").openStream());
-        cancelButton.getScene().setRoot(root);
+        loader = GraphicHandler.displayScreen( GraphicHandler.DECK_LIST_SCREEN, GraphicHandler.OPEN_STREAM);
         ManagerController managerController = loader.getController();
 
         for (int i=1;i<=DBConnector.getInstance().getNoMazzi();i++) {

@@ -1,8 +1,5 @@
 package Server;
 
-import Server.CAHNetwork;
-import Server.Messaggio;
-import Server.Mossa;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -11,13 +8,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import sample.Controller;
+import controller.Controller;
+import logic.GraphicHandler;
 import sample.DBConnector;
 
 
-import static Server.CAHNetwork.porta;
 import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
@@ -64,10 +60,9 @@ public class CAHClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = loader.load(getClass().getResource("../sample/StartScreen.fxml").openStream());
         primaryStage.setTitle("Cards Against Humanity");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setMaximized(true);
+        primaryStage.setScene( GraphicHandler.getScene() );
+        primaryStage.setMaximized(false);
         primaryStage.show();
         DBConnector.getInstance().connect();
 

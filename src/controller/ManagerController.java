@@ -1,4 +1,4 @@
-package sample;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import logic.GraphicHandler;
+import sample.Carta;
+import sample.DBConnector;
+import sample.Mazzo;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -84,15 +88,13 @@ public class ManagerController {
 
     @FXML
     void previousScreen(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        backButton.getScene().setRoot(root);
+        GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     @FXML
     void createNewDeck(ActionEvent event) throws IOException, SQLException {
         ID_Mazzo = DBConnector.getInstance().addMazzo("New Deck");
-        Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
-        newDeckButton.getScene().setRoot(root);
+        loader = GraphicHandler.displayScreen( GraphicHandler.DECK_EDIT_SCREEN, GraphicHandler.OPEN_STREAM );
         EditorController editorController  = loader.getController();
         editorController.setID_Mazzo(ID_Mazzo);
     }
@@ -108,8 +110,7 @@ public class ManagerController {
             return;
         }
 
-        Parent root = loader.load(getClass().getResource("DeckScreen.fxml").openStream());
-        editDeckButton.getScene().setRoot(root);
+        loader = GraphicHandler.displayScreen( GraphicHandler.DECK_EDIT_SCREEN, GraphicHandler.OPEN_STREAM );
 
         EditorController editorController = loader.getController();
         editorController.setDeckName(m.getNome());

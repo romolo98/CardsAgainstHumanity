@@ -1,4 +1,4 @@
-package Logic;
+package logic;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,36 +7,38 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 public class GraphicHandler {
-    
+
     private static Scene scene = null;
+    private static final String path = "../view/";
 
     public static final int MAIN_SCREEN = 0;
     public static final int PLAY_SCREEN = 1;
     public static final int DECK_LIST_SCREEN = 2;
     public static final int DECK_EDIT_SCREEN = 3;
     public static final int CREATE_CARD_SCREEN = 4;
+    public static final int CREATE_ROOM_SCREEN = 5;
 
     public static final int NO_STREAM = 0;
     public static final int OPEN_STREAM = 1;
 
-    private void init () {
+    private static void init() {
         if ( scene == null ) {
             Parent root;
             try {
-                root = FXMLLoader.load( getClass().getResource("StartScreen.fxml") );
-                scene.setRoot( root );
+                root = FXMLLoader.load( GraphicHandler.class.getResource(path + "StartScreen.fxml") );
+                scene = new Scene( root );
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public Scene getScene () {
+    public static Scene getScene () {
         init();
         return scene;
     }
 
-    public static void displayScreen (int display, int stream ) {
+    public static FXMLLoader displayScreen (int display, int stream ) {
         String file_name;
         switch ( display ) {
             case MAIN_SCREEN:
@@ -56,19 +58,19 @@ public class GraphicHandler {
                 break;
             default:
                 System.out.println("Cannot find selected display.");
-                return;
+                return null;
         }
 
-
+        FXMLLoader loader = null;
 
         try {
             Parent root = null;
+            loader = new FXMLLoader();
             if ( stream == OPEN_STREAM ) {
-                FXMLLoader loader = new FXMLLoader();
-                root = loader.load(GraphicHandler.class.getResource(file_name).openStream());
+                root = loader.load(GraphicHandler.class.getResource(path + file_name).openStream());
             }
             else if ( stream == NO_STREAM )
-                root = FXMLLoader.load( GraphicHandler.class.getResource(file_name) );
+                root = loader.load( GraphicHandler.class.getResource(path + file_name) );
             else
                 System.out.println( "Stream loading error.");
             scene.setRoot( root );
@@ -76,6 +78,7 @@ public class GraphicHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return loader;
     }
+
 }

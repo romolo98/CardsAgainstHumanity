@@ -1,4 +1,4 @@
-package sample;
+package controller;
 
 import Server.CAHClient;
 import Server.Messaggio;
@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import logic.GraphicHandler;
+import sample.DBConnector;
+import sample.Mazzo;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,21 +43,19 @@ public class Controller {
     }
 
     public void ActionCreatebutton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("CreateRoomScreen.fxml"));
-        createButton.getScene().setRoot(root);
+        GraphicHandler.displayScreen( GraphicHandler.CREATE_ROOM_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     public void ActionPlayButton(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("PlayScreen.fxml"));
-        playButton.getScene().setRoot(root);
+        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     public void ActionOptionsButton(ActionEvent actionEvent) throws IOException, SQLException {
-        Parent root = loader.load(getClass().getResource("DeckManager.fxml").openStream());
-        optionsButton.getScene().setRoot(root);
+        loader = GraphicHandler.displayScreen( GraphicHandler.DECK_LIST_SCREEN, GraphicHandler.OPEN_STREAM );
+
         ManagerController managerController = loader.getController();
 
-        for (int i=1;i<=DBConnector.getInstance().getNoMazzi();i++) {
+        for (int i = 1; i<= DBConnector.getInstance().getNoMazzi(); i++) {
             managerController.getDatiMazzo().add(new Mazzo(DBConnector.getInstance().getID_Mazzo(i), DBConnector.getInstance().getNome(i), DBConnector.getInstance().getNoCarte(i), DBConnector.getInstance().getGiocabile(i), DBConnector.getInstance().getNoCarteNereMazzo(DBConnector.getInstance().getID_Mazzo(i)),DBConnector.getInstance().getNoCarteBiancheMazzo(DBConnector.getInstance().getID_Mazzo(i))));
         }
         managerController.getColName().setCellValueFactory(new PropertyValueFactory<Mazzo,String>("nome"));
@@ -67,8 +68,7 @@ public class Controller {
     }
 
     public void ActionTurnBack(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
-        turnBack.getScene().setRoot(root);
+        GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     public void ActionCreateRoomButton(ActionEvent actionEvent) {
@@ -84,7 +84,7 @@ public class Controller {
 
     public void isKeyPressed(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ESCAPE){
-            Parent root = FXMLLoader.load(getClass().getResource("StartScreen.fxml"));
+            GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
         }
     }
 }
