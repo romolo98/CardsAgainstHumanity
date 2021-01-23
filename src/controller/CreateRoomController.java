@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
+import logic.Room;
 
 public class CreateRoomController {
 
@@ -25,12 +26,14 @@ public class CreateRoomController {
 
     @FXML
     void createRoom(ActionEvent event) {
-
+        Room.createRoom(roomNameField.getText(), ipField.getText(), decksIDField.getText());
     }
 
     @FXML
     void previousScreen(ActionEvent event) {
         GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
     }
+
+
 
 }
