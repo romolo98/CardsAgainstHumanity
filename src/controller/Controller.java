@@ -47,7 +47,7 @@ public class Controller {
     }
 
     public void ActionPlayButton(ActionEvent actionEvent) throws IOException {
-        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
+        GraphicHandler.displayScreen( GraphicHandler.CONNECT_ROOM_SCREEN, GraphicHandler.NO_STREAM );
     }
 
     public void ActionOptionsButton(ActionEvent actionEvent) throws IOException, SQLException {
