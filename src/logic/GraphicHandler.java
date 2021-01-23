@@ -9,7 +9,7 @@ import java.io.IOException;
 public class GraphicHandler {
 
     private static Scene scene = null;
-    private static final String path = "../view/";
+    public static final String path = "../view/";
 
     public static final int MAIN_SCREEN = 0;
     public static final int PLAY_SCREEN = 1;
@@ -17,6 +17,7 @@ public class GraphicHandler {
     public static final int DECK_EDIT_SCREEN = 3;
     public static final int CREATE_CARD_SCREEN = 4;
     public static final int CREATE_ROOM_SCREEN = 5;
+    public static final int CONNECT_ROOM_SCREEN = 6;
 
     public static final int NO_STREAM = 0;
     public static final int OPEN_STREAM = 1;
@@ -46,6 +47,12 @@ public class GraphicHandler {
                 break;
             case PLAY_SCREEN:
                 file_name = "PlayScreen.fxml";
+                break;
+            case CREATE_ROOM_SCREEN:
+                file_name = "CreateRoomScreen.fxml";
+                break;
+            case CONNECT_ROOM_SCREEN:
+                file_name = "ConnectRoomScreen.fxml";
                 break;
             case DECK_LIST_SCREEN:
                 file_name = "DeckManager.fxml";

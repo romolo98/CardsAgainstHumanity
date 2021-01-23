@@ -112,7 +112,7 @@ public class EditorController {
 
     @FXML
     void addCard(ActionEvent event) throws IOException, SQLException {
-        Parent root = loader2.load(getClass().getResource("CardCreator.fxml"));
+        Parent root = loader2.load(getClass().getResource(GraphicHandler.path + "CardCreator.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Create card");
         stage.setScene(new Scene(root));
@@ -121,7 +121,7 @@ public class EditorController {
 
     @FXML
     void editCard(ActionEvent event) throws IOException {
-        Parent root = loader2.load(getClass().getResource("CardCreator.fxml").openStream());
+        Parent root = loader2.load(getClass().getResource(GraphicHandler.path + "CardCreator.fxml").openStream());
         Stage stage = new Stage();
         stage.setTitle("Edit card");
         Carta c = (Carta)cardTable.getSelectionModel().getSelectedItem();
