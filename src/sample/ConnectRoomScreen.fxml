@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -28,7 +21,7 @@
                                  <children>
                                     <AnchorPane>
                                        <children>
-                                          <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#previousScreen" text="Indietro" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Button fx:id="backButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#previousScreen" text="Indietro" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -54,7 +47,7 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane HBox.hgrow="ALWAYS">
                                        <children>
@@ -63,7 +56,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Label alignment="CENTER" contentDisplay="CENTER" text="CREAZIONE STANZA" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="UNISCITI AD UNA STANZA" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="System Bold Italic" size="26.0" />
                                              </font>
@@ -87,7 +80,7 @@
          <center>
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane HBox.hgrow="ALWAYS">
                            <children>
@@ -96,7 +89,7 @@
                         </AnchorPane>
                         <AnchorPane>
                            <children>
-                              <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <AnchorPane VBox.vgrow="ALWAYS">
                                        <children>
@@ -105,7 +98,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Label alignment="CENTER" text="Nome" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="IP HOST" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="System Italic" size="12.0" />
                                              </font>
@@ -114,7 +107,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <TextField fx:id="roomNameField" alignment="CENTER" layoutX="26.0" layoutY="44.0" promptText="Ex. Pippo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="ipField" alignment="CENTER" promptText="ex. 255.255.255.255" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane VBox.vgrow="ALWAYS">
@@ -124,7 +117,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Label alignment="CENTER" text="Indirizzo IP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <Label alignment="CENTER" contentDisplay="CENTER" text="PORTA" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <font>
                                                 <Font name="System Italic" size="12.0" />
                                              </font>
@@ -133,7 +126,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <TextField fx:id="ipField" alignment="CENTER" layoutX="26.0" layoutY="44.0" promptText="Ex. 255.255.255.255" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="portField" alignment="CENTER" promptText="ex. 55555" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane VBox.vgrow="ALWAYS">
@@ -143,29 +136,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <Label alignment="CENTER" text="ID Mazzo" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <font>
-                                                <Font name="System Italic" size="12.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <children>
-                                          <TextField fx:id="decksIDField" alignment="CENTER" layoutX="26.0" layoutY="44.0" promptText="Ex. 50, 25, 12" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane VBox.vgrow="ALWAYS">
-                                       <children>
-                                          <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                       </children>
-                                    </AnchorPane>
-                                    <AnchorPane>
-                                       <children>
-                                          <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <AnchorPane HBox.hgrow="ALWAYS">
                                                    <children>
@@ -174,7 +145,7 @@
                                                 </AnchorPane>
                                                 <AnchorPane>
                                                    <children>
-                                                      <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createRoom" text="Conferma" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <Button fx:id="confirmButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#connectToRoom" text="Conferma" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <font>
                                                             <Font size="14.0" />
                                                          </font>
