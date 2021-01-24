@@ -26,7 +26,7 @@ public class CreateRoomController {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
         } else {
-            Room.createRoom(nameField.getText(), portField.getText(), decksIDField.getText());
+            Room.createRoom(nameField.getText(), Integer.parseInt(portField.getText()), decksIDField.getText());
             GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
         }
     }
