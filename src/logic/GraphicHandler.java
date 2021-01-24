@@ -9,6 +9,7 @@ import java.io.IOException;
 public class GraphicHandler {
 
     private static Scene scene = null;
+    private static FXMLLoader loader = null;
     public static final String path = "../view/";
 
     public static final int MAIN_SCREEN = 0;
@@ -25,8 +26,9 @@ public class GraphicHandler {
     private static void init() {
         if ( scene == null ) {
             Parent root;
+            loader = new FXMLLoader();
             try {
-                root = FXMLLoader.load( GraphicHandler.class.getResource(path + "StartScreen.fxml") );
+                root = loader.load( GraphicHandler.class.getResource(path + "StartScreen.fxml") );
                 scene = new Scene( root );
             } catch (IOException e) {
                 e.printStackTrace();
@@ -37,6 +39,11 @@ public class GraphicHandler {
     public static Scene getScene () {
         init();
         return scene;
+    }
+
+    public static FXMLLoader getLoader () {
+        init();
+        return loader;
     }
 
     public static FXMLLoader displayScreen (int display, int stream ) {
@@ -68,11 +75,8 @@ public class GraphicHandler {
                 return null;
         }
 
-        FXMLLoader loader = null;
-
         try {
             Parent root = null;
-            loader = new FXMLLoader();
             if ( stream == OPEN_STREAM ) {
                 root = loader.load(GraphicHandler.class.getResource(path + file_name).openStream());
             }
