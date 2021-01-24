@@ -184,6 +184,16 @@ public class DBConnector {
         return result.getBoolean("Giocabile");
     }
 
+    public boolean getGiocabileDiMazzo(int ID_Mazzo) throws SQLException {
+        statement = connection.createStatement();
+        String sql = "SELECT Giocabile " +
+                "FROM Mazzo " +
+                "WHERE ID_Mazzo = "+ ID_Mazzo;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        return result.getBoolean("Giocabile");
+    }
+
     public int getNoCarte(int index) throws SQLException {
         statement = connection.createStatement();
         String sql = "SELECT NoCarte " +
