@@ -106,7 +106,7 @@
                                     </AnchorPane>
                                     <AnchorPane>
                                        <children>
-                                          <TextField fx:id="nameField" promptText="Ex. Pippo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextField fx:id="nameField" alignment="CENTER" promptText="Ex. Pippo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane VBox.vgrow="ALWAYS">

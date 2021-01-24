@@ -29,9 +29,9 @@
                            <children>
                               <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
-                                  <Button mnemonicParsing="false" onAction="#exitGame" prefWidth="80.0" text="Esci">
+                                  <Button mnemonicParsing="false" onAction="#exitGame" text="Esci">
                                        <font>
-                                          <Font name="System Bold Italic" size="14.0" />
+                                          <Font name="System Bold Italic" size="16.0" />
                                        </font>
                                     </Button>
                                 </items>
@@ -47,7 +47,7 @@
                            <children>
                               <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
-                                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Start Game" textAlignment="CENTER">
+                                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#startGame" text="Inizia Partita" textAlignment="CENTER">
                                        <font>
                                           <Font name="System Bold Italic" size="14.0" />
                                        </font>
