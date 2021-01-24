@@ -2,12 +2,13 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
-import logic.Room;
 
 public class ConnectRoomController {
+
+    @FXML
+    private TextField nameField;
 
     @FXML
     private TextField ipField;

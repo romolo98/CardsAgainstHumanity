@@ -18,15 +18,15 @@ public class CreateRoomController {
     private TextField decksIDField;
 
     @FXML
-    private TextField ipField;
+    private TextField portField;
 
     @FXML
     void createRoom(ActionEvent event) {
-        if ( !ipField.getText().matches(CAHParser.IPV4_PATTERN) ) {
+        if ( !portField.getText().matches(CAHParser.IPV4_PATTERN) ) {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
         } else {
-            Room.createRoom(nameField.getText(), ipField.getText(), decksIDField.getText());
+            Room.createRoom(nameField.getText(), portField.getText(), decksIDField.getText());
             GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
         }
     }
