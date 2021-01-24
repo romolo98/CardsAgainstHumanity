@@ -22,13 +22,12 @@ public class CreateRoomController {
 
     @FXML
     void createRoom(ActionEvent event) {
-        if ( !portField.getText().matches(CAHParser.IPV4_PATTERN) ) {
+        /*if ( !portField.getText().matches(CAHParser.IPV4_PATTERN) ) {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
-        } else {
+        } else {*/
             Room.createRoom(nameField.getText(), Integer.parseInt(portField.getText()), decksIDField.getText());
             GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
-        }
     }
 
     @FXML

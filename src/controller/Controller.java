@@ -27,21 +27,6 @@ public class Controller {
     @FXML
     private Button playButton, createButton, optionsButton, turnBack, sendMessage;
 
-    @FXML
-    private TextField chatField;
-
-    @FXML
-    private TextArea chatWall;
-
-    public void setChatWall(String messaggio){
-        chatWall.appendText(messaggio);
-        System.out.println("sono entrato");
-    }
-
-    public TextArea getChatWall () {
-        return chatWall;
-    }
-
     public void ActionCreatebutton(ActionEvent actionEvent) throws IOException {
         GraphicHandler.displayScreen( GraphicHandler.CREATE_ROOM_SCREEN, GraphicHandler.NO_STREAM );
     }
@@ -72,14 +57,6 @@ public class Controller {
     }
 
     public void ActionCreateRoomButton(ActionEvent actionEvent) {
-    }
-
-    public void ActionSendButton(ActionEvent actionEvent) {
-        chatWall.appendText(chatField.getText()+'\n');
-        Messaggio m = new Messaggio();
-        m.testo = chatField.getText()+"\n";
-        chatField.setText("");
-        CAHClient.getClient().sendTCP(m);
     }
 
     public void isKeyPressed(KeyEvent keyEvent) throws IOException {

@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+import controller.PlayScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +22,6 @@ public class CAHClient extends Application {
     String nome =  "Roger";
     String host;
     static public Client client;
-    private Controller controller;
-    private FXMLLoader loader = new FXMLLoader();
 
     public CAHClient () {
         client = new Client();
@@ -46,8 +45,10 @@ public class CAHClient extends Application {
                 }
 
                 if (oggetto instanceof Messaggio) {
-                    Messaggio m = (Messaggio) oggetto;
-                    controller.setChatWall(m.testo);
+                    if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
+                        Messaggio m = (Messaggio) oggetto;
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).sendMessageToChatWall(m.testo);
+                    }
                     return;
                 }
             }
@@ -65,8 +66,6 @@ public class CAHClient extends Application {
         primaryStage.setMaximized(false);
         primaryStage.show();
         DBConnector.getInstance().connect();
-
-        controller = loader.getController();
 
         //BISOGNA SETTARE IL CLIENT
         //client.connect(5000, "localhost", porta);
