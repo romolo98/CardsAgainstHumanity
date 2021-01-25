@@ -28,6 +28,7 @@ public class ConnectRoomController {
         CAHClient.abilitato = false;
 
         playScreenController.setHighscoreVisible(false);
+        //playScreenController.setCursor();
 
     }
 

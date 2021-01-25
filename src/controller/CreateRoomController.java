@@ -11,6 +11,7 @@ import logic.GraphicHandler;
 import logic.Room;
 import sample.DBConnector;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class CreateRoomController {
     private TextField portField;
 
     @FXML
-    void createRoom(ActionEvent event) throws SQLException {
+    void createRoom(ActionEvent event) throws SQLException, IOException {
         /*if ( !portField.getText().matches(CAHParser.IPV4_PATTERN) ) {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
@@ -43,6 +44,9 @@ public class CreateRoomController {
             }
 
         if(isIdGood) {
+            CAHClient.getClient().start();
+            CAHClient.nome = nameField.getText();
+            CAHClient.getClient().connect(5000,"20.52.134.175" , Integer.parseInt(portField.getText()));
             Room.createRoom(nameField.getText(), Integer.parseInt(portField.getText()), arrayIdMazzi);
             GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM);
         }

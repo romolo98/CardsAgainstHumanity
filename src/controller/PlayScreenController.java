@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
+import javafx.scene.Cursor;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextArea;
@@ -21,6 +22,7 @@ import org.supercsv.cellprocessor.ParseInt;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PlayScreenController {
 
@@ -28,7 +30,13 @@ public class PlayScreenController {
     private HBox handCardsBox;
 
     @FXML
+    private TextArea whiteCard1;
+
+    @FXML
     private TextField highscoreField;
+
+    @FXML
+    private TextArea blackCardSlot;
 
     @FXML
     private TextField chatField;
@@ -44,6 +52,10 @@ public class PlayScreenController {
 
     @FXML
     private AnchorPane blackCardBox;
+
+    public void setCursor(){
+
+    }
 
     public void setHighscoreVisible(Boolean check) {
         highscoreField.setVisible(check);
@@ -84,6 +96,10 @@ public class PlayScreenController {
             chatWall.appendText( "Non hai impostato un punteggio massimo!\n");
         }else if (!Room.playerNumber()){
             chatWall.appendText("Giocatori insufficienti!\n");
+        }else{
+            Random r = new Random();
+            int casuale = r.nextInt(Room.getNoCarteNere());
+            blackCardSlot.setText(Room.getContenutoCarta(casuale));
         }
 
     }
@@ -98,6 +114,4 @@ public class PlayScreenController {
     public void sendMessageToChatWall ( String message ) {
         chatWall.appendText( message + "\n");
     }
-
-
 }

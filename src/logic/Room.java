@@ -1,6 +1,5 @@
 package logic;
 
-import Server.CAHClient;
 import sample.Carta;
 import sample.DBConnector;
 
@@ -21,15 +20,17 @@ public class Room {
         userList.add(name);
         porta = port;
 
-
         for(int j = 0; j < arrayID.length; j++) {
             System.out.println(arrayID[j]);
             for (int i = 1; i < DBConnector.getInstance().getNoCarteMazzo(arrayID[j]); i++) {
                 Carta c = new Carta(DBConnector.getInstance().getID_Carta(i,arrayID[j]),DBConnector.getInstance().getContenuto(i,arrayID[j]),DBConnector.getInstance().getTipologia(i,arrayID[j]),arrayID[j]);
-                if (c.getTipologia() == "Bianca")
-                    WhiteCardList.add(DBConnector.getInstance().getContenutoCarta(i, arrayID[j], "Bianca"));
-                else
-                    BlackCardList.add(DBConnector.getInstance().getContenutoCarta(i, arrayID[j], "Nera"));
+                if (c.getTipologia().equals("Bianca")) {
+                    WhiteCardList.add(c.getContenuto());
+                }
+                else {
+                    BlackCardList.add(c.getContenuto());
+
+                }
             }
         }
     }
@@ -54,5 +55,11 @@ public class Room {
         return false;
     }
 
+    public static int getNoCarteNere() {
+        return BlackCardList.size();
+    }
 
+    public static String getContenutoCarta (int index){
+        return BlackCardList.get(index);
+    }
 }
