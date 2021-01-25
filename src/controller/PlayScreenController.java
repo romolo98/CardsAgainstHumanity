@@ -48,7 +48,7 @@ public class PlayScreenController {
     void sendMessage(ActionEvent event) {
         chatWall.appendText(chatField.getText()+'\n');
         Messaggio m = new Messaggio();
-        m.testo = chatField.getText()+"\n";
+        m.testo = chatField.getText();
         chatField.setText("");
         CAHClient.getClient().sendTCP(m);
     }
@@ -74,9 +74,9 @@ public class PlayScreenController {
     @FXML
     void startGame(ActionEvent event) {
         if ( !Room.playerNumber() ) {
-            chatWall.appendText( "Giocatori insufficienti!");
+            chatWall.appendText( "Giocatori insufficienti!\n");
         }else if ( !Room.isScoreSet() ) {
-            chatWall.appendText( "Non hai impostato un punteggio massimo!");
+            chatWall.appendText( "Non hai impostato un punteggio massimo!\n");
         } //else Room.startGame();
     }
 

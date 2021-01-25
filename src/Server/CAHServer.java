@@ -71,7 +71,7 @@ public class CAHServer extends Application {
 
                                         String messaggio = mes.testo;
 
-                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio;
+                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connessioneChat.nome + ": " + messaggio+ "\n";
                                         server.sendToAllExceptTCP(connessioneChat.getID(), mes);
                                         return;
                                 }
