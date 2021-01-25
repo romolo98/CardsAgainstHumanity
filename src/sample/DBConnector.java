@@ -154,8 +154,11 @@ public class DBConnector {
                 "FROM cardData " +
                 "WHERE rowNumber = " + index;
         ResultSet result = statement.executeQuery(sql);
-        result.next();
-        return result.getString("Contenuto");
+        String risultato = new String();
+        while(result.next()) {
+            risultato = result.getString("Contenuto");
+        }
+        return risultato;
     }
 
     /////////////////////////////////////////////////////////////////////////////
