@@ -1,9 +1,12 @@
 package controller;
 
+import Server.CAHClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
+
+import java.io.IOException;
 
 public class ConnectRoomController {
 
@@ -17,8 +20,10 @@ public class ConnectRoomController {
     private TextField portField;
 
     @FXML
-    void connectToRoom(ActionEvent event) {
+    void connectToRoom(ActionEvent event) throws IOException {
+        CAHClient.nome = nameField.getText();
         GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM );
+        CAHClient.getClient().connect(5000, ipField.getText(), Integer.parseInt(portField.getText()));
     }
 
     @FXML

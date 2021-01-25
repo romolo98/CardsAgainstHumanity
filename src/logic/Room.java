@@ -1,6 +1,6 @@
 package logic;
 
-import Server.CAHNetwork;
+import Server.CAHClient;
 import sample.DBConnector;
 
 import java.sql.SQLException;

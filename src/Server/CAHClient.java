@@ -19,7 +19,7 @@ import static Server.CAHNetwork.registraOggetti;
 
 public class CAHClient extends Application {
 
-    String nome =  "Roger";
+    public static String nome;
     String host;
     static public Client client;
 
@@ -47,7 +47,6 @@ public class CAHClient extends Application {
                 if (oggetto instanceof Messaggio) {
                     if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
                         Messaggio m = (Messaggio) oggetto;
-
                         ((PlayScreenController) GraphicHandler.getLoader().getController()).getChatWall().appendText(m.testo);
                     }
                     return;
@@ -56,7 +55,7 @@ public class CAHClient extends Application {
         });
     }
 
-    public static Connection getClient() {
+    public static Client getClient() {
         return client;
     }
 
@@ -69,7 +68,7 @@ public class CAHClient extends Application {
         DBConnector.getInstance().connect();
 
         //BISOGNA SETTARE IL CLIENT
-        client.connect(5000, "localhost", 56555);
+
 
         primaryStage.setOnCloseRequest(event -> {
             client.stop();
