@@ -19,6 +19,7 @@ import logic.GraphicHandler;
 import logic.Room;
 import org.supercsv.cellprocessor.ParseInt;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class PlayScreenController {
@@ -46,7 +47,7 @@ public class PlayScreenController {
 
     @FXML
     void sendMessage(ActionEvent event) {
-        chatWall.appendText(chatField.getText()+'\n');
+        chatWall.appendText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " io: "+chatField.getText()+'\n');
         Messaggio m = new Messaggio();
         m.testo = chatField.getText();
         chatField.setText("");
