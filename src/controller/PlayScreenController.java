@@ -74,7 +74,7 @@ public class PlayScreenController {
 
     @FXML
     void startGame(ActionEvent event) {
-        if ( !Room.playerNumber() ) {
+        if ( !Room.playerNumber() ) { // SPOSTARE LA CHIAMATA SUL SERVER
             chatWall.appendText( "Giocatori insufficienti!\n");
         }else if ( !Room.isScoreSet() ) {
             chatWall.appendText( "Non hai impostato un punteggio massimo!\n");
@@ -88,8 +88,9 @@ public class PlayScreenController {
         playersList.setOrientation(Orientation.VERTICAL);
     }
 
-    public TextArea getChatWall(){
-        return chatWall;
+    public void sendMessageToChatWall ( String message ) {
+        chatWall.appendText( message + "\n");
     }
+
 
 }

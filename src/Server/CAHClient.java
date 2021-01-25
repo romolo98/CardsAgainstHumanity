@@ -47,7 +47,7 @@ public class CAHClient extends Application {
                 if (oggetto instanceof Messaggio) {
                     if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
                         Messaggio m = (Messaggio) oggetto;
-                        ((PlayScreenController) GraphicHandler.getLoader().getController()).getChatWall().appendText(m.testo+"\n");
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).sendMessageToChatWall(m.testo);
                     }
                     return;
                 }
