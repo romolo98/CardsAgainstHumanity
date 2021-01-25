@@ -76,11 +76,6 @@ public class PlayScreenController {
         } //else Room.startGame();
     }
 
-    public void sendMessageToChatWall(String messaggio){
-        chatWall.appendText(messaggio);
-        System.out.println("sono entrato");
-    }
-
     public void updatePlayersList () {
         if ( playersList == null )        playersList = new ListView<String>();
         playersList.setItems(FXCollections.observableArrayList("Row 1", "Row 2", "Long Row 3", "Row 4", "Row 5", "Row 6", "Row 7",
@@ -89,7 +84,10 @@ public class PlayScreenController {
         playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         playersList.setOrientation(Orientation.VERTICAL);
         System.out.println("update");
+    }
 
+    public TextArea getChatWall(){
+        return chatWall;
     }
 
 }

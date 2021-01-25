@@ -18,7 +18,7 @@ public class ConnectRoomController {
 
     @FXML
     void connectToRoom(ActionEvent event) {
-        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM );
+        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM );
     }
 
     @FXML

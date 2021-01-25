@@ -52,7 +52,7 @@ public class CAHServer extends Application {
                                 connessioneChat.nome = nome;
 
                                 Messaggio mes = new Messaggio();
-                                mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + nome + " si è unito alla partita";
+                                mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + nome + " si è unito alla partita\n";
                                 //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                 server.sendToAllExceptTCP(connessioneChat.getID(), mes);
                                 aggiornaUtenti();
@@ -61,6 +61,7 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Messaggio){
+                                        System.out.println("Messaggio ricevuto");
                                         if (connessioneChat.nome == null)
                                                 return;
 
@@ -83,7 +84,7 @@ public class CAHServer extends Application {
 
                                 if (connection.nome != null) {
                                         Messaggio mes = new Messaggio();
-                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita";
+                                        mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
                                         aggiornaUtenti();
                                 }
