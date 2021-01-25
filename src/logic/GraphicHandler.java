@@ -1,5 +1,6 @@
 package logic;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -47,6 +48,7 @@ public class GraphicHandler {
     }
 
     public static FXMLLoader displayScreen (int display, int stream ) {
+        init();
         String file_name;
         switch ( display ) {
             case MAIN_SCREEN:
@@ -75,10 +77,11 @@ public class GraphicHandler {
                 return null;
         }
 
+        loader = new FXMLLoader();
         try {
             Parent root = null;
             if ( stream == OPEN_STREAM ) {
-                root = loader.load(GraphicHandler.class.getResource(path + file_name).openStream());
+                root = loader.load( GraphicHandler.class.getResource(path + file_name).openStream() );
             }
             else if ( stream == NO_STREAM )
                 root = loader.load( GraphicHandler.class.getResource(path + file_name) );
@@ -89,6 +92,7 @@ public class GraphicHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return loader;
     }
 
