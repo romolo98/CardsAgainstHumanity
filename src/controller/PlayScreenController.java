@@ -3,6 +3,7 @@ package controller;
 import Server.CAHClient;
 import Server.Messaggio;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.CAHParser;
+import logic.GraphicHandler;
 import logic.Room;
 import org.supercsv.cellprocessor.ParseInt;
+
+import java.util.ArrayList;
 
 public class PlayScreenController {
 
@@ -56,15 +60,15 @@ public class PlayScreenController {
 
     @FXML
     void setHighscore(ActionEvent event) {
-        /*if ( !Room.isGameStarted() ) {
+        /*if ( !Room.isGameStarted() ) { //SPOSTARE LA CHIAMATA SUL SERVER
             Room.setHighscore( Integer.parseInt( highscoreField.getText() ) );
         } else chatWall.appendText( "Non puoi settare il punteggio durante la partita."+'\n');*/
-        this.updatePlayersList();
     }
 
     @FXML
     void exitGame(ActionEvent event) {
-
+        GraphicHandler.displayScreen( GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM );
+        CAHClient.getClient().stop();
     }
 
     @FXML
@@ -76,14 +80,11 @@ public class PlayScreenController {
         } //else Room.startGame();
     }
 
-    public void updatePlayersList () {
+    public void updatePlayersList ( ArrayList<String> players ) {
         if ( playersList == null )        playersList = new ListView<String>();
-        playersList.setItems(FXCollections.observableArrayList("Row 1", "Row 2", "Long Row 3", "Row 4", "Row 5", "Row 6", "Row 7",
-                "Row 8", "Row 9", "Row 10", "Row 11", "Row 12", "Row 13", "Row 14", "Row 15", "Row 16", "Row 17", "Row 18",
-                "Row 19", "Row 20", "Row 21", "Row 22", "Row 23", "Row 24", "Row 25"));
+        playersList.setItems(FXCollections.observableArrayList( players ));
         playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         playersList.setOrientation(Orientation.VERTICAL);
-        System.out.println("update");
     }
 
     public TextArea getChatWall(){
