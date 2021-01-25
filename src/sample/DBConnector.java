@@ -143,6 +143,21 @@ public class DBConnector {
         return result.getInt("ID_Carta");
     }
 
+    public String getContenutoCarta (int index,int ID_Mazzo,String tipologia) throws SQLException {
+        statement = connection.createStatement();
+        String sql1 = "ALTER VIEW cardData AS " +
+                "SELECT Contenuto, ROW_NUMBER() OVER(ORDER BY (ID_Carta)) AS rowNumber " +
+                "FROM Carta " +
+                "WHERE ID_Mazzo ="+ID_Mazzo+" and Tipologia = '"+tipologia+"'";
+        statement.executeUpdate(sql1);
+        String sql = "SELECT Contenuto " +
+                "FROM cardData " +
+                "WHERE rowNumber = " + index;
+        ResultSet result = statement.executeQuery(sql);
+        result.next();
+        return result.getString("Contenuto");
+    }
+
     /////////////////////////////////////////////////////////////////////////////
 
     /////////////////////////////////////////////////////////////////////////////
