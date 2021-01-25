@@ -72,7 +72,7 @@
                                  <center>
                                     <AnchorPane BorderPane.alignment="CENTER">
                                        <children>
-                                          <TextArea fx:id="chatWall" editable="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <TextArea fx:id="chatWall" editable="false" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </center>
