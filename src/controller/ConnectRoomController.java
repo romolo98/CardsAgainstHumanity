@@ -22,8 +22,13 @@ public class ConnectRoomController {
     @FXML
     void connectToRoom(ActionEvent event) throws IOException {
         CAHClient.nome = nameField.getText();
-        GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM );
+        PlayScreenController playScreenController = GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM ).getController();
+        CAHClient.getClient().start();
         CAHClient.getClient().connect(5000, ipField.getText(), Integer.parseInt(portField.getText()));
+        CAHClient.abilitato = false;
+
+        playScreenController.setHighscoreVisible(false);
+
     }
 
     @FXML

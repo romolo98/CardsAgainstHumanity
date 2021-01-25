@@ -20,6 +20,7 @@ import static Server.CAHNetwork.registraOggetti;
 public class CAHClient extends Application {
 
     public static String nome;
+    public static Boolean abilitato;
     String host;
     static public Client client;
 

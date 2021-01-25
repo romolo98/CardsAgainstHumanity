@@ -96,9 +96,11 @@ public class DBConnector {
                 "FROM cardData " +
                 "WHERE rowNumber = " + index;
         ResultSet result = statement.executeQuery(sql);
-        result.next();
-        //System.out.println(result.getString("Contenuto"));
-        return result.getString("Contenuto");
+        String risultato = new String();
+        while(result.next()) {
+            risultato = result.getString("Contenuto");
+        }
+        return risultato;
     }
 
     public String getTipologia(int index,int ID_Mazzo) throws SQLException {
@@ -113,8 +115,11 @@ public class DBConnector {
                 "FROM cardData " +
                 "WHERE rowNumber = " + index;
         ResultSet result = statement.executeQuery(sql);
-        result.next();
-        return result.getString("Tipologia");
+        String risultato = new String();
+        while(result.next()) {
+            risultato = result.getString("Tipologia");
+        }
+        return risultato;
     }
 
     public int getID_Mazzo_Carta(int index) throws SQLException {
@@ -139,8 +144,11 @@ public class DBConnector {
                 "FROM cardData "+
                 "WHERE rowNumber = "+index;
         ResultSet result = statement.executeQuery(sql);
-        result.next();
-        return result.getInt("ID_Carta");
+        int risultato = 0;
+        while (result.next()){
+            risultato = result.getInt("ID_Carta");
+        }
+        return risultato;
     }
 
     public String getContenutoCarta (int index,int ID_Mazzo,String tipologia) throws SQLException {

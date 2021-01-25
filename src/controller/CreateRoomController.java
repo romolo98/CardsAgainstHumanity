@@ -1,5 +1,6 @@
 package controller;
 
+import Server.CAHClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -30,6 +31,7 @@ public class CreateRoomController {
             Alert alert = new Alert( Alert.AlertType.ERROR, "IP non valido!", ButtonType.OK);
             alert.showAndWait();
         } else {*/
+        CAHClient.abilitato = true;
         int arrayIdMazzi[] = CAHParser.parseDeck(decksIDField.getText());
 
 

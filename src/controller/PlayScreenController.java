@@ -45,6 +45,10 @@ public class PlayScreenController {
     @FXML
     private AnchorPane blackCardBox;
 
+    public void setHighscoreVisible(Boolean check) {
+        highscoreField.setVisible(check);
+    }
+
     @FXML
     void sendMessage(ActionEvent event) {
         chatWall.appendText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " io: "+chatField.getText()+'\n');
@@ -74,11 +78,14 @@ public class PlayScreenController {
 
     @FXML
     void startGame(ActionEvent event) {
-        if ( !Room.playerNumber() ) { // SPOSTARE LA CHIAMATA SUL SERVER
-            chatWall.appendText( "Giocatori insufficienti!\n");
+        if ( CAHClient.abilitato == false  ) { // SPOSTARE LA CHIAMATA SUL SERVER
+            chatWall.appendText("Non hai i privilegi per iniziare una partita!\n");
         }else if ( !Room.isScoreSet() ) {
             chatWall.appendText( "Non hai impostato un punteggio massimo!\n");
-        } //else Room.startGame();
+        }else if (!Room.playerNumber()){
+            chatWall.appendText("Giocatori insufficienti!\n");
+        }
+
     }
 
     public void updatePlayersList ( ArrayList<String> players ) {
