@@ -25,6 +25,7 @@ public class CAHNetwork {
     static public class RegistraUtente {
         public String nome;
     }
+
     //Viene usato per aggiornare la lista degli utenti connessi
     static public class AggiornaUtenti {
         public String[] nomiUtenti;
