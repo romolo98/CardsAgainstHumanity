@@ -2,27 +2,43 @@ package sample;
 
 public class Record {
 
-    public String getName() {
-        return name;
+    private int userID;
+    private String name;
+    private int score;
+
+    public Record ( int userID, String name ) {
+        this.userID = userID;
+        this.name = name;
+        this.score = 0;
     }
 
-    public void setName(String name) {
+    public Record ( int userID, String name, int score ) {
+        this.userID = userID;
         this.name = name;
+        this.score = score;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    private String name;
-    private int score;
-
-    public Record ( int score, String name ) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setScore(int score) {
         this.score = score;
     }
 }
