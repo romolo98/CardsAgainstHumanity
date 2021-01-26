@@ -369,11 +369,6 @@
                                                       <Font size="8.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="playerSlot5" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
-                                                   <font>
-                                                      <Font size="8.0" />
-                                                   </font>
-                                                </TextArea>
                                              </children>
                                           </HBox>
                                        </children>

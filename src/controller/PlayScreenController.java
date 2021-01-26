@@ -31,7 +31,7 @@ public class PlayScreenController {
     private TextArea whiteCard1, whiteCard2, whiteCard3, whiteCard4, whiteCard5;
 
     @FXML
-    private TextArea playerSlot1, playerSlot2, playerSlot3, playerSlot4, playerSlot5;
+    private TextArea playerSlot1, playerSlot2, playerSlot3, playerSlot4;
 
     @FXML
     private Button confirmCard;
@@ -126,11 +126,13 @@ public class PlayScreenController {
     void startGame(ActionEvent event) {
         if ( CAHClient.abilitato == false  ) { // SPOSTARE LA CHIAMATA SUL SERVER
             chatWall.appendText("Non hai i privilegi per iniziare una partita!\n");
-        }else if ( !Room.isScoreSet() ) {
+        }
+        /*else if ( !Room.isScoreSet() ) {
             chatWall.appendText("Non hai impostato un punteggio massimo!\n");
         }else if (!Room.playerNumber()){
             chatWall.appendText("Giocatori insufficienti!\n");
-        }else{
+        }*/
+        else{
             Match m = new Match();
             m.m = "Literally whatever";
             CAHClient.getClient().sendTCP(m);
@@ -219,9 +221,5 @@ public class PlayScreenController {
 
     public TextArea getPlayerSlot4() {
         return playerSlot4;
-    }
-
-    public TextArea getPlayerSlot5() {
-        return playerSlot5;
     }
 }

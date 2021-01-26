@@ -23,6 +23,7 @@ public class CAHServer extends Application {
 
         Server server;
         private ArrayList<Integer> players_ID = new ArrayList<Integer>();
+        private boolean gameOn = false;
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -68,7 +69,7 @@ public class CAHServer extends Application {
 
                                 if (o instanceof Match){
                                         System.out.println("Un nuovo match sta per iniziare!");
-
+                                        gameOn = true;
                                         //Carica carta nera
                                         Random r = new Random();
                                         int casuale = r.nextInt(Room.getNoCarteNere());
@@ -163,6 +164,22 @@ public class CAHServer extends Application {
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
                                         players_ID.remove(connection.getID());
+                                        PlayerList p = new PlayerList();
+                                        Connection[] con = server.getConnections();
+                                        for (int i = 0; i < con.length; i++) {
+                                                CAHConnection connectionName = (CAHConnection) con[i];
+                                                p.playerList.add(new Pair<>(connectionName.nome, players_ID.get(i)));
+                                        }
+
+                                        if (gameOn){
+                                                GameInterrupt g = new GameInterrupt();
+                                                g.gameInterrupt = true;
+                                                players_ID.clear();
+                                                gameOn = false;
+                                                server.sendToAllTCP(g);
+                                        }
+
+                                        server.sendToAllTCP(p);
                                         aggiornaUtenti();
                                 }
                         }

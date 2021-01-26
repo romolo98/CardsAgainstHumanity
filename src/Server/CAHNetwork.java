@@ -25,6 +25,7 @@ public class CAHNetwork {
         kryo.register(WhiteCard.class);
         kryo.register(MaxScore.class);
         kryo.register(PlayerList.class);
+        kryo.register(GameInterrupt.class);
     }
 
 

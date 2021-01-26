@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+import controller.Controller;
 import controller.PlayScreenController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -60,16 +61,23 @@ public class CAHClient extends Application {
                                 case 4:
                                     ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot4().setText(((Mossa) oggetto).mossa);
                                     break;
-                                case 5:
-                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot5().setText(((Mossa) oggetto).mossa);
-                                    break;
                             }
                         }
                     }
+                    return;
                 }
 
                 if (oggetto instanceof PlayerList){
                     utentiConnessi = ((PlayerList) oggetto).playerList;
+                    return;
+                }
+
+                if (oggetto instanceof GameInterrupt){
+                    //INTERROMPO LA PARTITA
+                    //VOID RESET
+                    GraphicHandler.displayScreen(GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM).getController();
+
+                    return;
                 }
 
                 if (oggetto instanceof Master){
@@ -98,8 +106,7 @@ public class CAHClient extends Application {
                 if (oggetto instanceof WhiteCard) {
                     if (GraphicHandler.getLoader().getController() instanceof PlayScreenController) {
                         String b = ((WhiteCard) oggetto).cartaBianca;
-                        //QUI CI VA UNO SWITCH PER DECIDERE IN QUALE SLOT PIAZZARE LA CARTA RICEVUTA.
-                        // QUESTA ANDRA' DOVE setText() E' "". PER ORA HO LASCIATO WhiteCard1.
+
                     }
                     return;
                 }
