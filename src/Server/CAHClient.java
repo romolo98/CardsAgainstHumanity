@@ -61,7 +61,7 @@ public class CAHClient extends Application {
                     //INTERROMPO LA PARTITA
                     //VOID RESET
                     GraphicHandler.displayScreen(GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM).getController();
-
+                    client.stop();
                     return;
                 }
 

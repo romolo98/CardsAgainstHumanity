@@ -127,7 +127,9 @@ public class CAHServer extends Application {
                                                 return;
                                         }
                                         players_ID.add(connessioneCAH.getID());
-
+                                        for (int i=0;i<players_ID.size();i++){
+                                                System.out.println(players_ID.get(i));
+                                        }
                                         if (players_ID.size() == 2){
                                                 PlayerIds playerIds = new PlayerIds();
                                                 playerIds.Ids = players_ID;
@@ -175,10 +177,16 @@ public class CAHServer extends Application {
                                         Messaggio mes = new Messaggio();
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
-                                        System.out.println(connection.getID());
-                                        System.out.println(players_ID.size());
-                                        players_ID.remove(players_ID.indexOf(connection.getID()));
-                                        System.out.println(players_ID.size());
+                                        for (int i=0;i<players_ID.size();i++){
+                                                System.out.println("Prima della Cancellazione");
+                                                System.out.println(players_ID.get(i));
+                                        }
+
+                                        for (int i=0;i<players_ID.size();i++){
+                                                System.out.println("Dopo la Cancellazione");
+                                                System.out.println(players_ID.get(i));
+                                        }
+
                                         if (gameOn){
                                                 GameInterrupt g = new GameInterrupt();
                                                 g.gameInterrupt = true;
