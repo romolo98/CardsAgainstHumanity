@@ -89,8 +89,12 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof BlackCard){
                     System.out.println("Mi è arrivata una carta nera");
+
+                    if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
+                        System.out.println("ENTRO");
                         String b = ((BlackCard) oggetto).cartaNera;
                         ((PlayScreenController) GraphicHandler.getLoader().getController()).setBlackCardSlot(b);
+                    }
                     return;
                 }
 
@@ -104,10 +108,9 @@ public class CAHClient extends Application {
 
 
                 if (oggetto instanceof WhiteCard) {
-                    System.out.println("WHITE");
                     if (GraphicHandler.getLoader().getController() instanceof PlayScreenController) {
                         String b = ((WhiteCard) oggetto).cartaBianca;
-
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setPlayable(b);
                     }
                     return;
                 }

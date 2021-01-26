@@ -91,7 +91,6 @@ public class CAHServer extends Application {
                                         b.cartaNera = BlackCardList.get(casuale);
                                         server.sendToAllTCP(b);
 
-
                                         //Mischiamo le carte
                                         Collections.shuffle(WhiteCardList);
 

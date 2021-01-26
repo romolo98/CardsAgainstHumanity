@@ -46,8 +46,9 @@ public class CreateRoomController {
         if(isIdGood) {
             CAHClient.getClient().start();
             CAHClient.nome = nameField.getText();
-            CAHClient.getClient().connect(5000,"localhost" , Integer.parseInt(portField.getText()));
-            GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.NO_STREAM);
+            CAHClient.getClient().start();
+            CAHClient.getClient().connect(10000,"93.51.96.34" , Integer.parseInt(portField.getText()));
+            GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM);
         }
     }
 
