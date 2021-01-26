@@ -2,9 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +13,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditorController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditorController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -151,16 +148,7 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <items>
-                                    <Label text="Sort:" />
-                                    <ChoiceBox fx:id="sortList">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </ChoiceBox>
-                                 </items>
-                              </ToolBar>
+                              <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                         <AnchorPane HBox.hgrow="ALWAYS">
@@ -172,14 +160,7 @@
                            <children>
                               <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <items>
-                                    <Label text="Total:" />
-                                    <Label fx:id="totalCardsNo0" text="0" />
-                                    <Label text="Cards" />
                                     <Region minWidth="20.0" />
-                                    <Label fx:id="blackCardsNo" text="0" />
-                                    <Label text="Black Cards /" />
-                                    <Label fx:id="whiteCardsNo" text="0" />
-                                    <Label text="White Cards" />
                                  </items>
                               </ToolBar>
                            </children>
@@ -189,23 +170,7 @@
                               <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
-                        <AnchorPane>
-                           <children>
-                              <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <items>
-                                    <Label text="Selected:" />
-                                    <Label fx:id="selectedCardsNo" text="0" />
-                                    <Label text="/" />
-                                    <Label fx:id="totalCardsNo1" text="0" />
-                                    <CheckBox fx:id="selectAllBox" mnemonicParsing="false" onAction="#selectAllCards">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </CheckBox>
-                                 </items>
-                              </ToolBar>
-                           </children>
-                        </AnchorPane>
+                        <AnchorPane />
                      </children>
                   </HBox>
                </bottom>

@@ -64,6 +64,9 @@
             <AnchorPane BorderPane.alignment="CENTER">
                <children>
                   <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <cursor>
+                          <Cursor fx:constant="HAND" />
+                      </cursor>
                      <children>
                         <AnchorPane maxWidth="220.0">
                            <children>
@@ -164,7 +167,7 @@
                                              <children>
                                                 <AnchorPane>
                                                    <children>
-                                                      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma carta" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <Button alignment="CENTER" fx:id="confirmCard" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma carta" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane HBox.hgrow="ALWAYS">
@@ -183,14 +186,7 @@
                               <Insets left="2.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <TextArea fx:id="whiteCard1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </TextArea>
+                        <TextArea fx:id="whiteCard1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true"/>
                         <TextArea fx:id="whiteCard2" editable="false" prefHeight="95.0" prefWidth="127.0" wrapText="true" />
                         <TextArea fx:id="whiteCard3" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
                         <TextArea fx:id="whiteCard4" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true" />

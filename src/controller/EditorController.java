@@ -168,7 +168,7 @@ public class EditorController {
     void saveDeck(ActionEvent event) throws SQLException {
         String name = deckName.getText();
         DBConnector.getInstance().setNome(name,ManagerController.ID_Mazzo);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato Nome del Mazzo", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato nome del mazzo", ButtonType.OK);
         alert.showAndWait();
     }
 
@@ -176,7 +176,7 @@ public class EditorController {
     void saveNewName(ActionEvent event) throws SQLException {
         String name = deckName.getText();
         DBConnector.getInstance().setNome(name,ManagerController.ID_Mazzo);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato Nome del Mazzo", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cambiato nome del mazzo", ButtonType.OK);
         alert.showAndWait();
     }
 

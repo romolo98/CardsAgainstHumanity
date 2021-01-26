@@ -62,4 +62,8 @@ public class Room {
     public static String getContenutoCarta (int index){
         return BlackCardList.get(index);
     }
+
+    public static ArrayList<String> getWhiteCards(){
+        return WhiteCardList;
+    }
 }

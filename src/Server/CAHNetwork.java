@@ -17,6 +17,13 @@ public class CAHNetwork {
         kryo.register(Server.CAHNetwork.AggiornaUtenti.class);
         kryo.register(String[].class);
         kryo.register(CAHNetwork.RegistraUtente.class);
+        kryo.register(Master.class);
+        kryo.register(BlackCard.class);
+        kryo.register(Match.class);
+        kryo.register(Punto.class);
+        kryo.register(RoundEnd.class);
+        kryo.register(WhiteCard.class);
+        kryo.register(MaxScore.class);
     }
 
 
@@ -30,7 +37,4 @@ public class CAHNetwork {
     static public class AggiornaUtenti {
         public String[] nomiUtenti;
     }
-
-    //Messaggio e Mossa potrebbe andare tranquillamente qui. Vedrò dopo come implementarlo.
-
 }

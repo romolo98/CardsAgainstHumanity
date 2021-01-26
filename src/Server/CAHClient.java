@@ -6,11 +6,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import controller.PlayScreenController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import controller.Controller;
 import logic.GraphicHandler;
 import sample.DBConnector;
 
@@ -42,7 +38,14 @@ public class CAHClient extends Application {
 
             public void received(Connection connessione, Object oggetto){
                 if (oggetto instanceof Mossa){
-                    //TO BE DECIDED
+                    //SCRIVO IL CONTENUTO DELLA CARTA DI UN AVVERSARIO NELLO SPAZIO DEDICATO A LUI
+                }
+
+                if (oggetto instanceof Master){
+                    System.out.println("Sei l'amministratore della partita");
+                    abilitato = true;
+                    ((PlayScreenController) GraphicHandler.getLoader().getController()).setHighscoreVisible(abilitato);
+                    return;
                 }
 
                 if (oggetto instanceof Messaggio) {
@@ -51,6 +54,28 @@ public class CAHClient extends Application {
                         ((PlayScreenController) GraphicHandler.getLoader().getController()).sendMessageToChatWall(m.testo);
                     }
                     return;
+                }
+
+                if (oggetto instanceof BlackCard){
+                    if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
+                        String b = ((BlackCard) oggetto).cartaNera;
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setBlackCardSlot(b);
+                    }
+                return;
+                }
+
+                if (oggetto instanceof WhiteCard) {
+                    if (GraphicHandler.getLoader().getController() instanceof PlayScreenController) {
+                        String b = ((WhiteCard) oggetto).cartaBianca;
+                        //QUI CI VA UNO SWITCH PER DECIDERE IN QUALE SLOT PIAZZARE LA CARTA RICEVUTA.
+                        // QUESTA ANDRA' DOVE setText() E' "". PER ORA HO LASCIATO WhiteCard1.
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setWhiteOne(b);
+                    }
+                    return;
+                }
+
+                if (oggetto instanceof RoundEnd){
+                    //LOGICA DI FINE ROUND
                 }
             }
         });
