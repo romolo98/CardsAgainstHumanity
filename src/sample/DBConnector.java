@@ -28,7 +28,7 @@ public class DBConnector {
         //System.out.println("connesso!");
     }
 
-    ///////////////////////////////////////////////////////////////////777
+    ///////////////////////////////////////////////////////////////////////
     //QUERY CARTA
 
     public void addCarta (String contenuto,String tipologia,int ID_mazzo) throws SQLException {

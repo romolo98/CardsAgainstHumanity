@@ -26,6 +26,7 @@ public class GraphicHandler {
 
     private static void init() {
         if ( scene == null ) {
+            System.out.println("LANCIO INIT");
             Parent root;
             loader = new FXMLLoader();
             try {
@@ -76,6 +77,8 @@ public class GraphicHandler {
                 System.out.println("Cannot find selected display.");
                 return null;
         }
+
+        System.out.println("ResetLoaderDisplayScreen");
 
         loader = new FXMLLoader();
         try {

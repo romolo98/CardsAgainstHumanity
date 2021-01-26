@@ -12,8 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import logic.Room;
+import sample.Carta;
+import sample.DBConnector;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,6 +26,8 @@ public class CAHServer extends Application {
 
         Server server;
         private ArrayList<Integer> players_ID = new ArrayList<Integer>();
+        private static ArrayList<String> WhiteCardList = new ArrayList<String>();
+        public static ArrayList<String> BlackCardList = new ArrayList<String>();
         private boolean gameOn = false;
 
         public CAHServer () throws IOException {
@@ -70,24 +75,31 @@ public class CAHServer extends Application {
                                 if (o instanceof Match){
                                         System.out.println("Un nuovo match sta per iniziare!");
                                         gameOn = true;
+
+
+                                        //Carico il mazzo
+                                        try {
+                                                loadDeck();
+                                        } catch (SQLException throwables) {
+                                                throwables.printStackTrace();
+                                        }
+
                                         //Carica carta nera
                                         Random r = new Random();
-                                        int casuale = r.nextInt(Room.getNoCarteNere());
+                                        int casuale = r.nextInt(BlackCardList.size());
                                         BlackCard b = new BlackCard();
-                                        b.cartaNera = Room.getContenutoCarta(casuale);
+                                        b.cartaNera = BlackCardList.get(casuale);
                                         server.sendToAllTCP(b);
 
-                                        //Carica carte bianche
-                                        ArrayList<String> carteMazzo = Room.getWhiteCards();
 
                                         //Mischiamo le carte
-                                        Collections.shuffle(carteMazzo);
+                                        Collections.shuffle(WhiteCardList);
 
                                         //Distribuiamo le carte iniziali
                                         for (int p = 1; p <= 4; ++p){
                                                 for (int i =0 ; i < 4; ++i){
                                                         WhiteCard w = new WhiteCard();
-                                                        w.cartaBianca = carteMazzo.get(i);
+                                                        w.cartaBianca = WhiteCardList.get(i);
                                                         server.sendToTCP(p, w);
                                                 }
                                         }
@@ -198,7 +210,7 @@ public class CAHServer extends Application {
 
                 server.bind(CAHNetwork.porta);
                 server.start();
-
+                DBConnector.getInstance().connect();
                 primaryStage.setOnCloseRequest(event -> {
                         server.stop();
                 });
@@ -223,4 +235,27 @@ public class CAHServer extends Application {
         launch(args);
         }
 
+        public void loadDeck() throws SQLException {
+              for (int i = 1; i < DBConnector.getInstance().getNoCarteMazzo(2); i++) {
+                        Carta c = new Carta(DBConnector.getInstance().getID_Carta(i,2),DBConnector.getInstance().getContenuto(i,2),DBConnector.getInstance().getTipologia(i,2),2);
+                        if (c.getTipologia().equals("Bianca")) {
+                                WhiteCardList.add(c.getContenuto());
+                        }
+                        else {
+                                BlackCardList.add(c.getContenuto());
+                        }
+                }
+        }
+
+        public int getNoCarteNere(){
+                return BlackCardList.size();
+        }
+
+        public String getContenutoCarta(int index){
+                return BlackCardList.get(index);
+        }
+
+        public ArrayList<String> getWhiteCardList(){
+                return WhiteCardList;
+        }
 }

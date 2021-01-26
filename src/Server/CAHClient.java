@@ -83,7 +83,14 @@ public class CAHClient extends Application {
                 if (oggetto instanceof Master){
                     System.out.println("Sei l'amministratore della partita");
                     abilitato = true;
-                    ((PlayScreenController) GraphicHandler.getLoader().getController()).setHighscoreVisible(abilitato);
+                    //((PlayScreenController) GraphicHandler.getLoader().getController()).setHighscoreVisible(abilitato);
+                    return;
+                }
+
+                if (oggetto instanceof BlackCard){
+                    System.out.println("Mi è arrivata una carta nera");
+                        String b = ((BlackCard) oggetto).cartaNera;
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setBlackCardSlot(b);
                     return;
                 }
 
@@ -95,15 +102,9 @@ public class CAHClient extends Application {
                     return;
                 }
 
-                if (oggetto instanceof BlackCard){
-                    if ( GraphicHandler.getLoader().getController() instanceof PlayScreenController ) {
-                        String b = ((BlackCard) oggetto).cartaNera;
-                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setBlackCardSlot(b);
-                    }
-                return;
-                }
 
                 if (oggetto instanceof WhiteCard) {
+                    System.out.println("WHITE");
                     if (GraphicHandler.getLoader().getController() instanceof PlayScreenController) {
                         String b = ((WhiteCard) oggetto).cartaBianca;
 

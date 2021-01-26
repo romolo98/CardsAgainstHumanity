@@ -131,8 +131,8 @@ public class PlayScreenController {
             chatWall.appendText("Non hai impostato un punteggio massimo!\n");
         }else if (!Room.playerNumber()){
             chatWall.appendText("Giocatori insufficienti!\n");
-        }*/
-        else{
+        }*/else{
+
             Match m = new Match();
             m.m = "Literally whatever";
             CAHClient.getClient().sendTCP(m);

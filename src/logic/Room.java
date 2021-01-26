@@ -10,7 +10,7 @@ import java.util.Collections;
 public class Room {
     private static ArrayList<String> userList = new ArrayList<String>();
     private static ArrayList<String> WhiteCardList = new ArrayList<String>();
-    private static ArrayList<String> BlackCardList = new ArrayList<String>();
+    public static ArrayList<String> BlackCardList = new ArrayList<String>();
     private static int porta;
     private static int highscore = 0;
 
@@ -59,6 +59,7 @@ public class Room {
     }
 
     public static String getContenutoCarta (int index){
+        System.out.println(BlackCardList.get(index));
         return BlackCardList.get(index);
     }
 
