@@ -166,7 +166,7 @@
                                              <children>
                                                 <AnchorPane>
                                                    <children>
-                                                      <Button fx:id="confirmCard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma carta" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <Button fx:id="confirmCard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane HBox.hgrow="ALWAYS">
@@ -349,22 +349,22 @@
                                                       <Insets left="2.0" />
                                                    </HBox.margin>
                                                 </AnchorPane>
-                                                <TextArea fx:id="playerSlot1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true">
+                                                <TextArea fx:id="playerSlot1" editable="false" onMouseClicked="#giveVote1" prefHeight="148.0" prefWidth="127.0" wrapText="true">
                                                    <font>
                                                       <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="playerSlot2" editable="false" prefHeight="95.0" prefWidth="127.0" wrapText="true">
+                                                <TextArea fx:id="playerSlot2" editable="false" onMouseClicked="#giveVote2" prefHeight="95.0" prefWidth="127.0" wrapText="true">
                                                    <font>
                                                       <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="playerSlot3" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
+                                                <TextArea fx:id="playerSlot3" editable="false" onMouseClicked="#giveVote3" prefHeight="210.0" prefWidth="127.0" wrapText="true">
                                                    <font>
                                                       <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
-                                                <TextArea fx:id="playerSlot4" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
+                                                <TextArea fx:id="playerSlot4" editable="false" onMouseClicked="#giveVote4" prefHeight="210.0" prefWidth="127.0" wrapText="true">
                                                    <font>
                                                       <Font size="10.0" />
                                                    </font>

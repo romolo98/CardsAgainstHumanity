@@ -31,6 +31,7 @@ public class CAHServer extends Application {
         private static ArrayList<String> WhiteCardList = new ArrayList<String>();
         public static ArrayList<String> BlackCardList = new ArrayList<String>();
         private boolean gameOn = false;
+        private static ArrayList<Integer> EveryKing = new ArrayList<>();
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -55,6 +56,14 @@ public class CAHServer extends Application {
 
                                 if (o instanceof RoundEnd){
                                         System.out.println("Il round è finito");
+
+                                        for (int i = 0; i < players_ID.size(); i++){
+                                                Collections.shuffle(WhiteCardList);
+                                                WhiteCard wc = new WhiteCard();
+                                                wc.cartaBianca = WhiteCardList.get(0);
+                                                server.sendToTCP(players_ID.get(i), wc);
+                                        }
+
                                         //SEGNALA LA FINE DEL ROUND.
                                         //SBLOCCA IL TASTO GIOCA NUOVA CARTA AD OGNI GIOCATORE
                                         //SE IL PUNTEGGIO MAX E' STATO RAGGIUNTO, FINE PARTITA.
@@ -64,12 +73,23 @@ public class CAHServer extends Application {
 
                                 if (o instanceof Punto){
                                         System.out.println("Un giocatore ha guadagnato un punto");
+                                        RoundEnd re = new RoundEnd();
+                                        server.sendToAllTCP(re);
+
+                                        if (EveryKing.size() == 4){
+                                                EveryKing.clear();
+                                        }
+
+                                        for (int i = 0; i < players_ID.size(); i++){
+                                                if (!EveryKing.contains(players_ID.get(i))){
+                                                        EveryKing.add(players_ID.get(i));
+                                                        break;
+                                                }
+                                        }
+                                        Czar czar = new Czar();
+                                        server.sendToTCP(EveryKing.get(EveryKing.size()), czar);
+
                                         //INCREMENTA IL PUNTEGGIO DI UN GIOCATORE, IN BASE AL SUO CONNECTIONID.
-                                        //DOBBIAMO TROVARE IL MODO DI RICONDURRE LA CARTA AL GIOCATORE CHE L'HA GIOCATA.
-                                        //SE FISSIAMO LO SLOT IN CUI OGNI GIOCATORE "POSA" LA SUA CARTA, PROBLEMA RISOLTO
-                                        //ES: GIOCATORE 1 -> TEXTAREA1 | GIOCATORE 2 -> TEXTAREA2, ETC.
-                                        //DOPO CHE IL PUNTO E' STATO ASSEGNATO, IL SERVER SI MANDA UN PACCHETTO ROUNDEND.
-                                        //POSSIAMO ANCHE EVITARE MA RENDE IL CODICE UN PO' PIU' PULITO.
                                 }
 
                                 if (o instanceof Match){
@@ -103,6 +123,14 @@ public class CAHServer extends Application {
                                                         server.sendToTCP(p, w);
                                                 }
                                         }
+
+                                        Czar czar = new Czar();
+                                        casuale = r.nextInt(players_ID.size());
+                                        czar.king = players_ID.get(casuale);
+
+                                        server.sendToTCP(czar.king, czar);
+                                        EveryKing.add(czar.king);
+
                                 }
 
                                 if (o instanceof MaxScore){

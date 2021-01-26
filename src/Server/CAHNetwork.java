@@ -29,6 +29,7 @@ public class CAHNetwork {
         kryo.register(GameInterrupt.class);
         kryo.register(PlayerIds.class);
         kryo.register(ArrayList.class);
+        kryo.register(Czar.class);
     }
 
 

@@ -60,10 +60,8 @@ public class PlayScreenController {
     private String myMove = null;
 
     private int moveSlot = 0;
+    private int voto;
 
-    public void setCursor(){
-
-    }
 
     public void setHighscoreVisible(Boolean check) {
         highscoreField.setVisible(check);
@@ -80,32 +78,40 @@ public class PlayScreenController {
 
     @FXML
     void confirmCard(ActionEvent event) {
-        confirmCard.setDisable(true);
-        Mossa m = new Mossa();
-        m.mossa = myMove;
-        m.ID_player = CAHClient.getClient().getID();
 
-        CAHClient.getClient().sendTCP(m);
-
-
-        switch (moveSlot){
-            case 1:
-                whiteCard1.setText("");
-                break;
-            case 2:
-                whiteCard2.setText("");
-                break;
-            case 3:
-                whiteCard3.setText("");
-                break;
-            case 4:
-                whiteCard4.setText("");
-                break;
-            case 5:
-                whiteCard5.setText("");
-                break;
+        if (CAHClient.Czar){
+            Punto p = new Punto();
+            p.ID = voto;
+            p.punto = 10;
+            CAHClient.getClient().sendTCP(p);
         }
+        else {
+            confirmCard.setDisable(true);
+            Mossa m = new Mossa();
+            m.mossa = myMove;
+            m.ID_player = CAHClient.getClient().getID();
 
+            CAHClient.getClient().sendTCP(m);
+
+
+            switch (moveSlot) {
+                case 1:
+                    whiteCard1.setText("");
+                    break;
+                case 2:
+                    whiteCard2.setText("");
+                    break;
+                case 3:
+                    whiteCard3.setText("");
+                    break;
+                case 4:
+                    whiteCard4.setText("");
+                    break;
+                case 5:
+                    whiteCard5.setText("");
+                    break;
+            }
+        }
     }
 
     @FXML
@@ -224,5 +230,25 @@ public class PlayScreenController {
 
     public TextArea getPlayerSlot4() {
         return playerSlot4;
+    }
+
+    public void giveVote1(MouseEvent mouseEvent) {
+        voto = CAHClient.id_connessioni.get(0);
+        }
+
+    public void giveVote2(MouseEvent mouseEvent) {
+        voto = CAHClient.id_connessioni.get(1);
+    }
+
+    public void giveVote3(MouseEvent mouseEvent) {
+        voto = CAHClient.id_connessioni.get(2);
+    }
+
+    public void giveVote4(MouseEvent mouseEvent) {
+        voto = CAHClient.id_connessioni.get(3);
+    }
+
+    public Button getConfirmCard() {
+        return confirmCard;
     }
 }

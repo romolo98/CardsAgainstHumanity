@@ -4,9 +4,12 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 import controller.Controller;
 import controller.PlayScreenController;
 import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import logic.GraphicHandler;
@@ -23,7 +26,8 @@ public class CAHClient extends Application {
     public static Boolean abilitato;
     String host;
     static public Client client;
-    ArrayList<Integer> id_connessioni;
+    public static ArrayList<Integer> id_connessioni;
+    public static boolean Czar;
 
     public CAHClient () {
         client = new Client();
@@ -60,6 +64,25 @@ public class CAHClient extends Application {
                 if (oggetto instanceof GameInterrupt){
                     GraphicHandler.displayScreen(GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM).getController();
                     return;
+                }
+
+                if (oggetto instanceof Czar){
+                    Czar = true;
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "SEI LO CZAAAAR", ButtonType.OK);
+                    alert.showAndWait();
+                    PlayScreenController psc = GraphicHandler.getLoader().getController();
+                    for (int i = 0; i < id_connessioni.size(); i++){
+                        if (id_connessioni.get(i) == client.getID()){
+                            if (i == 0)
+                                psc.getPlayerSlot1().setDisable(true);
+                            else if (i == 1)
+                                psc.getPlayerSlot2().setDisable(true);
+                            else if (i == 2)
+                                psc.getPlayerSlot3().setDisable(true);
+                            else if (i == 3)
+                                psc.getPlayerSlot4().setDisable(true);
+                        }
+                    }
                 }
 
                 if (oggetto instanceof PlayerIds){
@@ -102,7 +125,24 @@ public class CAHClient extends Application {
                 }
 
                 if (oggetto instanceof RoundEnd){
-                    //LOGICA DI FINE ROUND
+                    Czar = false;
+                    PlayScreenController psc = GraphicHandler.getLoader().getController();
+                    psc.getConfirmCard().setDisable(false);
+                    for (int i = 0; i < id_connessioni.size(); i++) {
+                        if (id_connessioni.get(i) == client.getID()) {
+                            if (i == 0)
+                                psc.getPlayerSlot1().setDisable(false);
+                            else if (i == 1)
+                                psc.getPlayerSlot2().setDisable(false);
+                            else if (i == 2)
+                                psc.getPlayerSlot3().setDisable(false);
+                            else if (i == 3)
+                                psc.getPlayerSlot4().setDisable(false);
+                        }
+                    }
+
+                    RoundEnd re = new RoundEnd();
+                    CAHClient.getClient().sendTCP(re);
                 }
             }
         });
