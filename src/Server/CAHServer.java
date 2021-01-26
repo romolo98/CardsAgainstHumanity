@@ -140,6 +140,7 @@ public class CAHServer extends Application {
                                         server.sendToAllExceptTCP(connessioneCAH.getID(), mes);
 
                                         Master master = new Master();
+
                                         server.sendToTCP(players_ID.get(0),master);
 
                                         aggiornaUtenti();
