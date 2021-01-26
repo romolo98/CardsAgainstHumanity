@@ -92,16 +92,18 @@ public class CAHServer extends Application {
                                         server.sendToAllTCP(b);
 
                                         //Mischiamo le carte
-                                        Collections.shuffle(WhiteCardList);
 
                                         //Distribuiamo le carte iniziali
+
                                         for (int p = 1; p <= 4; ++p){
-                                                for (int i =0 ; i < 4; ++i){
+                                                Collections.shuffle(WhiteCardList);
+                                                for (int i = 0 ; i < 5; ++i){
                                                         WhiteCard w = new WhiteCard();
                                                         w.cartaBianca = WhiteCardList.get(i);
                                                         server.sendToTCP(p, w);
                                                 }
                                         }
+
                                 }
 
                                 if (o instanceof MaxScore){
