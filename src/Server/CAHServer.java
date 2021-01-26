@@ -57,17 +57,18 @@ public class CAHServer extends Application {
                                 if (o instanceof RoundEnd){
                                         System.out.println("Il round è finito");
 
+                                        Random r = new Random();
+                                        int casuale = r.nextInt(BlackCardList.size());
+                                        BlackCard b = new BlackCard();
+                                        b.cartaNera = BlackCardList.get(casuale);
+                                        server.sendToAllTCP(b);
+
                                         for (int i = 0; i < players_ID.size(); i++){
                                                 Collections.shuffle(WhiteCardList);
                                                 WhiteCard wc = new WhiteCard();
                                                 wc.cartaBianca = WhiteCardList.get(0);
                                                 server.sendToTCP(players_ID.get(i), wc);
                                         }
-
-                                        //SEGNALA LA FINE DEL ROUND.
-                                        //SBLOCCA IL TASTO GIOCA NUOVA CARTA AD OGNI GIOCATORE
-                                        //SE IL PUNTEGGIO MAX E' STATO RAGGIUNTO, FINE PARTITA.
-                                        //SE IL PUNTEGGIO NON E' STATO RAGGIUNTO, DA' UNA NUOVA CARTA AI GIOCATORI
 
                                 }
 
