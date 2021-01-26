@@ -3,6 +3,8 @@ package Server;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
 
+import java.util.ArrayList;
+
 public class CAHNetwork {
 
     static public final int porta = 56555;
@@ -24,8 +26,9 @@ public class CAHNetwork {
         kryo.register(RoundEnd.class);
         kryo.register(WhiteCard.class);
         kryo.register(MaxScore.class);
-        kryo.register(PlayerList.class);
         kryo.register(GameInterrupt.class);
+        kryo.register(PlayerIds.class);
+        kryo.register(ArrayList.class);
     }
 
 

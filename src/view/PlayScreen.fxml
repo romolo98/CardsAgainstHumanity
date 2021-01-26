@@ -351,22 +351,22 @@
                                                 </AnchorPane>
                                                 <TextArea fx:id="playerSlot1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true">
                                                    <font>
-                                                      <Font size="8.0" />
+                                                      <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
                                                 <TextArea fx:id="playerSlot2" editable="false" prefHeight="95.0" prefWidth="127.0" wrapText="true">
                                                    <font>
-                                                      <Font size="8.0" />
+                                                      <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
                                                 <TextArea fx:id="playerSlot3" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
                                                    <font>
-                                                      <Font size="8.0" />
+                                                      <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
                                                 <TextArea fx:id="playerSlot4" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
                                                    <font>
-                                                      <Font size="8.0" />
+                                                      <Font size="10.0" />
                                                    </font>
                                                 </TextArea>
                                              </children>

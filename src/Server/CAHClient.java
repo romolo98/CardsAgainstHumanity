@@ -23,8 +23,7 @@ public class CAHClient extends Application {
     public static Boolean abilitato;
     String host;
     static public Client client;
-    private ArrayList<Pair<String, Integer>> utentiConnessi;
-
+    ArrayList<Integer> id_connessioni;
 
     public CAHClient () {
         client = new Client();
@@ -44,31 +43,17 @@ public class CAHClient extends Application {
 
             public void received(Connection connessione, Object oggetto){
                 if (oggetto instanceof Mossa){
-                    String whereToWrite = ((CAHConnection) connessione).nome;
-
-                    for (int i = 0; i < utentiConnessi.size(); i++) {
-                        if (whereToWrite.equals(utentiConnessi.get(i).getKey())) {
-                            switch (i) {
-                                case 1:
-                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot1().setText(((Mossa) oggetto).mossa);
-                                    break;
-                                case 2:
-                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot2().setText(((Mossa) oggetto).mossa);
-                                    break;
-                                case 3:
-                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot3().setText(((Mossa) oggetto).mossa);
-                                    break;
-                                case 4:
-                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot4().setText(((Mossa) oggetto).mossa);
-                                    break;
-                            }
-                        }
+                    int id = ((Mossa) oggetto).ID_player;
+                for (int i = 0; i < id_connessioni.size(); i++) {
+                    if (id_connessioni.get(i) == id && i == 0)
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot1().setText(((Mossa) oggetto).mossa);
+                    else if (id_connessioni.get(i) == id && i == 1)
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot2().setText(((Mossa) oggetto).mossa);
+                    else if (id_connessioni.get(i) == id && i == 2)
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot3().setText(((Mossa) oggetto).mossa);
+                    else if (id_connessioni.get(i) == id && i == 3)
+                        ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot4().setText(((Mossa) oggetto).mossa);
                     }
-                    return;
-                }
-
-                if (oggetto instanceof PlayerList){
-                    utentiConnessi = ((PlayerList) oggetto).playerList;
                     return;
                 }
 
@@ -78,6 +63,10 @@ public class CAHClient extends Application {
                     GraphicHandler.displayScreen(GraphicHandler.MAIN_SCREEN, GraphicHandler.NO_STREAM).getController();
 
                     return;
+                }
+
+                if (oggetto instanceof PlayerIds){
+                    id_connessioni = ((PlayerIds) oggetto).Ids;
                 }
 
                 if (oggetto instanceof Master){

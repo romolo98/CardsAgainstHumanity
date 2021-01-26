@@ -9,6 +9,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import logic.Room;
@@ -45,12 +47,10 @@ public class CAHServer extends Application {
 
                                 if (o instanceof Mossa){
                                         System.out.println("Ho ricevuto una mossa");
-                                        if (connessioneCAH.nome != null)
-                                                return;
 
                                         Mossa m = (Mossa) o;
                                         m.mossa = ((Mossa) o).mossa;
-                                        server.sendToAllExceptTCP(connessioneCAH.getID(), m);
+                                        server.sendToAllTCP(m);
                                 }
 
                                 if (o instanceof RoundEnd){
@@ -103,7 +103,6 @@ public class CAHServer extends Application {
                                                         server.sendToTCP(p, w);
                                                 }
                                         }
-
                                 }
 
                                 if (o instanceof MaxScore){
@@ -120,26 +119,25 @@ public class CAHServer extends Application {
                                         if (nome == null || nome.length() == 0){
                                                 return;
                                         }
-
                                         connessioneCAH.nome = nome;
+
+                                        if (players_ID.size() == 4){
+                                                Alert alert = new Alert(Alert.AlertType.ERROR, "La stanza è piena, stronzo", ButtonType.OK);
+                                                alert.showAndWait();
+                                                return;
+                                        }
+                                        players_ID.add(connessioneCAH.getID());
+
+                                        if (players_ID.size() == 2){
+                                                PlayerIds playerIds = new PlayerIds();
+                                                playerIds.Ids = players_ID;
+                                                server.sendToAllTCP(playerIds);
+                                        }
 
                                         Messaggio mes = new Messaggio();
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + nome + " si è unito alla partita\n";
                                         //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                         server.sendToAllExceptTCP(connessioneCAH.getID(), mes);
-
-                                        players_ID.add(connessioneCAH.getID());
-
-                                        if (players_ID.size() == 4){
-                                                PlayerList p = new PlayerList();
-                                                Connection[] con = server.getConnections();
-                                                for (int i = 0; i < con.length; i++){
-                                                CAHConnection connectionName = (CAHConnection) con[i];
-                                                p.playerList.add(new Pair<>(connectionName.nome, players_ID.get(i)));
-                                                }
-
-                                                server.sendToAllTCP(p);
-                                        }
 
                                         Master master = new Master();
                                         server.sendToTCP(players_ID.get(0),master);
@@ -177,12 +175,6 @@ public class CAHServer extends Application {
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
                                         players_ID.remove(connection.getID());
-                                        PlayerList p = new PlayerList();
-                                        Connection[] con = server.getConnections();
-                                        for (int i = 0; i < con.length; i++) {
-                                                CAHConnection connectionName = (CAHConnection) con[i];
-                                                p.playerList.add(new Pair<>(connectionName.nome, players_ID.get(i)));
-                                        }
 
                                         if (gameOn){
                                                 GameInterrupt g = new GameInterrupt();
@@ -192,7 +184,6 @@ public class CAHServer extends Application {
                                                 server.sendToAllTCP(g);
                                         }
 
-                                        server.sendToAllTCP(p);
                                         aggiornaUtenti();
                                 }
                         }

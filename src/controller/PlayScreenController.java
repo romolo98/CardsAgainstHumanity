@@ -83,7 +83,10 @@ public class PlayScreenController {
         confirmCard.setDisable(true);
         Mossa m = new Mossa();
         m.mossa = myMove;
+        m.ID_player = CAHClient.getClient().getID();
+
         CAHClient.getClient().sendTCP(m);
+
 
         switch (moveSlot){
             case 1:
