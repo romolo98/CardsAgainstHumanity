@@ -76,7 +76,7 @@ public class CAHServer extends Application {
                                         RoundEnd re = new RoundEnd();
                                         server.sendToAllTCP(re);
 
-                                        if (EveryKing.size() == 4){
+                                        if (EveryKing.size() == players_ID.size()){
                                                 EveryKing.clear();
                                         }
 
@@ -87,7 +87,7 @@ public class CAHServer extends Application {
                                                 }
                                         }
                                         Czar czar = new Czar();
-                                        server.sendToTCP(EveryKing.get(EveryKing.size()), czar);
+                                        server.sendToTCP(EveryKing.get(EveryKing.size()-1), czar);
 
                                         //INCREMENTA IL PUNTEGGIO DI UN GIOCATORE, IN BASE AL SUO CONNECTIONID.
                                 }

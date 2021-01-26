@@ -68,9 +68,9 @@ public class CAHClient extends Application {
 
                 if (oggetto instanceof Czar){
                     Czar = true;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "SEI LO CZAAAAR", ButtonType.OK);
+                    /*Alert alert = new Alert(Alert.AlertType.INFORMATION, "SEI LO CZAAAAR", ButtonType.OK);
                     alert.showAndWait();
-                    PlayScreenController psc = GraphicHandler.getLoader().getController();
+                    */PlayScreenController psc = GraphicHandler.getLoader().getController();
                     for (int i = 0; i < id_connessioni.size(); i++){
                         if (id_connessioni.get(i) == client.getID()){
                             if (i == 0)
@@ -140,6 +140,10 @@ public class CAHClient extends Application {
                                 psc.getPlayerSlot4().setDisable(false);
                         }
                     }
+                    psc.getPlayerSlot1().setText("");
+                    psc.getPlayerSlot2().setText("");
+                    psc.getPlayerSlot3().setText("");
+                    psc.getPlayerSlot4().setText("");
 
                     RoundEnd re = new RoundEnd();
                     CAHClient.getClient().sendTCP(re);
