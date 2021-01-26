@@ -7,9 +7,12 @@ import com.esotericsoftware.minlog.Log;
 import controller.PlayScreenController;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import logic.GraphicHandler;
 import sample.DBConnector;
 
+
+import java.util.ArrayList;
 
 import static Server.CAHNetwork.registraOggetti;
 
@@ -19,6 +22,8 @@ public class CAHClient extends Application {
     public static Boolean abilitato;
     String host;
     static public Client client;
+    private ArrayList<Pair<String, Integer>> utentiConnessi;
+
 
     public CAHClient () {
         client = new Client();
@@ -38,7 +43,33 @@ public class CAHClient extends Application {
 
             public void received(Connection connessione, Object oggetto){
                 if (oggetto instanceof Mossa){
-                    //SCRIVO IL CONTENUTO DELLA CARTA DI UN AVVERSARIO NELLO SPAZIO DEDICATO A LUI
+                    String whereToWrite = ((CAHConnection) connessione).nome;
+
+                    for (int i = 0; i < utentiConnessi.size(); i++) {
+                        if (whereToWrite.equals(utentiConnessi.get(i).getKey())) {
+                            switch (i) {
+                                case 1:
+                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot1().setText(((Mossa) oggetto).mossa);
+                                    break;
+                                case 2:
+                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot2().setText(((Mossa) oggetto).mossa);
+                                    break;
+                                case 3:
+                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot3().setText(((Mossa) oggetto).mossa);
+                                    break;
+                                case 4:
+                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot4().setText(((Mossa) oggetto).mossa);
+                                    break;
+                                case 5:
+                                    ((PlayScreenController) GraphicHandler.getLoader().getController()).getPlayerSlot5().setText(((Mossa) oggetto).mossa);
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                if (oggetto instanceof PlayerList){
+                    utentiConnessi = ((PlayerList) oggetto).playerList;
                 }
 
                 if (oggetto instanceof Master){
@@ -69,7 +100,6 @@ public class CAHClient extends Application {
                         String b = ((WhiteCard) oggetto).cartaBianca;
                         //QUI CI VA UNO SWITCH PER DECIDERE IN QUALE SLOT PIAZZARE LA CARTA RICEVUTA.
                         // QUESTA ANDRA' DOVE setText() E' "". PER ORA HO LASCIATO WhiteCard1.
-                        ((PlayScreenController) GraphicHandler.getLoader().getController()).setWhiteOne(b);
                     }
                     return;
                 }

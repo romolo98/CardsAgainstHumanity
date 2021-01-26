@@ -1,9 +1,7 @@
 package controller;
 
-import Server.CAHClient;
-import Server.Match;
-import Server.MaxScore;
-import Server.Messaggio;
+import Server.*;
+import com.esotericsoftware.kryonet.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
@@ -12,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import logic.CAHParser;
@@ -30,6 +29,9 @@ public class PlayScreenController {
 
     @FXML
     private TextArea whiteCard1, whiteCard2, whiteCard3, whiteCard4, whiteCard5;
+
+    @FXML
+    private TextArea playerSlot1, playerSlot2, playerSlot3, playerSlot4, playerSlot5;
 
     @FXML
     private Button confirmCard;
@@ -55,6 +57,10 @@ public class PlayScreenController {
     @FXML
     private AnchorPane blackCardBox;
 
+    private String myMove = null;
+
+    private int moveSlot = 0;
+
     public void setCursor(){
 
     }
@@ -74,13 +80,29 @@ public class PlayScreenController {
 
     @FXML
     void confirmCard(ActionEvent event) {
-        /*
         confirmCard.setDisable(true);
-        //OR
-        confirmCard.setVisible(false);
-        //A FINE ROUND, VIENE MANDATO UN OGGETTO CHE RESETTA IL BOTTONE VISIBILE. QUESTO IMPEDISCE AL PLAYER DI PREMERLO E MANDARE ALTRE CARTE
+        Mossa m = new Mossa();
+        m.mossa = myMove;
+        CAHClient.getClient().sendTCP(m);
 
-        */
+        switch (moveSlot){
+            case 1:
+                whiteCard1.setText("");
+                break;
+            case 2:
+                whiteCard2.setText("");
+                break;
+            case 3:
+                whiteCard3.setText("");
+                break;
+            case 4:
+                whiteCard4.setText("");
+                break;
+            case 5:
+                whiteCard5.setText("");
+                break;
+        }
+
     }
 
     @FXML
@@ -116,9 +138,6 @@ public class PlayScreenController {
             /*Random r = new Random();
             int casuale = r.nextInt(Room.getNoCarteNere());
             blackCardSlot.setText(Room.getContenutoCarta(casuale));*/
-
-
-
         }
 
     }
@@ -137,18 +156,6 @@ public class PlayScreenController {
     public void setBlackCardSlot(String blackCard){
         blackCardSlot.setText(blackCard);
     }
-
-    public void setWhiteOne(String s){
-        whiteCard1.setText(s);
-    }
-
-    public void setWhiteTwo(String s) {whiteCard2.setText(s);}
-
-    public void setWhiteThree(String s){whiteCard3.setText(s);}
-
-    public void setWhiteFour(String s){whiteCard4.setText(s);}
-
-    public void setWhiteFive(String s){whiteCard5.setText(s);}
 
     public void setPlayable(String s){
         if (whiteCard1.getText().equals("")) {
@@ -173,4 +180,48 @@ public class PlayScreenController {
         }
     }
 
+    public void choice1(MouseEvent mouseEvent) {
+        myMove = whiteCard1.getText();
+        moveSlot = 1;
+    }
+
+    public void choice2(MouseEvent mouseEvent) {
+        myMove = whiteCard2.getText();
+        moveSlot = 2;
+    }
+
+    public void choice3(MouseEvent mouseEvent) {
+        myMove = whiteCard3.getText();
+        moveSlot = 3;
+    }
+
+    public void choice4(MouseEvent mouseEvent) {
+        myMove = whiteCard4.getText();
+        moveSlot = 4;
+    }
+
+    public void choice5(MouseEvent mouseEvent) {
+        myMove = whiteCard5.getText();
+        moveSlot = 5;
+    }
+
+    public TextArea getPlayerSlot1() {
+        return playerSlot1;
+    }
+
+    public TextArea getPlayerSlot2() {
+        return playerSlot2;
+    }
+
+    public TextArea getPlayerSlot3() {
+        return playerSlot3;
+    }
+
+    public TextArea getPlayerSlot4() {
+        return playerSlot4;
+    }
+
+    public TextArea getPlayerSlot5() {
+        return playerSlot5;
+    }
 }

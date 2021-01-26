@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 import logic.Room;
 
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.util.Random;
 public class CAHServer extends Application {
 
         Server server;
+        private ArrayList<Integer> players_ID = new ArrayList<Integer>();
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -77,26 +79,17 @@ public class CAHServer extends Application {
                                         //Carica carte bianche
                                         ArrayList<String> carteMazzo = Room.getWhiteCards();
 
-                                        //Contiamo i player, ipoteticamente 4
-
-                                        int players_Number = 4;
-
                                         //Mischiamo le carte
                                         Collections.shuffle(carteMazzo);
 
-                                        //Distribuiamo le carte
-
-                                        int maxCarte = carteMazzo.size()/players_Number;
-
+                                        //Distribuiamo le carte iniziali
                                         for (int p = 1; p <= 4; ++p){
-                                                for (int i =0 ; i < maxCarte; ++i){
+                                                for (int i =0 ; i < 4; ++i){
                                                         WhiteCard w = new WhiteCard();
                                                         w.cartaBianca = carteMazzo.get(i);
                                                         server.sendToTCP(p, w);
                                                 }
                                         }
-
-                                        //LA PARTITA E' TECNICAMENTE PRONTA PER INIZIARE
                                 }
 
                                 if (o instanceof MaxScore){
@@ -121,10 +114,22 @@ public class CAHServer extends Application {
                                         //Manda il messaggio a tutti, escludendo l'utente appena connesso.
                                         server.sendToAllExceptTCP(connessioneCAH.getID(), mes);
 
-                                        if (connessioneCAH.getID() == 1) {
-                                                Master master = new Master();
-                                                server.sendToTCP(1,master);
+                                        players_ID.add(connessioneCAH.getID());
+
+                                        if (players_ID.size() == 4){
+                                                PlayerList p = new PlayerList();
+                                                Connection[] con = server.getConnections();
+                                                for (int i = 0; i < con.length; i++){
+                                                CAHConnection connectionName = (CAHConnection) con[i];
+                                                p.playerList.add(new Pair<>(connectionName.nome, players_ID.get(i)));
+                                                }
+
+                                                server.sendToAllTCP(p);
                                         }
+
+                                        Master master = new Master();
+                                        server.sendToTCP(players_ID.get(0),master);
+
                                         aggiornaUtenti();
 
                                         return;
@@ -157,6 +162,7 @@ public class CAHServer extends Application {
                                         Messaggio mes = new Messaggio();
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
+                                        players_ID.remove(connection.getID());
                                         aggiornaUtenti();
                                 }
                         }

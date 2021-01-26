@@ -29,7 +29,6 @@ public class Room {
                 }
                 else {
                     BlackCardList.add(c.getContenuto());
-
                 }
             }
         }

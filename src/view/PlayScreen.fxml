@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayScreenController">
+<AnchorPane minHeight="-Infinity" prefHeight="450.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlayScreenController">
    <children>
       <BorderPane layoutX="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -167,7 +166,7 @@
                                              <children>
                                                 <AnchorPane>
                                                    <children>
-                                                      <Button alignment="CENTER" fx:id="confirmCard" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma carta" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <Button fx:id="confirmCard" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmCard" text="Conferma carta" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane HBox.hgrow="ALWAYS">
@@ -186,11 +185,11 @@
                               <Insets left="2.0" />
                            </HBox.margin>
                         </AnchorPane>
-                        <TextArea fx:id="whiteCard1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true"/>
-                        <TextArea fx:id="whiteCard2" editable="false" prefHeight="95.0" prefWidth="127.0" wrapText="true" />
-                        <TextArea fx:id="whiteCard3" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
-                        <TextArea fx:id="whiteCard4" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
-                        <TextArea fx:id="whiteCard5" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
+                        <TextArea fx:id="whiteCard1" editable="false" onMouseClicked="#choice1" prefHeight="148.0" prefWidth="127.0" wrapText="true" />
+                        <TextArea fx:id="whiteCard2" editable="false" onMouseClicked="#choice2" prefHeight="95.0" prefWidth="127.0" wrapText="true" />
+                        <TextArea fx:id="whiteCard3" editable="false" onMouseClicked="#choice3" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
+                        <TextArea fx:id="whiteCard4" editable="false" onMouseClicked="#choice4" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
+                        <TextArea fx:id="whiteCard5" editable="false" onMouseClicked="#choice5" prefHeight="210.0" prefWidth="127.0" wrapText="true" />
                      </children>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -252,9 +251,131 @@
                                     </AnchorPane>
                                  </top>
                                  <center>
-                                    <AnchorPane BorderPane.alignment="CENTER">
+                                    <AnchorPane prefHeight="152.0" prefWidth="447.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <HBox fx:id="playedCardsBox" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="164.0" prefWidth="447.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <children>
+                                                <AnchorPane maxWidth="220.0">
+                                                   <children>
+                                                      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <center>
+                                                            <AnchorPane BorderPane.alignment="CENTER" />
+                                                         </center>
+                                                         <bottom>
+                                                            <AnchorPane BorderPane.alignment="CENTER">
+                                                               <children>
+                                                                  <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <center>
+                                                                        <AnchorPane BorderPane.alignment="CENTER" />
+                                                                     </center>
+                                                                     <right>
+                                                                        <AnchorPane BorderPane.alignment="CENTER">
+                                                                           <children>
+                                                                              <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                                 <children>
+                                                                                    <AnchorPane VBox.vgrow="ALWAYS">
+                                                                                       <children>
+                                                                                          <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                    <AnchorPane />
+                                                                                    <AnchorPane VBox.vgrow="ALWAYS">
+                                                                                       <children>
+                                                                                          <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                                       </children>
+                                                                                    </AnchorPane>
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </right>
+                                                                  </BorderPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </bottom>
+                                                      </BorderPane>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane>
+                                                   <children>
+                                                      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <center>
+                                                            <AnchorPane BorderPane.alignment="CENTER">
+                                                               <children>
+                                                                  <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <AnchorPane HBox.hgrow="ALWAYS">
+                                                                           <children>
+                                                                              <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                        <AnchorPane>
+                                                                           <children>
+                                                                              <HBox fx:id="handCardsBox1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                        <AnchorPane HBox.hgrow="ALWAYS">
+                                                                           <children>
+                                                                              <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </center>
+                                                         <top>
+                                                            <AnchorPane BorderPane.alignment="CENTER">
+                                                               <children>
+                                                                  <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <children>
+                                                                        <AnchorPane />
+                                                                        <AnchorPane HBox.hgrow="ALWAYS">
+                                                                           <children>
+                                                                              <Region AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </children>
+                                                                  </HBox>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </top>
+                                                      </BorderPane>
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets left="2.0" />
+                                                   </HBox.margin>
+                                                </AnchorPane>
+                                                <TextArea fx:id="playerSlot1" editable="false" prefHeight="148.0" prefWidth="127.0" wrapText="true">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                </TextArea>
+                                                <TextArea fx:id="playerSlot2" editable="false" prefHeight="95.0" prefWidth="127.0" wrapText="true">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                </TextArea>
+                                                <TextArea fx:id="playerSlot3" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                </TextArea>
+                                                <TextArea fx:id="playerSlot4" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                </TextArea>
+                                                <TextArea fx:id="playerSlot5" editable="false" prefHeight="210.0" prefWidth="127.0" wrapText="true">
+                                                   <font>
+                                                      <Font size="8.0" />
+                                                   </font>
+                                                </TextArea>
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </AnchorPane>
                                  </center>

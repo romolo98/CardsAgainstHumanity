@@ -121,6 +121,7 @@ public class EditorController {
 
     @FXML
     void editCard(ActionEvent event) throws IOException {
+        loader2 = new FXMLLoader();
         Parent root = loader2.load(getClass().getResource(GraphicHandler.path + "CardCreator.fxml").openStream());
         Stage stage = new Stage();
         stage.setTitle("Edit card");
