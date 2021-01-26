@@ -175,8 +175,10 @@ public class CAHServer extends Application {
                                         Messaggio mes = new Messaggio();
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
-                                        players_ID.remove(connection.getID());
-
+                                        System.out.println(connection.getID());
+                                        System.out.println(players_ID.size());
+                                        players_ID.remove(players_ID.indexOf(connection.getID()));
+                                        System.out.println(players_ID.size());
                                         if (gameOn){
                                                 GameInterrupt g = new GameInterrupt();
                                                 g.gameInterrupt = true;
