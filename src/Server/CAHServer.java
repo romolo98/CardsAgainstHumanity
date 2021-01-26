@@ -159,7 +159,7 @@ public class CAHServer extends Application {
                                         for (int i=0;i<players_ID.size();i++){
                                                 System.out.println(players_ID.get(i));
                                         }
-                                        if (players_ID.size() == 2){
+                                        if (players_ID.size() == 3){
                                                 PlayerIds playerIds = new PlayerIds();
                                                 playerIds.Ids = players_ID;
                                                 server.sendToAllTCP(playerIds);
