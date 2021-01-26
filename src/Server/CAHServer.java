@@ -177,9 +177,17 @@ public class CAHServer extends Application {
                                         Messaggio mes = new Messaggio();
                                         mes.testo = LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + " " + connection.nome + "ha lasciato la partita\n";
                                         server.sendToAllTCP(mes);
+                                        //CODICE PULITO
+                                        //////
+
+
                                         for (int i=0;i<players_ID.size();i++){
                                                 System.out.println("Prima della Cancellazione");
                                                 System.out.println(players_ID.get(i));
+                                        }
+
+                                        if (players_ID.contains((connection.getID()))){
+                                                players_ID.remove(players_ID.indexOf(connection.getID()));
                                         }
 
                                         for (int i=0;i<players_ID.size();i++){
