@@ -36,7 +36,7 @@ public class CAHServer extends Application {
         public static ArrayList<String> BlackCardList = new ArrayList<String>();
         private boolean gameOn = false;
         private static ArrayList<Integer> EveryKing = new ArrayList<>();
-        public static int numberOfPlayers = 3;
+        public static int numberOfPlayers = 2;
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -78,17 +78,17 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Punto){
+
+                                        Punto playerPoint = new Punto();
+                                        playerPoint = (Punto) o;
+                                        server.sendToTCP(playerPoint.ID, playerPoint);
+
+                                        UpdateScore us = new UpdateScore();
+                                        us.ranking = players_ID;
+                                        server.sendToAllTCP(us);
+
                                         RoundEnd re = new RoundEnd();
                                         server.sendToAllTCP(re);
-                                        PlayScreenController psc = GraphicHandler.getLoader().getController();
-
-                                        for (int i=0;i<players_ID.size();i++){
-                                                if (((Punto) o).ID == players_ID.get(i).getUserID()){
-                                                        players_ID.get(i).updateScore(((Punto) o).punto);
-                                                }
-                                        }
-
-                                        psc.updateScoresList(players_ID);
 
                                         if (EveryKing.size() == players_ID.size()){
                                                 EveryKing.clear();
@@ -145,16 +145,17 @@ public class CAHServer extends Application {
                                         server.sendToTCP(czar.king, czar);
                                         EveryKing.add(czar.king);
 
+                                        UpdateScore currentPoints = new UpdateScore();
+                                        currentPoints.ranking = players_ID;
+                                        server.sendToAllTCP(currentPoints);
+
                                 }
 
                                 if (o instanceof MaxScore){
-                                        PlayScreenController psc = GraphicHandler.getLoader().getController();
-                                        ArrayList<String> players = new ArrayList<>();
-                                        for (int i=0;i<players_ID.size();i++){
-                                                players.add(players_ID.get(i).getName());
-                                        }
-                                        psc.updatePlayersList(players);
-                                        psc.updateScoresList(players_ID);
+                                        MaxScore m = new MaxScore();
+                                        m = (MaxScore) o;
+                                        server.sendToAllTCP(m);
+
                                 }
 
                                 if (o instanceof CAHNetwork.RegistraUtente) {
@@ -169,7 +170,7 @@ public class CAHServer extends Application {
                                         connessioneCAH.nome = nome;
 
                                         if (players_ID.size() == numberOfPlayers){
-                                                Alert alert = new Alert(Alert.AlertType.ERROR, "La stanza è piena, stronzo", ButtonType.OK);
+                                                Alert alert = new Alert(Alert.AlertType.ERROR, "La stanza è piena, animale", ButtonType.OK);
                                                 alert.showAndWait();
                                                 return;
                                         }

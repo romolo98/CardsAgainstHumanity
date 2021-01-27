@@ -2,6 +2,7 @@ package Server;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
+import sample.Record;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,8 @@ public class CAHNetwork {
         kryo.register(PlayerIds.class);
         kryo.register(ArrayList.class);
         kryo.register(Czar.class);
+        kryo.register(UpdateScore.class);
+        kryo.register(Record.class);
     }
 
 

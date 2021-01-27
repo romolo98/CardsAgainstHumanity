@@ -138,9 +138,10 @@ public class PlayScreenController {
         if ( CAHClient.abilitato == false  ) { // SPOSTARE LA CHIAMATA SUL SERVER
             chatWall.appendText("Non hai i privilegi per iniziare una partita!\n");
         }
-        else if ( !highscoreField.getText().equals("") ) {
-            chatWall.appendText("Non hai impostato un punteggio massimo!\n");
-        }else if (CAHClient.id_connessioni.size() != CAHServer.numberOfPlayers) {
+        //else if ( !highscoreField.getText().equals("") ) {
+          //  chatWall.appendText("Non hai impostato un punteggio massimo!\n");
+        //}
+        else if (CAHClient.id_connessioni.size() != CAHServer.numberOfPlayers) {
             chatWall.appendText("Giocatori insufficienti!\n");
         }else{
 
@@ -158,11 +159,12 @@ public class PlayScreenController {
     }
 
     public void updatePlayersList ( ArrayList<String> players ) {
-        if ( playersList == null )        playersList = new ListView<String>();
-        playersList.setItems(FXCollections.observableArrayList( players ));
-        playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        playersList.setOrientation(Orientation.VERTICAL);
-    }
+        if ( playersList == null ) {
+            playersList = new ListView<String>();
+            playersList.setItems(FXCollections.observableArrayList( players ));
+            playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            playersList.setOrientation(Orientation.VERTICAL);}
+        }
 
     public void updateScoresList (ArrayList<Record> scores){
         for (int i=0;i<scores.size();i++){

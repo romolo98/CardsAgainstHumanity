@@ -28,6 +28,8 @@ public class CAHClient extends Application {
     static public Client client;
     public static ArrayList<Integer> id_connessioni = new ArrayList<>();
     public static boolean Czar;
+    public static int pointsToVictory;
+    public static int myPoints = 0;
 
     public CAHClient () {
         client = new Client();
@@ -122,6 +124,31 @@ public class CAHClient extends Application {
                         ((PlayScreenController) GraphicHandler.getLoader().getController()).setPlayable(b);
                     }
                     return;
+                }
+
+                if (oggetto instanceof MaxScore){
+                    MaxScore m = (MaxScore) oggetto;
+                    pointsToVictory = m.punteggioVittoria;
+
+                }
+
+                if (oggetto instanceof Punto){
+                    myPoints++;
+
+                    if (myPoints == pointsToVictory) {
+                        //CREO UN OGGETTO SEGNALA VITTORIA
+                    }
+                }
+
+                if (oggetto instanceof UpdateScore){
+                    UpdateScore current = (UpdateScore) oggetto;
+                    PlayScreenController psc = GraphicHandler.getLoader().getController();
+                    ArrayList<String> players = new ArrayList<>();
+                    for (int i=0;i<current.ranking.size();i++){
+                        players.add(current.ranking.get(i).getName());
+                    }
+                    psc.updatePlayersList(players);
+                    psc.updateScoresList(current.ranking);
                 }
 
                 if (oggetto instanceof RoundEnd){
