@@ -81,8 +81,7 @@ public class CAHServer extends Application {
                                 if (o instanceof Punto){
                                         System.out.println("Qualcuno ha guadagnato un Punto");
 
-                                        Punto playerPoint = new Punto();
-                                        playerPoint = (Punto) o;
+                                        Punto playerPoint = (Punto) o;
                                         server.sendToTCP(playerPoint.ID, playerPoint);
 
                                         UpdateScore us = new UpdateScore();
@@ -103,9 +102,15 @@ public class CAHServer extends Application {
                                                 }
                                         }
                                         Czar czar = new Czar();
-                                        server.sendToTCP(EveryKing.get(EveryKing.size()-1), czar);
 
-                                        //INCREMENTA IL PUNTEGGIO DI UN GIOCATORE, IN BASE AL SUO CONNECTIONID.
+                                        Random r = new Random();
+                                        int casuale = r.nextInt(players_ID.size());
+
+                                        czar.king = players_ID.get(casuale).getUserID();
+
+                                        System.out.println(czar.king);
+                                        server.sendToTCP(czar.king, czar);
+
                                 }
 
                                 if (o instanceof Match){

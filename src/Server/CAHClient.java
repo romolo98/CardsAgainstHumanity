@@ -141,17 +141,17 @@ public class CAHClient extends Application {
                             if (gw.winner == client.getID()) {
                                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Complimenti, sei la persona più cattiva in questa partita", ButtonType.OK);
                                 alert.showAndWait();
-                                GameInterrupt gi = new GameInterrupt();
-                                client.sendTCP(gi);
+
                             }
                             else {
                                 Alert alert2 = new Alert(Alert.AlertType.ERROR, "Non sei riuscito nemmeno a far ridere con le parole brutte, fai schifo", ButtonType.OK);
                                 alert2.showAndWait();
                             }
-                            return;
                         }
-                    });
-
+                        });
+                    GameInterrupt gi = new GameInterrupt();
+                    client.sendTCP(gi);
+                    return;
                 }
 
                 if (oggetto instanceof Punto){
