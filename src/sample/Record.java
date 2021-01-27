@@ -18,6 +18,12 @@ public class Record {
         this.score = score;
     }
 
+    public Record(){
+        this.userID = 0;
+        this.name = "";
+        this.score = 0;
+    }
+
     public int getUserID() {
         return userID;
     }

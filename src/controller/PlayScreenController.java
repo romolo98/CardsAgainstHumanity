@@ -60,6 +60,7 @@ public class PlayScreenController {
 
 
     private String myMove = null;
+    private ObservableList<String> objectlookup = FXCollections.observableArrayList();
 
     private int moveSlot = 0;
     private int voto;
@@ -159,17 +160,20 @@ public class PlayScreenController {
     }
 
     public void updatePlayersList ( ArrayList<String> players ) {
-        if ( playersList == null ) {
+        if ( playersList == null ){
             playersList = new ListView<String>();
-            playersList.setItems(FXCollections.observableArrayList( players ));
+            objectlookup.addAll(players);
+            playersList.setItems( objectlookup);
             playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             playersList.setOrientation(Orientation.VERTICAL);}
         }
 
     public void updateScoresList (ArrayList<Record> scores){
-        for (int i=0;i<scores.size();i++){
-            playersList.getItems().set(i,scores.get(i).getName()+" "+ scores.get(i).getScore());
+        for (int i = 0; i < objectlookup.size(); i++){
+            objectlookup.set(i, scores.get(i).getName() + " " + scores.get(i).getScore());
         }
+
+        playersList.setItems(objectlookup);
     }
 
     public void sendMessageToChatWall ( String message ) {
