@@ -79,6 +79,7 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof Punto){
+                                        System.out.println("Qualcuno ha guadagnato un Punto");
 
                                         Punto playerPoint = new Punto();
                                         playerPoint = (Punto) o;
