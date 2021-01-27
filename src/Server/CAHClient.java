@@ -168,11 +168,11 @@ public class CAHClient extends Application {
                     UpdateScore current = (UpdateScore) oggetto;
                     PlayScreenController psc = GraphicHandler.getLoader().getController();
                     ArrayList<String> players = new ArrayList<>();
+                    current.sortHighscore();
                     for (int i=0;i<current.ranking.size();i++){
-                        players.add(current.ranking.get(i).getName());
+                        players.add(current.ranking.get(i).getScore() + " " + current.ranking.get(i).getName());
                     }
                     psc.updatePlayersList(players);
-                    psc.updateScoresList(current.ranking);
                 }
 
                 if (oggetto instanceof RoundEnd){
