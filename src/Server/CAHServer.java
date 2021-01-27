@@ -37,6 +37,7 @@ public class CAHServer extends Application {
         private boolean gameOn = false;
         private static ArrayList<Integer> EveryKing = new ArrayList<>();
         public static int numberOfPlayers = 2;
+        public static int winner;
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -156,6 +157,11 @@ public class CAHServer extends Application {
                                         m = (MaxScore) o;
                                         server.sendToAllTCP(m);
 
+                                }
+
+                                if (o instanceof GameWin){
+                                        GameWin g = (GameWin) o;
+                                        server.sendToAllTCP(g);
                                 }
 
                                 if (o instanceof CAHNetwork.RegistraUtente) {

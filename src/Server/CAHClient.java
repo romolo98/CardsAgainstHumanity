@@ -132,11 +132,27 @@ public class CAHClient extends Application {
 
                 }
 
+                if (oggetto instanceof GameWin){
+                    GameWin gw = (GameWin) oggetto;
+                    Alert alert;
+                    if (gw.winner == client.getID()) {
+                        alert = new Alert(Alert.AlertType.CONFIRMATION, "Complimenti, sei la persona più cattiva in questa partita", ButtonType.OK);
+                        alert.showAndWait();
+                        GameInterrupt gi = new GameInterrupt();
+                        client.sendTCP(gi);
+                    }
+                    else
+                        alert = new Alert(Alert.AlertType.ERROR, "Non sei riuscito nemmeno a far ridere con le parole brutte, fai schifo", ButtonType.OK);
+                    return;
+                }
+
                 if (oggetto instanceof Punto){
                     myPoints++;
 
                     if (myPoints == pointsToVictory) {
-                        //CREO UN OGGETTO SEGNALA VITTORIA
+                    GameWin w = new GameWin();
+                    w.winner = CAHClient.getClient().getID();
+                    CAHClient.getClient().sendTCP(w);
                     }
                 }
 

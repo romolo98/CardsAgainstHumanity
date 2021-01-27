@@ -166,6 +166,7 @@ public class PlayScreenController {
             playersList.setItems( objectlookup);
             playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
             playersList.setOrientation(Orientation.VERTICAL);}
+
         }
 
     public void updateScoresList (ArrayList<Record> scores){
@@ -174,6 +175,7 @@ public class PlayScreenController {
         }
 
         playersList.setItems(objectlookup);
+        playersList.refresh();
     }
 
     public void sendMessageToChatWall ( String message ) {

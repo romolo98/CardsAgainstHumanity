@@ -33,6 +33,7 @@ public class CAHNetwork {
         kryo.register(Czar.class);
         kryo.register(UpdateScore.class);
         kryo.register(Record.class);
+        kryo.register(GameWin.class);
     }
 
 
