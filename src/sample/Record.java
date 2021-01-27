@@ -41,4 +41,5 @@ public class Record {
     public void setScore(int score) {
         this.score = score;
     }
+    public void updateScore(int score){this.score+=score;}
 }

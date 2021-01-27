@@ -5,6 +5,7 @@ import com.dosse.upnp.UPnP;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import controller.PlayScreenController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,25 +14,29 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import logic.GraphicHandler;
 import logic.Room;
 import sample.Carta;
 import sample.DBConnector;
+import sample.Record;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Random;
 
 public class CAHServer extends Application {
 
         Server server;
-        private ArrayList<Integer> players_ID = new ArrayList<Integer>();
+        private ArrayList<Record> players_ID = new ArrayList<>();
         private static ArrayList<String> WhiteCardList = new ArrayList<String>();
         public static ArrayList<String> BlackCardList = new ArrayList<String>();
         private boolean gameOn = false;
         private static ArrayList<Integer> EveryKing = new ArrayList<>();
+        public static int numberOfPlayers = 3;
 
         public CAHServer () throws IOException {
                 server = new Server(){
@@ -67,15 +72,23 @@ public class CAHServer extends Application {
                                                 Collections.shuffle(WhiteCardList);
                                                 WhiteCard wc = new WhiteCard();
                                                 wc.cartaBianca = WhiteCardList.get(0);
-                                                server.sendToTCP(players_ID.get(i), wc);
+                                                server.sendToTCP(players_ID.get(i).getUserID(), wc);
                                         }
 
                                 }
 
                                 if (o instanceof Punto){
-                                        System.out.println("Un giocatore ha guadagnato un punto");
                                         RoundEnd re = new RoundEnd();
                                         server.sendToAllTCP(re);
+                                        PlayScreenController psc = GraphicHandler.getLoader().getController();
+
+                                        for (int i=0;i<players_ID.size();i++){
+                                                if (((Punto) o).ID == players_ID.get(i).getUserID()){
+                                                        players_ID.get(i).updateScore(((Punto) o).punto);
+                                                }
+                                        }
+
+                                        psc.updateScoresList(players_ID);
 
                                         if (EveryKing.size() == players_ID.size()){
                                                 EveryKing.clear();
@@ -83,7 +96,7 @@ public class CAHServer extends Application {
 
                                         for (int i = 0; i < players_ID.size(); i++){
                                                 if (!EveryKing.contains(players_ID.get(i))){
-                                                        EveryKing.add(players_ID.get(i));
+                                                        EveryKing.add(players_ID.get(i).getUserID());
                                                         break;
                                                 }
                                         }
@@ -127,7 +140,7 @@ public class CAHServer extends Application {
 
                                         Czar czar = new Czar();
                                         casuale = r.nextInt(players_ID.size());
-                                        czar.king = players_ID.get(casuale);
+                                        czar.king = players_ID.get(casuale).getUserID();
 
                                         server.sendToTCP(czar.king, czar);
                                         EveryKing.add(czar.king);
@@ -135,8 +148,13 @@ public class CAHServer extends Application {
                                 }
 
                                 if (o instanceof MaxScore){
-                                        //SETTIAMO IL PUNTEGGIO ALLO SCORE
-                                        //IL CLIENT NOTIFICA LA SUA VITTORIA AL SERVER
+                                        PlayScreenController psc = GraphicHandler.getLoader().getController();
+                                        ArrayList<String> players = new ArrayList<>();
+                                        for (int i=0;i<players_ID.size();i++){
+                                                players.add(players_ID.get(i).getName());
+                                        }
+                                        psc.updatePlayersList(players);
+                                        psc.updateScoresList(players_ID);
                                 }
 
                                 if (o instanceof CAHNetwork.RegistraUtente) {
@@ -150,18 +168,18 @@ public class CAHServer extends Application {
                                         }
                                         connessioneCAH.nome = nome;
 
-                                        if (players_ID.size() == 4){
+                                        if (players_ID.size() == numberOfPlayers){
                                                 Alert alert = new Alert(Alert.AlertType.ERROR, "La stanza è piena, stronzo", ButtonType.OK);
                                                 alert.showAndWait();
                                                 return;
                                         }
-                                        players_ID.add(connessioneCAH.getID());
-                                        for (int i=0;i<players_ID.size();i++){
-                                                System.out.println(players_ID.get(i));
-                                        }
-                                        if (players_ID.size() == 3){
+                                        players_ID.add(new Record(connessioneCAH.getID(),connessioneCAH.nome,0));
+
+                                        if (players_ID.size() == numberOfPlayers){
                                                 PlayerIds playerIds = new PlayerIds();
-                                                playerIds.Ids = players_ID;
+                                                for (int i=0;i<players_ID.size();i++){
+                                                        playerIds.Ids.add(players_ID.get(i).getUserID());
+                                                }
                                                 server.sendToAllTCP(playerIds);
                                         }
 
@@ -172,7 +190,7 @@ public class CAHServer extends Application {
 
                                         Master master = new Master();
 
-                                        server.sendToTCP(players_ID.get(0),master);
+                                        server.sendToTCP(players_ID.get(0).getUserID(),master);
 
                                         aggiornaUtenti();
 

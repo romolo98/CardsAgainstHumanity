@@ -44,11 +44,17 @@ public class CreateRoomController {
             }
 
         if(isIdGood) {
-            CAHClient.getClient().start();
-            CAHClient.nome = nameField.getText();
-            CAHClient.getClient().start();
-            CAHClient.getClient().connect(10000,"93.51.96.34" , Integer.parseInt(portField.getText()));
-            GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM);
+            if (CAHClient.id_connessioni.size() < 1) {
+                CAHClient.getClient().start();
+                CAHClient.nome = nameField.getText();
+                CAHClient.getClient().start();
+                CAHClient.getClient().connect(10000,"93.51.96.34" , Integer.parseInt(portField.getText()));
+                GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM);
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Qualcuno ha già creato la Stanza. Prova a Partecipare", ButtonType.OK);
+                alert.showAndWait();
+            }
         }
     }
 

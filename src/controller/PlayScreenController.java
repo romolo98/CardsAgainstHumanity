@@ -17,6 +17,7 @@ import logic.CAHParser;
 import logic.GraphicHandler;
 import logic.Room;
 import org.supercsv.cellprocessor.ParseInt;
+import sample.Record;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -57,6 +58,7 @@ public class PlayScreenController {
     @FXML
     private AnchorPane blackCardBox;
 
+
     private String myMove = null;
 
     private int moveSlot = 0;
@@ -82,7 +84,7 @@ public class PlayScreenController {
         if (CAHClient.Czar){
             Punto p = new Punto();
             p.ID = voto;
-            p.punto = 10;
+            p.punto = 1;
             CAHClient.getClient().sendTCP(p);
         }
         else {
@@ -136,19 +138,21 @@ public class PlayScreenController {
         if ( CAHClient.abilitato == false  ) { // SPOSTARE LA CHIAMATA SUL SERVER
             chatWall.appendText("Non hai i privilegi per iniziare una partita!\n");
         }
-        /*else if ( !Room.isScoreSet() ) {
+        else if ( !highscoreField.getText().equals("") ) {
             chatWall.appendText("Non hai impostato un punteggio massimo!\n");
-        }else if (!Room.playerNumber()){
+        }else if (CAHClient.id_connessioni.size() != CAHServer.numberOfPlayers) {
             chatWall.appendText("Giocatori insufficienti!\n");
-        }*/else{
+        }else{
+
+            MaxScore max = new MaxScore();
+            max.punteggioVittoria = Integer.parseInt(highscoreField.getText());
+            CAHClient.getClient().sendTCP(max);
 
             Match m = new Match();
             m.m = "Literally whatever";
             CAHClient.getClient().sendTCP(m);
 
-            /*Random r = new Random();
-            int casuale = r.nextInt(Room.getNoCarteNere());
-            blackCardSlot.setText(Room.getContenutoCarta(casuale));*/
+
         }
 
     }
@@ -158,6 +162,12 @@ public class PlayScreenController {
         playersList.setItems(FXCollections.observableArrayList( players ));
         playersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         playersList.setOrientation(Orientation.VERTICAL);
+    }
+
+    public void updateScoresList (ArrayList<Record> scores){
+        for (int i=0;i<scores.size();i++){
+            playersList.getItems().set(i,scores.get(i).getName()+" "+ scores.get(i).getScore());
+        }
     }
 
     public void sendMessageToChatWall ( String message ) {

@@ -26,7 +26,7 @@ public class CAHClient extends Application {
     public static Boolean abilitato;
     String host;
     static public Client client;
-    public static ArrayList<Integer> id_connessioni;
+    public static ArrayList<Integer> id_connessioni = new ArrayList<>();
     public static boolean Czar;
 
     public CAHClient () {

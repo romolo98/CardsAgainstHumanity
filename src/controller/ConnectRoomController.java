@@ -1,8 +1,11 @@
 package controller;
 
 import Server.CAHClient;
+import Server.CAHServer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import logic.GraphicHandler;
 
@@ -22,12 +25,18 @@ public class ConnectRoomController {
     @FXML
     void connectToRoom(ActionEvent event) throws IOException {
         CAHClient.nome = nameField.getText();
-        PlayScreenController playScreenController = GraphicHandler.displayScreen( GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM ).getController();
-        CAHClient.getClient().start();
-        CAHClient.getClient().connect(5000, ipField.getText(), Integer.parseInt(portField.getText()));
-        CAHClient.abilitato = false;
+        if (CAHClient.id_connessioni.size() > 0) {
+            PlayScreenController playScreenController = GraphicHandler.displayScreen(GraphicHandler.PLAY_SCREEN, GraphicHandler.OPEN_STREAM).getController();
+            CAHClient.getClient().start();
+            CAHClient.getClient().connect(5000, ipField.getText(), Integer.parseInt(portField.getText()));
+            CAHClient.abilitato = false;
+            playScreenController.setHighscoreVisible(false);
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Nessuno ha Creato la Partita Richiesta", ButtonType.OK);
+            alert.showAndWait();
+        }
 
-        playScreenController.setHighscoreVisible(false);
         //playScreenController.setCursor();
 
     }
