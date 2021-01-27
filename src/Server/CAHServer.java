@@ -36,7 +36,7 @@ public class CAHServer extends Application {
         public static ArrayList<String> BlackCardList = new ArrayList<String>();
         private boolean gameOn = false;
         private static ArrayList<Integer> EveryKing = new ArrayList<>();
-        public static int numberOfPlayers = 2;
+        public static int numberOfPlayers = 3;
         public static int winner;
 
         public CAHServer () throws IOException {
